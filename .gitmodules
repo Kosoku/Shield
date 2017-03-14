@@ -1,0 +1,3 @@
+[submodule "Vendor/Stanley"]
+	path = Vendor/Stanley
+	url = https://github.com/Kosoku/Stanley.git
