@@ -22,7 +22,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeLocation,
     AuthorizationTypeCamera,
     AuthorizationTypeMicrophone,
-    AuthorizationTypeCalendars
+    AuthorizationTypeCalendars,
+    AuthorizationTypeReminders
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -41,12 +42,14 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeLocation),
                                   @(AuthorizationTypeCamera),
                                   @(AuthorizationTypeMicrophone),
-                                  @(AuthorizationTypeCalendars)]];
+                                  @(AuthorizationTypeCalendars),
+                                  @(AuthorizationTypeReminders)]];
     [self setAuthorizationTitles:@[@"Photo Library",
                                    @"Location",
                                    @"Camera",
                                    @"Microphone",
-                                   @"Calendars"]];
+                                   @"Calendars",
+                                   @"Reminders"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -101,6 +104,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeCalendars: {
             [KSHAuthorizationManager.sharedManager requestCalendarsAuthorizationWithCompletion:^(KSHCalendarsAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeReminders: {
+            [KSHAuthorizationManager.sharedManager requestRemindersAuthorizationWithCompletion:^(KSHRemindersAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

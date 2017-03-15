@@ -163,6 +163,18 @@
         });
     }];
 }
+- (void)requestRemindersAuthorizationWithCompletion:(KSHRequestRemindersAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSRemindersUsageDescription"] != nil);
+    
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
+        KSTDispatchMainAsync(^{
+            completion(self.remindersAuthorizationStatus,error);
+        });
+    }];
+}
 
 + (KSHAuthorizationManager *)sharedManager {
     static dispatch_once_t onceToken;
@@ -220,6 +232,13 @@
 }
 - (KSHCalendarsAuthorizationStatus)calendarsAuthorizationStatus {
     return (KSHCalendarsAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+}
+
+- (BOOL)hasRemindersAuthorization {
+    return self.remindersAuthorizationStatus == KSHRemindersAuthorizationStatusAuthorized;
+}
+- (KSHRemindersAuthorizationStatus)remindersAuthorizationStatus {
+    return (KSHRemindersAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
 }
 
 @end

@@ -28,6 +28,8 @@
 	<string>LOCALIZE</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>LOCALIZE</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSCameraUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>UILaunchStoryboardName</key>
