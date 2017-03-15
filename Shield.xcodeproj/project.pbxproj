@@ -10,6 +10,8 @@
 		072DB9E41E79B7800070907C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9E31E79B7800070907C /* CoreLocation.framework */; };
 		072DB9E61E79B7E80070907C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9E51E79B7E80070907C /* AVFoundation.framework */; };
 		072DB9E81E79C51F0070907C /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9E71E79C51F0070907C /* EventKit.framework */; };
+		072DB9EA1E79D4AC0070907C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9E91E79D4AC0070907C /* CoreBluetooth.framework */; };
+		072DB9EC1E79D64E0070907C /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9EB1E79D64E0070907C /* Contacts.framework */; };
 		076730A91E7797F600030F0C /* Shield.h in Headers */ = {isa = PBXBuildFile; fileRef = 076730A71E7797F600030F0C /* Shield.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		076730B21E77992B00030F0C /* KSHAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 076730B01E77992B00030F0C /* KSHAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		076730B31E77992B00030F0C /* KSHAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 076730B11E77992B00030F0C /* KSHAuthorizationManager.m */; };
@@ -56,6 +58,8 @@
 		072DB9E31E79B7800070907C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		072DB9E51E79B7E80070907C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		072DB9E71E79C51F0070907C /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/EventKit.framework; sourceTree = DEVELOPER_DIR; };
+		072DB9E91E79D4AC0070907C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		072DB9EB1E79D64E0070907C /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Contacts.framework; sourceTree = DEVELOPER_DIR; };
 		076730A51E7797F600030F0C /* Shield.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shield.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		076730A71E7797F600030F0C /* Shield.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shield.h; sourceTree = "<group>"; };
 		076730A81E7797F600030F0C /* Shield-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shield-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072DB9EC1E79D64E0070907C /* Contacts.framework in Frameworks */,
+				072DB9EA1E79D4AC0070907C /* CoreBluetooth.framework in Frameworks */,
 				072DB9E81E79C51F0070907C /* EventKit.framework in Frameworks */,
 				072DB9E61E79B7E80070907C /* AVFoundation.framework in Frameworks */,
 				072DB9E41E79B7800070907C /* CoreLocation.framework in Frameworks */,
@@ -176,6 +182,8 @@
 		076730D71E779CFF00030F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				072DB9EB1E79D64E0070907C /* Contacts.framework */,
+				072DB9E91E79D4AC0070907C /* CoreBluetooth.framework */,
 				072DB9E71E79C51F0070907C /* EventKit.framework */,
 				072DB9E51E79B7E80070907C /* AVFoundation.framework */,
 				072DB9E31E79B7800070907C /* CoreLocation.framework */,

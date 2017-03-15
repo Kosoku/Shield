@@ -22,7 +22,11 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSContactsUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>LOCALIZE</string>

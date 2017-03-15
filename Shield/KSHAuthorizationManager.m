@@ -24,9 +24,12 @@
 #import <AVFoundation/AVMediaFormat.h>
 #endif
 
-@interface KSHAuthorizationManager () <CLLocationManagerDelegate>
+@interface KSHAuthorizationManager () <CLLocationManagerDelegate,CBPeripheralManagerDelegate>
 @property (strong,nonatomic) CLLocationManager *locationManager;
 @property (copy,nonatomic) KSHRequestLocationAuthorizationCompletionBlock requestLocationAuthorizationCompletionBlock;
+
+@property (strong,nonatomic) CBPeripheralManager *peripheralManager;
+@property (copy,nonatomic) KSHRequestBluetoothPeripheralAuthorizationCompletionBlock requestBluetoothPeripheralAuthorizationCompletionBlock;
 @end
 
 @implementation KSHAuthorizationManager
@@ -58,6 +61,30 @@
     
     [self setLocationManager:nil];
     [self setRequestLocationAuthorizationCompletionBlock:nil];
+}
+
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
+    if (peripheral.state == CBManagerStateUnknown ||
+        peripheral.state == CBManagerStateResetting) {
+        
+        return;
+    }
+    
+    if (peripheral.state == CBManagerStatePoweredOn ||
+        peripheral.state == CBManagerStatePoweredOff) {
+        
+        KSTDispatchMainAsync(^{
+            self.requestBluetoothPeripheralAuthorizationCompletionBlock(KSHBluetoothPeripheralAuthorizationStatusAuthorized,nil);
+        });
+    }
+    else {
+        KSTDispatchMainAsync(^{
+            self.requestBluetoothPeripheralAuthorizationCompletionBlock((KSHBluetoothPeripheralAuthorizationStatus)[CBPeripheralManager authorizationStatus],nil);
+        });
+    }
+    
+    [self setPeripheralManager:nil];
+    [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:nil];
 }
 
 #if (TARGET_OS_IPHONE)
@@ -175,6 +202,39 @@
         });
     }];
 }
+- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSBluetoothPeripheralUsageDescription"] != nil);
+    
+    if (self.hasBluetoothPeripheralAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHBluetoothPeripheralAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:completion];
+    [self setPeripheralManager:[[CBPeripheralManager alloc] initWithDelegate:self queue:nil]];
+}
+- (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSContactsUsageDescription"] != nil);
+    
+    if (self.hasContactsAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHContactsAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    CNContactStore *contactStore = [[CNContactStore alloc] init];
+    
+    [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        KSTDispatchMainAsync(^{
+            completion(self.contactsAuthorizationStatus,error);
+        });
+    }];
+}
 
 + (KSHAuthorizationManager *)sharedManager {
     static dispatch_once_t onceToken;
@@ -239,6 +299,20 @@
 }
 - (KSHRemindersAuthorizationStatus)remindersAuthorizationStatus {
     return (KSHRemindersAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
+}
+
+- (BOOL)hasBluetoothPeripheralAuthorization {
+    return self.bluetoothPeripheralAuthorizationStatus == KSHBluetoothPeripheralAuthorizationStatusAuthorized;
+}
+- (KSHBluetoothPeripheralAuthorizationStatus)bluetoothPeripheralAuthorizationStatus {
+    return (KSHBluetoothPeripheralAuthorizationStatus)[CBPeripheralManager authorizationStatus];
+}
+
+- (BOOL)hasContactsAuthorization {
+    return self.contactsAuthorizationStatus == KSHContactsAuthorizationStatusAuthorized;
+}
+- (KSHContactsAuthorizationStatus)contactsAuthorizationStatus {
+    return (KSHContactsAuthorizationStatus)[CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
 }
 
 @end

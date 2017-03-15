@@ -23,7 +23,9 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeCamera,
     AuthorizationTypeMicrophone,
     AuthorizationTypeCalendars,
-    AuthorizationTypeReminders
+    AuthorizationTypeReminders,
+    AuthorizationTypeBluetoothPeripheral,
+    AuthorizationTypeContacts
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -43,13 +45,17 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeCamera),
                                   @(AuthorizationTypeMicrophone),
                                   @(AuthorizationTypeCalendars),
-                                  @(AuthorizationTypeReminders)]];
+                                  @(AuthorizationTypeReminders),
+                                  @(AuthorizationTypeBluetoothPeripheral),
+                                  @(AuthorizationTypeContacts)]];
     [self setAuthorizationTitles:@[@"Photo Library",
                                    @"Location",
                                    @"Camera",
                                    @"Microphone",
                                    @"Calendars",
-                                   @"Reminders"]];
+                                   @"Reminders",
+                                   @"Bluetooth Peripheral",
+                                   @"Contacts"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -110,6 +116,18 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeReminders: {
             [KSHAuthorizationManager.sharedManager requestRemindersAuthorizationWithCompletion:^(KSHRemindersAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeBluetoothPeripheral: {
+            [KSHAuthorizationManager.sharedManager requestBluetoothPeripheralAuthorizationWithCompletion:^(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeContacts: {
+            [KSHAuthorizationManager.sharedManager requestContactsAuthorizationWithCompletion:^(KSHContactsAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

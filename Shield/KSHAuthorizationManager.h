@@ -21,6 +21,8 @@
 #endif
 #import <CoreLocation/CLLocationManager.h>
 #import <EventKit/EKTypes.h>
+#import <CoreBluetooth/CBPeripheralManager.h>
+#import <Contacts/CNContactStore.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -212,6 +214,22 @@ typedef NS_ENUM(NSInteger, KSHRemindersAuthorizationStatus) {
  */
 typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAuthorizationStatus status, NSError * _Nullable error);
 
+typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
+    KSHBluetoothPeripheralAuthorizationStatusNotDetermined = CBPeripheralManagerAuthorizationStatusNotDetermined,
+    KSHBluetoothPeripheralAuthorizationStatusRestricted = CBPeripheralManagerAuthorizationStatusRestricted,
+    KSHBluetoothPeripheralAuthorizationStatusDenied = CBPeripheralManagerAuthorizationStatusDenied,
+    KSHBluetoothPeripheralAuthorizationStatusAuthorized = CBPeripheralManagerAuthorizationStatusAuthorized
+};
+typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error);
+
+typedef NS_ENUM(NSInteger, KSHContactsAuthorizationStatus) {
+    KSHContactsAuthorizationStatusNotDetermined = CNAuthorizationStatusNotDetermined,
+    KSHContactsAuthorizationStatusRestricted = CNAuthorizationStatusRestricted,
+    KSHContactsAuthorizationStatusDenied = CNAuthorizationStatusDenied,
+    KSHContactsAuthorizationStatusAuthorized = CNAuthorizationStatusAuthorized
+};
+typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthorizationStatus status, NSError * _Nullable error);
+
 /**
  KSHAuthorizationManager is an NSObject subclass that combines all the authorization methods into a consistent interface.
  */
@@ -300,6 +318,12 @@ typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAutho
  */
 @property (readonly,nonatomic) KSHRemindersAuthorizationStatus remindersAuthorizationStatus;
 
+@property (readonly,nonatomic) BOOL hasBluetoothPeripheralAuthorization;
+@property (readonly,nonatomic) KSHBluetoothPeripheralAuthorizationStatus bluetoothPeripheralAuthorizationStatus;
+
+@property (readonly,nonatomic) BOOL hasContactsAuthorization;
+@property (readonly,nonatomic) KSHContactsAuthorizationStatus contactsAuthorizationStatus;
+
 #if (TARGET_OS_IPHONE)
 /**
  Request camera authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCameraUsageDescription or an exception will be thrown.
@@ -339,6 +363,9 @@ typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAutho
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestRemindersAuthorizationWithCompletion:(KSHRequestRemindersAuthorizationCompletionBlock)completion;
+
+- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion;
+- (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion;
 
 @end
 
