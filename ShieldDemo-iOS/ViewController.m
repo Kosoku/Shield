@@ -19,7 +19,8 @@
 
 typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypePhotoLibrary,
-    AuthorizationTypeLocation
+    AuthorizationTypeLocation,
+    AuthorizationTypeCamera
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -35,9 +36,11 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     [super viewDidLoad];
     
     [self setAuthorizationTypes:@[@(AuthorizationTypePhotoLibrary),
-                                  @(AuthorizationTypeLocation)]];
+                                  @(AuthorizationTypeLocation),
+                                  @(AuthorizationTypeCamera)]];
     [self setAuthorizationTitles:@[@"Photo Library",
-                                   @"Location"]];
+                                   @"Location",
+                                   @"Camera"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -74,6 +77,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeLocation: {
             [KSHAuthorizationManager.sharedManager requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedAlways completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeCamera: {
+            [KSHAuthorizationManager.sharedManager requestCameraAuthorizationWithCompletion:^(KSHCameraAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

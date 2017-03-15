@@ -19,6 +19,9 @@
 #import <Stanley/KSTFunctions.h>
 
 #import <CoreLocation/CLLocationManagerDelegate.h>
+#if (TARGET_OS_IPHONE)
+#import <AVFoundation/AVMediaFormat.h>
+#endif
 
 @interface KSHAuthorizationManager () <CLLocationManagerDelegate>
 @property (strong,nonatomic) CLLocationManager *locationManager;
@@ -57,6 +60,23 @@
 }
 
 #if (TARGET_OS_IPHONE)
+- (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion; {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCameraUsageDescription"] != nil);
+    
+    if (self.hasCameraAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHCameraAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+        KSTDispatchMainAsync(^{
+            completion(self.cameraAuthorizationStatus,nil);
+        });
+    }];
+}
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSPhotoLibraryUsageDescription"] != nil);

@@ -16,6 +16,7 @@
 #import <TargetConditionals.h>
 
 #if (TARGET_OS_IPHONE)
+#import <AVFoundation/AVCaptureDevice.h>
 #import <Photos/PHPhotoLibrary.h>
 #endif
 #import <CoreLocation/CLLocationManager.h>
@@ -23,6 +24,36 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #if (TARGET_OS_IPHONE)
+/**
+ Enum defining the possible camera authorization status values. See AVAuthorizationStatus for more information.
+ */
+typedef NS_ENUM(NSInteger, KSHCameraAuthorizationStatus) {
+    /**
+     See AVAuthorizationStatusNotDetermined for more information.
+     */
+    KSHCameraAuthorizationStatusNotDetermined = AVAuthorizationStatusNotDetermined,
+    /**
+     See AVAuthorizationStatusRestricted for more information.
+     */
+    KSHCameraAuthorizationStatusRestricted = AVAuthorizationStatusRestricted,
+    /**
+     See AVAuthorizationStatusDenied for more information.
+     */
+    KSHCameraAuthorizationStatusDenied = AVAuthorizationStatusDenied,
+    /**
+     See AVAuthorizationStatusAuthorized for more information.
+     */
+    KSHCameraAuthorizationStatusAuthorized = AVAuthorizationStatusAuthorized
+};
+
+/**
+ Completion block that is invoked after requesting camera access.
+ 
+ @param status The current camera authorization status
+ @param error The error
+ */
+typedef void(^KSHRequestCameraAuthorizationCompletionBlock)(KSHCameraAuthorizationStatus status, NSError * _Nullable error);
+
 /**
  Enum defining the possible photo library authorization status values. See PHAuthorizationStatus for more information.
  */
@@ -102,6 +133,17 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
 
 #if (TARGET_OS_IPHONE)
 /**
+ Get whether the user has authorized camera access.
+ */
+@property (readonly,nonatomic) BOOL hasCameraAuthorization;
+/**
+ Get the camera authorization status.
+ 
+ @see KSHCameraAuthorizationStatus
+ */
+@property (readonly,nonatomic) KSHCameraAuthorizationStatus cameraAuthorizationStatus;
+
+/**
  Get whether the user has authorized photo library access.
  */
 @property (readonly,nonatomic) BOOL hasPhotoLibraryAuthorization;
@@ -136,6 +178,13 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
 
 #if (TARGET_OS_IPHONE)
 /**
+ Request camera authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCameraUsageDescription or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ */
+- (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion;
+
+/**
  Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.
  
  @param completion The completion block to invoke when authorization status has been determined
@@ -144,6 +193,9 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
 #endif
 /**
  Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription or an exception will be thrown.
+ 
+ @param authorization The location authorization to request
+ @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(KSHRequestLocationAuthorizationCompletionBlock)completion;
 
