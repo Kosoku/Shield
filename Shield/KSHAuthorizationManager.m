@@ -19,6 +19,7 @@
 #import <Stanley/KSTFunctions.h>
 
 #import <CoreLocation/CLLocationManagerDelegate.h>
+#import <EventKit/EKEventStore.h>
 #if (TARGET_OS_IPHONE)
 #import <AVFoundation/AVMediaFormat.h>
 #endif
@@ -150,6 +151,18 @@
     [self.locationManager requestAlwaysAuthorization];
 #endif
 }
+- (void)requestCalendarsAuthorizationWithCompletion:(KSHRequestCalendarsAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCalendarsUsageDescription"] != nil);
+    
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+        KSTDispatchMainAsync(^{
+            completion(self.calendarsAuthorizationStatus,error);
+        });
+    }];
+}
 
 + (KSHAuthorizationManager *)sharedManager {
     static dispatch_once_t onceToken;
@@ -200,6 +213,13 @@
 #endif
 - (KSHLocationAuthorizationStatus)locationAuthorizationStatus {
     return (KSHLocationAuthorizationStatus)[CLLocationManager authorizationStatus];
+}
+
+- (BOOL)hasCalendarsAuthorization {
+    return self.calendarsAuthorizationStatus == KSHCalendarsAuthorizationStatusAuthorized;
+}
+- (KSHCalendarsAuthorizationStatus)calendarsAuthorizationStatus {
+    return (KSHCalendarsAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
 }
 
 @end

@@ -20,6 +20,7 @@
 #import <Photos/PHPhotoLibrary.h>
 #endif
 #import <CoreLocation/CLLocationManager.h>
+#import <EventKit/EKTypes.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -146,10 +147,40 @@ typedef NS_ENUM(int, KSHLocationAuthorizationStatus) {
 /**
  Completion block that is invoked after requesting location access.
  
- @param status The current location authorization access
+ @param status The current location authorization status
  @param error The error
  */
 typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthorizationStatus status, NSError * _Nullable error);
+
+/**
+ Enum defining the possible calendars authorization status values. See EKAuthorizationStatus for more information.
+ */
+typedef NS_ENUM(NSInteger, KSHCalendarsAuthorizationStatus) {
+    /**
+     See EKAuthorizationStatusNotDetermined for more information.
+     */
+    KSHCalendarsAuthorizationStatusNotDetermined = EKAuthorizationStatusNotDetermined,
+    /**
+     See EKAuthorizationStatusRestricted for more information.
+     */
+    KSHCalendarsAuthorizationStatusRestricted = EKAuthorizationStatusRestricted,
+    /**
+     See EKAuthorizationStatusDenied for more information.
+     */
+    KSHCalendarsAuthorizationStatusDenied = EKAuthorizationStatusDenied,
+    /**
+     See EKAuthorizationStatusAuthorized for more information.
+     */
+    KSHCalendarsAuthorizationStatusAuthorized = EKAuthorizationStatusAuthorized
+};
+
+/**
+ Completion block that is invoked after requesting calendars access.
+ 
+ @param status The current calendars authorization status
+ @param error The error
+ */
+typedef void(^KSHRequestCalendarsAuthorizationCompletionBlock)(KSHCalendarsAuthorizationStatus status, NSError * _Nullable error);
 
 /**
  KSHAuthorizationManager is an NSObject subclass that combines all the authorization methods into a consistent interface.
@@ -217,6 +248,17 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
  */
 @property (readonly,nonatomic) KSHLocationAuthorizationStatus locationAuthorizationStatus;
 
+/**
+ Get whether the user has authorized calendars access.
+ */
+@property (readonly,nonatomic) BOOL hasCalendarsAuthorization;
+/**
+ Get the calendars authorization status.
+ 
+ @see KSHCalendarsAuthorizationStatus
+ */
+@property (readonly,nonatomic) KSHCalendarsAuthorizationStatus calendarsAuthorizationStatus;
+
 #if (TARGET_OS_IPHONE)
 /**
  Request camera authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCameraUsageDescription or an exception will be thrown.
@@ -244,6 +286,12 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(KSHRequestLocationAuthorizationCompletionBlock)completion;
+/**
+ Request calendars authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCalendarsUsageDescription or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ */
+- (void)requestCalendarsAuthorizationWithCompletion:(KSHRequestCalendarsAuthorizationCompletionBlock)completion;
 
 @end
 
