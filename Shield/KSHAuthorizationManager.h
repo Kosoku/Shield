@@ -18,6 +18,7 @@
 #if (TARGET_OS_IPHONE)
 #import <Photos/PHPhotoLibrary.h>
 #endif
+#import <CoreLocation/CLLocationManager.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,8 +44,55 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
      */
     KSHPhotoLibraryAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
 };
+
+/**
+ Completion block that is invoked after requesting photo library access.
+ 
+ @param status The current photo library authorization status
+ @param error The error
+ */
+typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error);
 #endif
 
+/**
+ Enum defining the possible location authorization status values. See CLAuthorizationStatus for more information.
+ */
+typedef NS_ENUM(int, KSHLocationAuthorizationStatus) {
+    /**
+     See kCLAuthorizationStatusNotDetermined for more information.
+     */
+    KSHLocationAuthorizationStatusNotDetermined = kCLAuthorizationStatusNotDetermined,
+    /**
+     See kCLAuthorizationStatusRestricted for more information.
+     */
+    KSHLocationAuthorizationStatusRestricted = kCLAuthorizationStatusRestricted,
+    /**
+     See kCLAuthorizationStatusDenied for more information.
+     */
+    KSHLocationAuthorizationStatusDenied = kCLAuthorizationStatusDenied,
+    /**
+     See kCLAuthorizationStatusAuthorizedAlways for more information.
+     */
+    KSHLocationAuthorizationStatusAuthorizedAlways = kCLAuthorizationStatusAuthorizedAlways,
+#if (TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH)
+    /**
+     See kCLAuthorizationStatusAuthorizedWhenInUse for more information.
+     */
+    KSHLocationAuthorizationStatusAuthorizedWhenInUse = kCLAuthorizationStatusAuthorizedWhenInUse
+#endif
+};
+
+/**
+ Completion block that is invoked after requesting location access.
+ 
+ @param status The current location authorization access
+ @param error The error
+ */
+typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthorizationStatus status, NSError * _Nullable error);
+
+/**
+ KSHAuthorizationManager is an NSObject subclass that combines all the authorization methods into a consistent interface.
+ */
 @interface KSHAuthorizationManager : NSObject
 
 /**
@@ -52,6 +100,7 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
  */
 @property (class,readonly,nonatomic) KSHAuthorizationManager *sharedManager;
 
+#if (TARGET_OS_IPHONE)
 /**
  Get whether the user has authorized photo library access.
  */
@@ -62,13 +111,41 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
  @see KSHPhotoLibraryAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
+#endif
 
 /**
- Request photo library authorization from the user and invokes the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.
+ Get whether the user has authorized location access.
+ */
+@property (readonly,nonatomic) BOOL hasLocationAuthorization;
+/**
+ Get whether the user has authorized location always access.
+ */
+@property (readonly,nonatomic) BOOL hasLocationAuthorizationAlways;
+#if (TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH)
+/**
+ Get whether the user has authorized location when in use access.
+ */
+@property (readonly,nonatomic) BOOL hasLocationAuthorizationWhenInUse;
+#endif
+/**
+ Get the location authorization status.
+ 
+ @see KSHLocationAuthorizationStatus
+ */
+@property (readonly,nonatomic) KSHLocationAuthorizationStatus locationAuthorizationStatus;
+
+#if (TARGET_OS_IPHONE)
+/**
+ Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.
  
  @param completion The completion block to invoke when authorization status has been determined
  */
-- (void)requestPhotoLibraryAuthorizationWithCompletion:(void(^)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error))completion;
+- (void)requestPhotoLibraryAuthorizationWithCompletion:(KSHRequestPhotoLibraryAuthorizationCompletionBlock)completion;
+#endif
+/**
+ Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription or an exception will be thrown.
+ */
+- (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(KSHRequestLocationAuthorizationCompletionBlock)completion;
 
 @end
 

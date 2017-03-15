@@ -18,7 +18,8 @@
 #import <Shield/Shield.h>
 
 typedef NS_ENUM(NSInteger, AuthorizationType) {
-    AuthorizationTypePhotoLibrary
+    AuthorizationTypePhotoLibrary,
+    AuthorizationTypeLocation
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -33,8 +34,10 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setAuthorizationTypes:@[@(AuthorizationTypePhotoLibrary)]];
-    [self setAuthorizationTitles:@[@"Photo Library"]];
+    [self setAuthorizationTypes:@[@(AuthorizationTypePhotoLibrary),
+                                  @(AuthorizationTypeLocation)]];
+    [self setAuthorizationTitles:@[@"Photo Library",
+                                   @"Location"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -65,6 +68,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     switch ((AuthorizationType)self.authorizationTypes[indexPath.row].integerValue) {
         case AuthorizationTypePhotoLibrary: {
             [KSHAuthorizationManager.sharedManager requestPhotoLibraryAuthorizationWithCompletion:^(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeLocation: {
+            [KSHAuthorizationManager.sharedManager requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedAlways completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

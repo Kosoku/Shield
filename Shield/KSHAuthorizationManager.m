@@ -18,9 +18,49 @@
 #import <Stanley/KSTScopeMacros.h>
 #import <Stanley/KSTFunctions.h>
 
+#import <CoreLocation/CLLocationManagerDelegate.h>
+
+@interface KSHAuthorizationManager () <CLLocationManagerDelegate>
+@property (strong,nonatomic) CLLocationManager *locationManager;
+@property (copy,nonatomic) KSHRequestLocationAuthorizationCompletionBlock requestLocationAuthorizationCompletionBlock;
+@end
+
 @implementation KSHAuthorizationManager
 
-- (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus, NSError * _Nullable))completion {
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        return;
+    }
+    
+#if (TARGET_OS_IPHONE)
+    if (status == kCLAuthorizationStatusAuthorizedAlways ||
+        status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        KSTDispatchMainAsync(^{
+            self.requestLocationAuthorizationCompletionBlock((KSHLocationAuthorizationStatus)status,nil);
+        });
+    }
+#else
+    if (status == kCLAuthorizationStatusAuthorizedAlways) {
+        KSTDispatchMainAsync(^{
+            self.requestLocationAuthorizationCompletionBlock((KSHLocationAuthorizationStatus)status,nil);
+        });
+    }
+#endif
+    else {
+        KSTDispatchMainAsync(^{
+            self.requestLocationAuthorizationCompletionBlock(self.locationAuthorizationStatus,nil);
+        });
+    }
+    
+    [self setLocationManager:nil];
+    [self setRequestLocationAuthorizationCompletionBlock:nil];
+}
+
+#if (TARGET_OS_IPHONE)
+- (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSPhotoLibraryUsageDescription"] != nil);
+    
     if (self.hasPhotoLibraryAuthorization) {
         KSTDispatchMainAsync(^{
             completion(KSHPhotoLibraryAuthorizationStatusAuthorized,nil);
@@ -34,6 +74,45 @@
         });
     }];
 }
+#endif
+- (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(void(^)(KSHLocationAuthorizationStatus status, NSError *error))completion; {
+#if (TARGET_OS_IPHONE)
+    NSParameterAssert(authorization == KSHLocationAuthorizationStatusAuthorizedAlways || authorization == KSHLocationAuthorizationStatusAuthorizedWhenInUse);
+    if (authorization == KSHLocationAuthorizationStatusAuthorizedAlways) {
+        NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationAlwaysUsageDescription"] != nil);
+    }
+    else {
+        NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationWhenInUseUsageDescription"] != nil);
+    }
+#else
+    NSParameterAssert(authorization == KSHLocationAuthorizationStatusAuthorizedAlways);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationAlwaysUsageDescription"] != nil);
+#endif
+    NSParameterAssert(completion != nil);
+    
+    if (self.locationAuthorizationStatus == authorization) {
+        KSTDispatchMainAsync(^{
+            completion(authorization,nil);
+        });
+        return;
+    }
+    
+    [self setRequestLocationAuthorizationCompletionBlock:completion];
+    
+    [self setLocationManager:[[CLLocationManager alloc] init]];
+    [self.locationManager setDelegate:self];
+    
+#if (TARGET_OS_IPHONE)
+    if (authorization == KSHLocationAuthorizationStatusAuthorizedAlways) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    else {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+#else
+    [self.locationManager requestAlwaysAuthorization];
+#endif
+}
 
 + (KSHAuthorizationManager *)sharedManager {
     static dispatch_once_t onceToken;
@@ -44,11 +123,32 @@
     return kRetval;
 }
 
+#if (TARGET_OS_IPHONE)
 - (BOOL)hasPhotoLibraryAuthorization {
     return self.photoLibraryAuthorizationStatus == KSHPhotoLibraryAuthorizationStatusAuthorized;
 }
 - (KSHPhotoLibraryAuthorizationStatus)photoLibraryAuthorizationStatus {
     return (KSHPhotoLibraryAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
+}
+#endif
+
+- (BOOL)hasLocationAuthorization {
+#if (TARGET_OS_IPHONE)
+    return self.hasLocationAuthorizationAlways || self.hasLocationAuthorizationWhenInUse;
+#else 
+    return self.hasLocationAuthorizationAlways;
+#endif
+}
+- (BOOL)hasLocationAuthorizationAlways {
+    return self.locationAuthorizationStatus == KSHLocationAuthorizationStatusAuthorizedAlways;
+}
+#if (TARGET_OS_IPHONE)
+- (BOOL)hasLocationAuthorizationWhenInUse {
+    return self.locationAuthorizationStatus == KSHLocationAuthorizationStatusAuthorizedWhenInUse;
+}
+#endif
+- (KSHLocationAuthorizationStatus)locationAuthorizationStatus {
+    return (KSHLocationAuthorizationStatus)[CLLocationManager authorizationStatus];
 }
 
 @end
