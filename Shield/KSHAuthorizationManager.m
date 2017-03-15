@@ -139,6 +139,37 @@
         });
     }];
 }
+- (KSHHealthShareAuthorizationStatus)healthShareAuthorizationStatusForType:(HKObjectType *)type {
+    return (KSHHealthShareAuthorizationStatus)[[[HKHealthStore alloc] init] authorizationStatusForType:type];
+}
+- (void)requestHealthShareAuthorizationToReadTypes:(NSArray<HKObjectType *> *)readTypes writeTypes:(NSArray<HKSampleType *> *)writeTypes completion:(KSHRequestHealthShareAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert(readTypes.count > 0 || writeTypes.count > 0);
+    
+    if (writeTypes.count > 0) {
+        NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSHealthUpdateUsageDescription"] != nil);
+    }
+    if (readTypes.count > 0) {
+        NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSHealthShareUsageDescription"] != nil);
+    }
+    
+    HKHealthStore *healthStore = [[HKHealthStore alloc] init];
+    
+    [healthStore requestAuthorizationToShareTypes:[NSSet setWithArray:writeTypes] readTypes:[NSSet setWithArray:readTypes] completion:^(BOOL success, NSError * _Nullable error) {
+        NSMutableDictionary *retval = [[NSMutableDictionary alloc] init];
+        
+        for (HKObjectType *type in readTypes) {
+            [retval setObject:@([healthStore authorizationStatusForType:type]) forKey:type];
+        }
+        for (HKObjectType *type in writeTypes) {
+            [retval setObject:@([healthStore authorizationStatusForType:type]) forKey:type];
+        }
+        
+        KSTDispatchMainAsync(^{
+            completion(success,retval,error);
+        });
+    }];
+}
 #endif
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(void(^)(KSHLocationAuthorizationStatus status, NSError *error))completion; {
 #if (TARGET_OS_IPHONE)

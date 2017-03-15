@@ -16,35 +16,40 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>LOCALIZE</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSContactsUsageDescription</key>
-	<string>LOCALIZE</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>LOCALIZE</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>LOCALIZE</string>
-	<key>NSMicrophoneUsageDescription</key>
+	<key>NSCalendarsUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSCameraUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSContactsUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSHealthUpdateUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>LOCALIZE</string>
-	<key>NSRemindersUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>LOCALIZE</string>
-	<key>NSCameraUsageDescription</key>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSRemindersUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>LOCALIZE</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>healthkit</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

@@ -18,6 +18,7 @@
 #if (TARGET_OS_IPHONE)
 #import <AVFoundation/AVCaptureDevice.h>
 #import <Photos/PHPhotoLibrary.h>
+#import <HealthKit/HKHealthStore.h>
 #endif
 #import <CoreLocation/CLLocationManager.h>
 #import <EventKit/EKTypes.h>
@@ -116,6 +117,13 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error);
+
+typedef NS_ENUM(NSInteger, KSHHealthShareAuthorizationStatus) {
+    KSHHealthShareAuthorizationStatusNotDetermined = HKAuthorizationStatusNotDetermined,
+    KSHHealthShareAuthorizationStatusDenied = HKAuthorizationStatusSharingDenied,
+    KSHHealthShareAuthorizationStatusAuthorized = HKAuthorizationStatusSharingAuthorized
+};
+typedef void(^KSHRequestHealthShareAuthorizationCompletionBlock)(BOOL success, NSDictionary<HKObjectType *, NSNumber *> *objectsToAuthorizationStatus, NSError * _Nullable error);
 #endif
 
 /**
@@ -343,6 +351,9 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(KSHRequestPhotoLibraryAuthorizationCompletionBlock)completion;
+
+- (KSHHealthShareAuthorizationStatus)healthShareAuthorizationStatusForType:(HKObjectType *)type;
+- (void)requestHealthShareAuthorizationToReadTypes:(nullable NSArray<HKObjectType *> *)readTypes writeTypes:(nullable NSArray<HKSampleType *> *)writeTypes completion:(KSHRequestHealthShareAuthorizationCompletionBlock)completion;
 #endif
 /**
  Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription or an exception will be thrown.

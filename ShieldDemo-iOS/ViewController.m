@@ -17,6 +17,8 @@
 
 #import <Shield/Shield.h>
 
+#import <HealthKit/HealthKit.h>
+
 typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypePhotoLibrary,
     AuthorizationTypeLocation,
@@ -25,7 +27,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeCalendars,
     AuthorizationTypeReminders,
     AuthorizationTypeBluetoothPeripheral,
-    AuthorizationTypeContacts
+    AuthorizationTypeContacts,
+    AuthorizationTypeHealthShare
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -47,7 +50,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeCalendars),
                                   @(AuthorizationTypeReminders),
                                   @(AuthorizationTypeBluetoothPeripheral),
-                                  @(AuthorizationTypeContacts)]];
+                                  @(AuthorizationTypeContacts),
+                                  @(AuthorizationTypeHealthShare)]];
     [self setAuthorizationTitles:@[@"Photo Library",
                                    @"Location",
                                    @"Camera",
@@ -55,7 +59,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                    @"Calendars",
                                    @"Reminders",
                                    @"Bluetooth Peripheral",
-                                   @"Contacts"]];
+                                   @"Contacts",
+                                   @"Health Share"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -129,6 +134,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeContacts: {
             [KSHAuthorizationManager.sharedManager requestContactsAuthorizationWithCompletion:^(KSHContactsAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeHealthShare: {
+            [KSHAuthorizationManager.sharedManager requestHealthShareAuthorizationToReadTypes:@[[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMassIndex]] writeTypes:@[[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]] completion:^(BOOL success, NSDictionary<HKObjectType *,NSNumber *> * _Nonnull objectsToAuthorizationStatus, NSError * _Nullable error) {
+                NSLog(@"%@ %@ %@",@(success),objectsToAuthorizationStatus,error);
             }];
         }
             break;
