@@ -77,6 +77,23 @@
         });
     }];
 }
+- (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSMicrophoneUsageDescription"] != nil);
+    
+    if (self.hasMicrophoneAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHMicrophoneAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
+        KSTDispatchMainAsync(^{
+            completion(self.microphoneAuthorizationStatus,nil);
+        });
+    }];
+}
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSPhotoLibraryUsageDescription"] != nil);
@@ -144,6 +161,20 @@
 }
 
 #if (TARGET_OS_IPHONE)
+- (BOOL)hasCameraAuthorization {
+    return self.cameraAuthorizationStatus == KSHCameraAuthorizationStatusAuthorized;
+}
+- (KSHCameraAuthorizationStatus)cameraAuthorizationStatus {
+    return (KSHCameraAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+}
+
+- (BOOL)hasMicrophoneAuthorization {
+    return self.microphoneAuthorizationStatus == KSHMicrophoneAuthorizationStatusAuthorized;
+}
+- (KSHMicrophoneAuthorizationStatus)microphoneAuthorizationStatus {
+    return (KSHMicrophoneAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+}
+
 - (BOOL)hasPhotoLibraryAuthorization {
     return self.photoLibraryAuthorizationStatus == KSHPhotoLibraryAuthorizationStatusAuthorized;
 }

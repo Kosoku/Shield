@@ -55,6 +55,36 @@ typedef NS_ENUM(NSInteger, KSHCameraAuthorizationStatus) {
 typedef void(^KSHRequestCameraAuthorizationCompletionBlock)(KSHCameraAuthorizationStatus status, NSError * _Nullable error);
 
 /**
+ Enum defining the possible microphone authorization status values. See AVAuthorizationStatus for more information.
+ */
+typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
+    /**
+     See AVAuthorizationStatusNotDetermined for more information.
+     */
+    KSHMicrophoneAuthorizationStatusNotDetermined = AVAuthorizationStatusNotDetermined,
+    /**
+     See AVAuthorizationStatusRestricted for more information.
+     */
+    KSHMicrophoneAuthorizationStatusRestricted = AVAuthorizationStatusRestricted,
+    /**
+     See AVAuthorizationStatusDenied for more information.
+     */
+    KSHMicrophoneAuthorizationStatusDenied = AVAuthorizationStatusDenied,
+    /**
+     See AVAuthorizationStatusAuthorized for more information.
+     */
+    KSHMicrophoneAuthorizationStatusAuthorized = AVAuthorizationStatusAuthorized
+};
+
+/**
+ Completion block that is invoked after requesting microphone access.
+ 
+ @param status The current microphone authorization status
+ @param error The error
+ */
+typedef void(^KSHRequestMicrophoneAuthorizationCompletionBlock)(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error);
+
+/**
  Enum defining the possible photo library authorization status values. See PHAuthorizationStatus for more information.
  */
 typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
@@ -144,6 +174,17 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
 @property (readonly,nonatomic) KSHCameraAuthorizationStatus cameraAuthorizationStatus;
 
 /**
+ Get whether the user has authorized microphone access.
+ */
+@property (readonly,nonatomic) BOOL hasMicrophoneAuthorization;
+/**
+ Get the microphone authorization status.
+ 
+ @see KSHMicrophoneAuthorizationStatus
+ */
+@property (readonly,nonatomic) KSHMicrophoneAuthorizationStatus microphoneAuthorizationStatus;
+
+/**
  Get whether the user has authorized photo library access.
  */
 @property (readonly,nonatomic) BOOL hasPhotoLibraryAuthorization;
@@ -183,7 +224,12 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion;
-
+/**
+ Request microphone authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSMicrophoneUsageDescription or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ */
+- (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion;
 /**
  Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.
  

@@ -22,6 +22,8 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>LOCALIZE</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSCameraUsageDescription</key>
