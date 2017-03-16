@@ -30,7 +30,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
 
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.12'
-  s.watchos.deployment_target = '3.0'
+  s.tvos.deployment_target = '10.0'
 
   s.source_files = 'Shield/**/*.{h,m}'
   s.exclude_files = 'Shield/Shield-Info.h'
