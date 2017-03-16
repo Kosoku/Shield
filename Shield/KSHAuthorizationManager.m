@@ -170,6 +170,23 @@
         });
     }];
 }
+- (void)requestSiriAuthorizationWithCompletion:(KSHRequestSiriAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSSiriUsageDescription"] != nil);
+    
+    if (self.hasSiriAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHSiriAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    [INPreferences requestSiriAuthorization:^(INSiriAuthorizationStatus status) {
+        KSTDispatchMainAsync(^{
+            completion((KSHSiriAuthorizationStatus)status,nil);
+        });
+    }];
+}
 #endif
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(void(^)(KSHLocationAuthorizationStatus status, NSError *error))completion; {
 #if (TARGET_OS_IPHONE)
@@ -296,6 +313,13 @@
 }
 - (KSHPhotoLibraryAuthorizationStatus)photoLibraryAuthorizationStatus {
     return (KSHPhotoLibraryAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
+}
+
+- (BOOL)hasSiriAuthorization {
+    return self.siriAuthorizationStatus == KSHSiriAuthorizationStatusAuthorized;
+}
+- (KSHSiriAuthorizationStatus)siriAuthorizationStatus {
+    return (KSHSiriAuthorizationStatus)[INPreferences siriAuthorizationStatus];
 }
 #endif
 
