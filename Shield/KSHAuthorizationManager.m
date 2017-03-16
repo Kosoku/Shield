@@ -17,12 +17,9 @@
 
 #import <Stanley/KSTScopeMacros.h>
 #import <Stanley/KSTFunctions.h>
-#if (TARGET_OS_IOS || TARGET_OS_TV)
-#import <Ditko/UIViewController+KDIExtensions.h>
-#endif
 
 #import <CoreLocation/CLLocationManagerDelegate.h>
-#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
 #import <EventKit/EKEventStore.h>
 #endif
 #if (TARGET_OS_IPHONE)
@@ -31,7 +28,7 @@
 #import <AppKit/AppKit.h>
 #endif
 
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
 @interface KSHAuthorizationManager () <CLLocationManagerDelegate,CBPeripheralManagerDelegate>
 #else
 @interface KSHAuthorizationManager () <CLLocationManagerDelegate>
@@ -39,7 +36,7 @@
 @property (strong,nonatomic) CLLocationManager *locationManager;
 @property (copy,nonatomic) KSHRequestLocationAuthorizationCompletionBlock requestLocationAuthorizationCompletionBlock;
 
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
 @property (strong,nonatomic) CBPeripheralManager *peripheralManager;
 @property (copy,nonatomic) KSHRequestBluetoothPeripheralAuthorizationCompletionBlock requestBluetoothPeripheralAuthorizationCompletionBlock;
 #endif
@@ -55,7 +52,7 @@
         return;
     }
     
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
     if (status == kCLAuthorizationStatusAuthorizedAlways ||
         status == kCLAuthorizationStatusAuthorizedWhenInUse) {
 #elif (TARGET_OS_TV)
@@ -77,7 +74,7 @@
     [self setRequestLocationAuthorizationCompletionBlock:nil];
 }
 
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
     if (peripheral.state == CBManagerStateUnknown ||
         peripheral.state == CBManagerStateResetting) {
@@ -104,7 +101,7 @@
 #endif
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
 - (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion; {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCameraUsageDescription"] != nil);
@@ -157,7 +154,7 @@
         });
     }];
 }
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
 - (KSHHealthShareAuthorizationStatus)healthShareAuthorizationStatusForType:(HKObjectType *)type {
     return (KSHHealthShareAuthorizationStatus)[[[HKHealthStore alloc] init] authorizationStatusForType:type];
 }
@@ -256,7 +253,7 @@
 }
 #endif
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(void(^)(KSHLocationAuthorizationStatus status, NSError *error))completion; {
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
     NSParameterAssert(authorization == KSHLocationAuthorizationStatusAuthorizedAlways || authorization == KSHLocationAuthorizationStatusAuthorizedWhenInUse);
     if (authorization == KSHLocationAuthorizationStatusAuthorizedAlways) {
         NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationAlwaysUsageDescription"] != nil);
@@ -285,7 +282,7 @@
     [self setLocationManager:[[CLLocationManager alloc] init]];
     [self.locationManager setDelegate:self];
     
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
     if (authorization == KSHLocationAuthorizationStatusAuthorizedAlways) {
         [self.locationManager requestAlwaysAuthorization];
     }
@@ -298,7 +295,7 @@
     [self.locationManager startUpdatingLocation];
 #endif
 }
-#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
 - (void)requestCalendarsAuthorizationWithCompletion:(KSHRequestCalendarsAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCalendarsUsageDescription"] != nil);
@@ -407,7 +404,7 @@
 #endif
 
 - (BOOL)hasLocationAuthorization {
-#if (TARGET_OS_IOS || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS)
     return self.hasLocationAuthorizationAlways || self.hasLocationAuthorizationWhenInUse;
 #elif (TARGET_OS_TV)
     return self.hasLocationAuthorizationWhenInUse;
@@ -415,7 +412,7 @@
     return self.hasLocationAuthorizationAlways;
 #endif
 }
-#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
 - (BOOL)hasLocationAuthorizationAlways {
     return self.locationAuthorizationStatus == KSHLocationAuthorizationStatusAuthorizedAlways;
 }
@@ -429,7 +426,7 @@
     return (KSHLocationAuthorizationStatus)[CLLocationManager authorizationStatus];
 }
 
-#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
 - (BOOL)hasCalendarsAuthorization {
     return self.calendarsAuthorizationStatus == KSHCalendarsAuthorizationStatusAuthorized;
 }
