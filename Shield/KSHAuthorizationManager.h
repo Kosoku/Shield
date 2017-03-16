@@ -53,7 +53,6 @@ typedef NS_ENUM(NSInteger, KSHCameraAuthorizationStatus) {
      */
     KSHCameraAuthorizationStatusAuthorized = AVAuthorizationStatusAuthorized
 };
-
 /**
  Completion block that is invoked after requesting camera access.
  
@@ -83,7 +82,6 @@ typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
      */
     KSHMicrophoneAuthorizationStatusAuthorized = AVAuthorizationStatusAuthorized
 };
-
 /**
  Completion block that is invoked after requesting microphone access.
  
@@ -113,7 +111,6 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
      */
     KSHPhotoLibraryAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
 };
-
 /**
  Completion block that is invoked after requesting photo library access.
  
@@ -122,35 +119,117 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
  */
 typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ Enum defining the possible health share authorization status values. See HKAuthorizationStatus for more information.
+ */
 typedef NS_ENUM(NSInteger, KSHHealthShareAuthorizationStatus) {
+    /**
+     See HKAuthorizationStatusNotDetermined for more information.
+     */
     KSHHealthShareAuthorizationStatusNotDetermined = HKAuthorizationStatusNotDetermined,
+    /**
+     See HKAuthorizationStatusSharingDenied for more information.
+     */
     KSHHealthShareAuthorizationStatusDenied = HKAuthorizationStatusSharingDenied,
+    /**
+     See HKAuthorizationStatusSharingAuthorized for more information.
+     */
     KSHHealthShareAuthorizationStatusAuthorized = HKAuthorizationStatusSharingAuthorized
 };
+/**
+ Completion block that is invoked after requesting health share access.
+ 
+ @param success Whether access was granted
+ @param objectsToAuthorizationStatus A dictionary of the object types that were passed in to the authorization status for each type
+ @param error The error
+ */
 typedef void(^KSHRequestHealthShareAuthorizationCompletionBlock)(BOOL success, NSDictionary<HKObjectType *, NSNumber *> *objectsToAuthorizationStatus, NSError * _Nullable error);
 
+/**
+ Enum defining the possible siri authorization status values. See INSiriAuthorizationStatus for more information.
+ */
 typedef NS_ENUM(NSInteger, KSHSiriAuthorizationStatus) {
+    /**
+     See INSiriAuthorizationStatusNotDetermined for more information.
+     */
     KSHSiriAuthorizationStatusNotDetermined = INSiriAuthorizationStatusNotDetermined,
+    /**
+     See INSiriAuthorizationStatusRestricted for more information.
+     */
     KSHSiriAuthorizationStatusRestricted = INSiriAuthorizationStatusRestricted,
+    /**
+     See INSiriAuthorizationStatusDenied for more information.
+     */
     KSHSiriAuthorizationStatusDenied = INSiriAuthorizationStatusDenied,
+    /**
+     See INSiriAuthorizationStatusAuthorized for more information.
+     */
     KSHSiriAuthorizationStatusAuthorized = INSiriAuthorizationStatusAuthorized
 };
+/**
+ Completion block that is invoked after requesting siri access.
+ 
+ @param status The current siri authorization status
+ @param error The error
+ */
 typedef void(^KSHRequestSiriAuthorizationCompletionBlock)(KSHSiriAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ Enum defining the possible speech recognition authorization status values. See SFSpeechRecognizerAuthorizationStatus for more information.
+ */
 typedef NS_ENUM(NSInteger, KSHSpeechRecognitionAuthorizationStatus) {
+    /**
+     See SFSpeechRecognizerAuthorizationStatusNotDetermined for more information.
+     */
     KSHSpeechRecognitionAuthorizationStatusNotDetermined = SFSpeechRecognizerAuthorizationStatusNotDetermined,
+    /**
+     See SFSpeechRecognizerAuthorizationStatusRestricted for more information.
+     */
     KSHSpeechRecognitionAuthorizationStatusRestricted = SFSpeechRecognizerAuthorizationStatusRestricted,
+    /**
+     See SFSpeechRecognizerAuthorizationStatusDenied for more information.
+     */
     KSHSpeechRecognitionAuthorizationStatusDenied = SFSpeechRecognizerAuthorizationStatusDenied,
+    /**
+     See SFSpeechRecognizerAuthorizationStatusAuthorized for more information.
+     */
     KSHSpeechRecognitionAuthorizationStatusAuthorized = SFSpeechRecognizerAuthorizationStatusAuthorized
 };
+/**
+ Completion block that is invoked after requesting speech recognition access.
+ 
+ @param status The current speech recognition authorization status
+ @param error The error
+ */
 typedef void(^KSHRequestSpeechRecognitionAuthorizationCompletionBlock)(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ Enum defining the possible bluetooth peripheral authorization status values. See CBPeripheralManagerAuthorizationStatus for more information.
+ */
 typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
+    /**
+     See CBPeripheralManagerAuthorizationStatusNotDetermined for more information.
+     */
     KSHBluetoothPeripheralAuthorizationStatusNotDetermined = CBPeripheralManagerAuthorizationStatusNotDetermined,
+    /**
+     See CBPeripheralManagerAuthorizationStatusRestricted for more information.
+     */
     KSHBluetoothPeripheralAuthorizationStatusRestricted = CBPeripheralManagerAuthorizationStatusRestricted,
+    /**
+     See CBPeripheralManagerAuthorizationStatusDenied for more information.
+     */
     KSHBluetoothPeripheralAuthorizationStatusDenied = CBPeripheralManagerAuthorizationStatusDenied,
+    /**
+     See CBPeripheralManagerAuthorizationStatusAuthorized for more information.
+     */
     KSHBluetoothPeripheralAuthorizationStatusAuthorized = CBPeripheralManagerAuthorizationStatusAuthorized
 };
+/**
+ Completion block that is invoked after requesting bluetooth peripheral access.
+ 
+ @param status The current bluetooth peripheral authorization status
+ @param error The error
+ */
 typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error);
 #endif
 
@@ -174,14 +253,13 @@ typedef NS_ENUM(int, KSHLocationAuthorizationStatus) {
      See kCLAuthorizationStatusAuthorizedAlways for more information.
      */
     KSHLocationAuthorizationStatusAuthorizedAlways = kCLAuthorizationStatusAuthorizedAlways,
-#if (TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH)
+#if (TARGET_OS_IPHONE)
     /**
      See kCLAuthorizationStatusAuthorizedWhenInUse for more information.
      */
     KSHLocationAuthorizationStatusAuthorizedWhenInUse = kCLAuthorizationStatusAuthorizedWhenInUse
 #endif
 };
-
 /**
  Completion block that is invoked after requesting location access.
  
@@ -211,7 +289,6 @@ typedef NS_ENUM(NSInteger, KSHCalendarsAuthorizationStatus) {
      */
     KSHCalendarsAuthorizationStatusAuthorized = EKAuthorizationStatusAuthorized
 };
-
 /**
  Completion block that is invoked after requesting calendars access.
  
@@ -241,7 +318,6 @@ typedef NS_ENUM(NSInteger, KSHRemindersAuthorizationStatus) {
      */
     KSHRemindersAuthorizationStatusAuthorized = EKAuthorizationStatusAuthorized
 };
-
 /**
  Completion block that is invoked after requesting reminders access.
  
@@ -250,12 +326,33 @@ typedef NS_ENUM(NSInteger, KSHRemindersAuthorizationStatus) {
  */
 typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ Enum defining possible contacts authorization status values. See CNAuthorizationStatus for more information.
+ */
 typedef NS_ENUM(NSInteger, KSHContactsAuthorizationStatus) {
+    /**
+     See CNAuthorizationStatusNotDetermined for more information.
+     */
     KSHContactsAuthorizationStatusNotDetermined = CNAuthorizationStatusNotDetermined,
+    /**
+     See CNAuthorizationStatusRestricted for more information.
+     */
     KSHContactsAuthorizationStatusRestricted = CNAuthorizationStatusRestricted,
+    /**
+     See CNAuthorizationStatusDenied for more information.
+     */
     KSHContactsAuthorizationStatusDenied = CNAuthorizationStatusDenied,
+    /**
+     See CNAuthorizationStatusAuthorized for more information.
+     */
     KSHContactsAuthorizationStatusAuthorized = CNAuthorizationStatusAuthorized
 };
+/**
+ Completion block that is invoked after requesting contacts access.
+ 
+ @param status The current contacts authorization status
+ @param error The error
+ */
 typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthorizationStatus status, NSError * _Nullable error);
 
 /**
@@ -302,15 +399,42 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  */
 @property (readonly,nonatomic) KSHPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
 
+/**
+ Get whether the user has authorized siri access.
+ */
 @property (readonly,nonatomic) BOOL hasSiriAuthorization;
+/**
+ Get the siri authorization status.
+ 
+ @see KSHSiriAuthorizationStatus
+ */
 @property (readonly,nonatomic) KSHSiriAuthorizationStatus siriAuthorizationStatus;
 
+/**
+ Get whether the user has authorized speech recognition access.
+ */
 @property (readonly,nonatomic) BOOL hasSpeechRecognitionAuthorization;
+/**
+ Get the speech recognition authorization status.
+ 
+ @see KSHSpeechRecognitionAuthorizationStatus
+ */
 @property (readonly,nonatomic) KSHSpeechRecognitionAuthorizationStatus speechRecognitionAuthorizationStatus;
 
+/**
+ Get whether the user has authorized bluetooth peripheral access.
+ */
 @property (readonly,nonatomic) BOOL hasBluetoothPeripheralAuthorization;
+/**
+ Get the bluetooth peripheral authorization status.
+ 
+ @see KSHBluetoothPeripheralAuthorizationStatus
+ */
 @property (readonly,nonatomic) KSHBluetoothPeripheralAuthorizationStatus bluetoothPeripheralAuthorizationStatus;
 #else
+/**
+ Get whether the user has authorized accessibility access.
+ */
 @property (readonly,nonatomic) BOOL hasAccessibilityAuthorization;
 #endif
 
@@ -322,7 +446,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  Get whether the user has authorized location always access.
  */
 @property (readonly,nonatomic) BOOL hasLocationAuthorizationAlways;
-#if (TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH)
+#if (TARGET_OS_IPHONE)
 /**
  Get whether the user has authorized location when in use access.
  */
@@ -357,7 +481,15 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  */
 @property (readonly,nonatomic) KSHRemindersAuthorizationStatus remindersAuthorizationStatus;
 
+/**
+ Get whether the user has authorized contacts access.
+ */
 @property (readonly,nonatomic) BOOL hasContactsAuthorization;
+/**
+ Get the contacts authorization status.
+ 
+ @see KSHContactsAuthorizationStatus
+ */
 @property (readonly,nonatomic) KSHContactsAuthorizationStatus contactsAuthorizationStatus;
 
 #if (TARGET_OS_IPHONE)
@@ -379,16 +511,47 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(KSHRequestPhotoLibraryAuthorizationCompletionBlock)completion;
-
+/**
+ Returns the health share authorization status for the provided type.
+ 
+ @param type The type for which to return health share authorization status
+ @return The health share authorization status
+ */
 - (KSHHealthShareAuthorizationStatus)healthShareAuthorizationStatusForType:(HKObjectType *)type;
+/**
+ Request health share authorization to read for *readTypes* and to write for *writeTypes* and invoke the provided completion block when authorization has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSHealthShareUsageDescription if *readTypes* is non-null and NSHealthUpdateUsageDescription if *writeTypes* is non-null, otherwise an exception will be thrown.
+ 
+ @param readTypes The types to read from
+ @param writeTypes The types to write to
+ @param completion The completion block to invoke when authorization status has been determined
+ */
 - (void)requestHealthShareAuthorizationToReadTypes:(nullable NSArray<HKObjectType *> *)readTypes writeTypes:(nullable NSArray<HKSampleType *> *)writeTypes completion:(KSHRequestHealthShareAuthorizationCompletionBlock)completion;
-
+/**
+ Requst siri authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSSiriUsageDescription or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ */
 - (void)requestSiriAuthorizationWithCompletion:(KSHRequestSiriAuthorizationCompletionBlock)completion;
-
+/**
+ Request speech recognition authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSSpeechRecognitionUsageDescription or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ */
 - (void)requestSpeechRecognitionAuthorizationWithCompletion:(KSHRequestSpeechRecognitionAuthorizationCompletionBlock)completion;
-
+/**
+ Request bluetooth peripheral authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSBluetoothPeripheralUsageDescription and include the bluetooth-peripheral mode in the UIBackgroundModes array otherwise an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ */
 - (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion;
 #else
+/**
+ Request accessibility authorization from the user and optionally display the system alert. If *openSystemPreferences* is YES and this method returns NO the Security & Privacy -> Privacy pane in System Preferences will be opened automatically.
+ 
+ @param displaySystemAlert Whether to display the system accessibility alert
+ @param openSystemPreferences Whether to open the appropriate system preferences pane if this method returns NO
+ @return YES if the user has granted accessibility authorization, otherwise NO
+ */
 - (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences;
 #endif
 /**
@@ -410,7 +573,11 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestRemindersAuthorizationWithCompletion:(KSHRequestRemindersAuthorizationCompletionBlock)completion;
-
+/**
+ Request contacts authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSContactsUsageDescription or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ */
 - (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion;
 
 @end
