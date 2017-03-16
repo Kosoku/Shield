@@ -18,6 +18,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSVideoSubscriberAccountUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

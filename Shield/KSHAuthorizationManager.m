@@ -17,6 +17,9 @@
 
 #import <Stanley/KSTScopeMacros.h>
 #import <Stanley/KSTFunctions.h>
+#if (TARGET_OS_IOS || TARGET_OS_TV)
+#import <Ditko/UIViewController+KDIExtensions.h>
+#endif
 
 #import <CoreLocation/CLLocationManagerDelegate.h>
 #if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
@@ -28,7 +31,7 @@
 #import <AppKit/AppKit.h>
 #endif
 
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 @interface KSHAuthorizationManager () <CLLocationManagerDelegate,CBPeripheralManagerDelegate>
 #else
 @interface KSHAuthorizationManager () <CLLocationManagerDelegate>
@@ -36,7 +39,7 @@
 @property (strong,nonatomic) CLLocationManager *locationManager;
 @property (copy,nonatomic) KSHRequestLocationAuthorizationCompletionBlock requestLocationAuthorizationCompletionBlock;
 
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 @property (strong,nonatomic) CBPeripheralManager *peripheralManager;
 @property (copy,nonatomic) KSHRequestBluetoothPeripheralAuthorizationCompletionBlock requestBluetoothPeripheralAuthorizationCompletionBlock;
 #endif
@@ -74,7 +77,7 @@
     [self setRequestLocationAuthorizationCompletionBlock:nil];
 }
 
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
     if (peripheral.state == CBManagerStateUnknown ||
         peripheral.state == CBManagerStateResetting) {
@@ -387,13 +390,13 @@
 - (KSHSpeechRecognitionAuthorizationStatus)speechRecognitionAuthorizationStatus {
     return (KSHSpeechRecognitionAuthorizationStatus)[SFSpeechRecognizer authorizationStatus];
 }
-#endif
 - (BOOL)hasBluetoothPeripheralAuthorization {
     return self.bluetoothPeripheralAuthorizationStatus == KSHBluetoothPeripheralAuthorizationStatusAuthorized;
 }
 - (KSHBluetoothPeripheralAuthorizationStatus)bluetoothPeripheralAuthorizationStatus {
     return (KSHBluetoothPeripheralAuthorizationStatus)[CBPeripheralManager authorizationStatus];
 }
+#endif
 #else
 - (BOOL)hasAccessibilityAuthorization {
     NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @NO};

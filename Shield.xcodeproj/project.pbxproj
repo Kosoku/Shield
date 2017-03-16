@@ -61,6 +61,7 @@
 		076730D61E779CE800030F0C /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D41E779CE800030F0C /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		076730D91E779E8200030F0C /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D81E779E8200030F0C /* Stanley.framework */; };
 		076730DB1E779E9500030F0C /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730DA1E779E9500030F0C /* Photos.framework */; };
+		07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C94D771E7B0B7C0014155A /* Stanley.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +186,7 @@
 		076730D41E779CE800030F0C /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		076730D81E779E8200030F0C /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
 		076730DA1E779E9500030F0C /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
+		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +388,7 @@
 		076730D71E779CFF00030F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07C94D771E7B0B7C0014155A /* Stanley.framework */,
 				072DBA611E7B00BF0070907C /* CoreLocation.framework */,
 				072DBA5F1E7AFEBE0070907C /* Photos.framework */,
 				072DBA571E7AF45D0070907C /* Stanley.framework */,
@@ -795,6 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -859,6 +864,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1015,6 +1021,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1056,6 +1063,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Ditko",
+					"$(SRCROOT)/Vendor/Stanley",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Shield/Shield-tvOS-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/Shield/Shield-Info.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -1078,6 +1089,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1113,6 +1125,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Ditko",
+					"$(SRCROOT)/Vendor/Stanley",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Shield/Shield-tvOS-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/Shield/Shield-Info.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -1247,6 +1263,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1278,6 +1295,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1293,7 +1311,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendor/Stanley";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Stanley",
+					"$(SRCROOT)/Vendor/Ditko",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Shield/Shield-iOS-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/Shield/Shield-Info.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -1316,6 +1337,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1347,6 +1369,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1356,7 +1379,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendor/Stanley";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/Stanley",
+					"$(SRCROOT)/Vendor/Ditko",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Shield/Shield-iOS-Info.plist";
 				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/Shield/Shield-Info.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -1489,6 +1515,7 @@
 				072DBA001E7AD86E0070907C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		072DBA1A1E7AD9630070907C /* Build configuration list for PBXNativeTarget "ShieldDemo-macOS" */ = {
 			isa = XCConfigurationList;
@@ -1497,6 +1524,7 @@
 				072DBA1C1E7AD9630070907C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		072DBA381E7AF37D0070907C /* Build configuration list for PBXNativeTarget "Shield-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1505,6 +1533,7 @@
 				072DBA3A1E7AF37D0070907C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		072DBA531E7AF3F10070907C /* Build configuration list for PBXNativeTarget "ShieldDemo-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1513,6 +1542,7 @@
 				072DBA551E7AF3F10070907C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0767308F1E7796A200030F0C /* Build configuration list for PBXProject "Shield" */ = {
 			isa = XCConfigurationList;

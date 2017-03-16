@@ -34,6 +34,8 @@
 	<string>LOCALIZE</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>LOCALIZE</string>
+	<key>NSVideoSubscriberAccountUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSMicrophoneUsageDescription</key>

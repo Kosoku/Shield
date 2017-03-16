@@ -213,7 +213,6 @@ typedef NS_ENUM(NSInteger, KSHSpeechRecognitionAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestSpeechRecognitionAuthorizationCompletionBlock)(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error);
-#endif
 
 /**
  Enum defining the possible bluetooth peripheral authorization status values. See CBPeripheralManagerAuthorizationStatus for more information.
@@ -243,6 +242,7 @@ typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error);
+#endif
 #endif
 
 /**
@@ -437,7 +437,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHSpeechRecognitionAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHSpeechRecognitionAuthorizationStatus speechRecognitionAuthorizationStatus;
-#endif
 
 /**
  Get whether the user has authorized bluetooth peripheral access.
@@ -449,6 +448,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHBluetoothPeripheralAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHBluetoothPeripheralAuthorizationStatus bluetoothPeripheralAuthorizationStatus;
+#endif
 #else
 /**
  Get whether the user has authorized accessibility access.
