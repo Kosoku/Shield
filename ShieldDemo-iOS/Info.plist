@@ -30,6 +30,10 @@
 	<string>LOCALIZE</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>LOCALIZE</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSSiriUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSLocationAlwaysUsageDescription</key>

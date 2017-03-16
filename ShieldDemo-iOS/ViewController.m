@@ -28,7 +28,9 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeReminders,
     AuthorizationTypeBluetoothPeripheral,
     AuthorizationTypeContacts,
-    AuthorizationTypeHealthShare
+    AuthorizationTypeHealthShare,
+    AuthorizationTypeSiri,
+    AuthorizationTypeSpeechRecognition
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -51,7 +53,9 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeReminders),
                                   @(AuthorizationTypeBluetoothPeripheral),
                                   @(AuthorizationTypeContacts),
-                                  @(AuthorizationTypeHealthShare)]];
+                                  @(AuthorizationTypeHealthShare),
+                                  @(AuthorizationTypeSiri),
+                                  @(AuthorizationTypeSpeechRecognition)]];
     [self setAuthorizationTitles:@[@"Photo Library",
                                    @"Location",
                                    @"Camera",
@@ -60,7 +64,9 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                    @"Reminders",
                                    @"Bluetooth Peripheral",
                                    @"Contacts",
-                                   @"Health Share"]];
+                                   @"Health Share",
+                                   @"Siri",
+                                   @"Speech Recognition"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -140,6 +146,18 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeHealthShare: {
             [KSHAuthorizationManager.sharedManager requestHealthShareAuthorizationToReadTypes:@[[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMassIndex]] writeTypes:@[[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]] completion:^(BOOL success, NSDictionary<HKObjectType *,NSNumber *> * _Nonnull objectsToAuthorizationStatus, NSError * _Nullable error) {
                 NSLog(@"%@ %@ %@",@(success),objectsToAuthorizationStatus,error);
+            }];
+        }
+            break;
+        case AuthorizationTypeSiri: {
+            [KSHAuthorizationManager.sharedManager requestSiriAuthorizationWithCompletion:^(KSHSiriAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeSpeechRecognition: {
+            [KSHAuthorizationManager.sharedManager requestSpeechRecognitionAuthorizationWithCompletion:^(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;

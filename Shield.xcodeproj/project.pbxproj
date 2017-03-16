@@ -14,6 +14,7 @@
 		072DB9EC1E79D64E0070907C /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9EB1E79D64E0070907C /* Contacts.framework */; };
 		072DB9EE1E79E7A60070907C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9ED1E79E7A60070907C /* HealthKit.framework */; };
 		072DB9F11E7AD08F0070907C /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9F01E7AD08F0070907C /* Intents.framework */; };
+		072DB9F31E7AD52A0070907C /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DB9F21E7AD52A0070907C /* Speech.framework */; };
 		076730A91E7797F600030F0C /* Shield.h in Headers */ = {isa = PBXBuildFile; fileRef = 076730A71E7797F600030F0C /* Shield.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		076730B21E77992B00030F0C /* KSHAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 076730B01E77992B00030F0C /* KSHAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		076730B31E77992B00030F0C /* KSHAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 076730B11E77992B00030F0C /* KSHAuthorizationManager.m */; };
@@ -65,6 +66,7 @@
 		072DB9ED1E79E7A60070907C /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		072DB9EF1E79E8FF0070907C /* ShieldDemo-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ShieldDemo-iOS.entitlements"; sourceTree = "<group>"; };
 		072DB9F01E7AD08F0070907C /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Intents.framework; sourceTree = DEVELOPER_DIR; };
+		072DB9F21E7AD52A0070907C /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Speech.framework; sourceTree = DEVELOPER_DIR; };
 		076730A51E7797F600030F0C /* Shield.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shield.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		076730A71E7797F600030F0C /* Shield.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shield.h; sourceTree = "<group>"; };
 		076730A81E7797F600030F0C /* Shield-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shield-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072DB9F31E7AD52A0070907C /* Speech.framework in Frameworks */,
 				072DB9F11E7AD08F0070907C /* Intents.framework in Frameworks */,
 				072DB9EE1E79E7A60070907C /* HealthKit.framework in Frameworks */,
 				072DB9EC1E79D64E0070907C /* Contacts.framework in Frameworks */,
@@ -190,6 +193,7 @@
 		076730D71E779CFF00030F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				072DB9F21E7AD52A0070907C /* Speech.framework */,
 				072DB9F01E7AD08F0070907C /* Intents.framework */,
 				072DB9ED1E79E7A60070907C /* HealthKit.framework */,
 				072DB9EB1E79D64E0070907C /* Contacts.framework */,

@@ -20,6 +20,7 @@
 #import <Photos/PHPhotoLibrary.h>
 #import <HealthKit/HKHealthStore.h>
 #import <Intents/INPreferences.h>
+#import <Speech/SFSpeechRecognizer.h>
 #endif
 #import <CoreLocation/CLLocationManager.h>
 #import <EventKit/EKTypes.h>
@@ -133,6 +134,14 @@ typedef NS_ENUM(NSInteger, KSHSiriAuthorizationStatus) {
     KSHSiriAuthorizationStatusAuthorized = INSiriAuthorizationStatusAuthorized
 };
 typedef void(^KSHRequestSiriAuthorizationCompletionBlock)(KSHSiriAuthorizationStatus status, NSError * _Nullable error);
+
+typedef NS_ENUM(NSInteger, KSHSpeechRecognitionAuthorizationStatus) {
+    KSHSpeechRecognitionAuthorizationStatusNotDetermined = SFSpeechRecognizerAuthorizationStatusNotDetermined,
+    KSHSpeechRecognitionAuthorizationStatusRestricted = SFSpeechRecognizerAuthorizationStatusRestricted,
+    KSHSpeechRecognitionAuthorizationStatusDenied = SFSpeechRecognizerAuthorizationStatusDenied,
+    KSHSpeechRecognitionAuthorizationStatusAuthorized = SFSpeechRecognizerAuthorizationStatusAuthorized
+};
+typedef void(^KSHRequestSpeechRecognitionAuthorizationCompletionBlock)(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error);
 #endif
 
 /**
@@ -293,6 +302,9 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 
 @property (readonly,nonatomic) BOOL hasSiriAuthorization;
 @property (readonly,nonatomic) KSHSiriAuthorizationStatus siriAuthorizationStatus;
+
+@property (readonly,nonatomic) BOOL hasSpeechRecognitionAuthorization;
+@property (readonly,nonatomic) KSHSpeechRecognitionAuthorizationStatus speechRecognitionAuthorizationStatus;
 #endif
 
 /**
@@ -368,6 +380,8 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 - (void)requestHealthShareAuthorizationToReadTypes:(nullable NSArray<HKObjectType *> *)readTypes writeTypes:(nullable NSArray<HKSampleType *> *)writeTypes completion:(KSHRequestHealthShareAuthorizationCompletionBlock)completion;
 
 - (void)requestSiriAuthorizationWithCompletion:(KSHRequestSiriAuthorizationCompletionBlock)completion;
+
+- (void)requestSpeechRecognitionAuthorizationWithCompletion:(KSHRequestSpeechRecognitionAuthorizationCompletionBlock)completion;
 #endif
 /**
  Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription or an exception will be thrown.

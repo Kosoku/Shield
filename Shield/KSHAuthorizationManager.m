@@ -187,6 +187,23 @@
         });
     }];
 }
+- (void)requestSpeechRecognitionAuthorizationWithCompletion:(KSHRequestSpeechRecognitionAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSSpeechRecognitionUsageDescription"] != nil);
+    
+    if (self.hasSpeechRecognitionAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHSpeechRecognitionAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
+        KSTDispatchMainAsync(^{
+            completion((KSHSpeechRecognitionAuthorizationStatus)status,nil);
+        });
+    }];
+}
 #endif
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(void(^)(KSHLocationAuthorizationStatus status, NSError *error))completion; {
 #if (TARGET_OS_IPHONE)
@@ -320,6 +337,13 @@
 }
 - (KSHSiriAuthorizationStatus)siriAuthorizationStatus {
     return (KSHSiriAuthorizationStatus)[INPreferences siriAuthorizationStatus];
+}
+
+- (BOOL)hasSpeechRecognitionAuthorization {
+    return self.speechRecognitionAuthorizationStatus == KSHSpeechRecognitionAuthorizationStatusAuthorized;
+}
+- (KSHSpeechRecognitionAuthorizationStatus)speechRecognitionAuthorizationStatus {
+    return (KSHSpeechRecognitionAuthorizationStatus)[SFSpeechRecognizer authorizationStatus];
 }
 #endif
 
