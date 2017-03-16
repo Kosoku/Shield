@@ -21,10 +21,12 @@
 #import <HealthKit/HKHealthStore.h>
 #import <Intents/INPreferences.h>
 #import <Speech/SFSpeechRecognizer.h>
+#import <CoreBluetooth/CBPeripheralManager.h>
+#else
+#import <ApplicationServices/ApplicationServices.h>
 #endif
 #import <CoreLocation/CLLocationManager.h>
 #import <EventKit/EKTypes.h>
-#import <CoreBluetooth/CBPeripheralManager.h>
 #import <Contacts/CNContactStore.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -142,6 +144,14 @@ typedef NS_ENUM(NSInteger, KSHSpeechRecognitionAuthorizationStatus) {
     KSHSpeechRecognitionAuthorizationStatusAuthorized = SFSpeechRecognizerAuthorizationStatusAuthorized
 };
 typedef void(^KSHRequestSpeechRecognitionAuthorizationCompletionBlock)(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error);
+
+typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
+    KSHBluetoothPeripheralAuthorizationStatusNotDetermined = CBPeripheralManagerAuthorizationStatusNotDetermined,
+    KSHBluetoothPeripheralAuthorizationStatusRestricted = CBPeripheralManagerAuthorizationStatusRestricted,
+    KSHBluetoothPeripheralAuthorizationStatusDenied = CBPeripheralManagerAuthorizationStatusDenied,
+    KSHBluetoothPeripheralAuthorizationStatusAuthorized = CBPeripheralManagerAuthorizationStatusAuthorized
+};
+typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error);
 #endif
 
 /**
@@ -240,14 +250,6 @@ typedef NS_ENUM(NSInteger, KSHRemindersAuthorizationStatus) {
  */
 typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAuthorizationStatus status, NSError * _Nullable error);
 
-typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
-    KSHBluetoothPeripheralAuthorizationStatusNotDetermined = CBPeripheralManagerAuthorizationStatusNotDetermined,
-    KSHBluetoothPeripheralAuthorizationStatusRestricted = CBPeripheralManagerAuthorizationStatusRestricted,
-    KSHBluetoothPeripheralAuthorizationStatusDenied = CBPeripheralManagerAuthorizationStatusDenied,
-    KSHBluetoothPeripheralAuthorizationStatusAuthorized = CBPeripheralManagerAuthorizationStatusAuthorized
-};
-typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error);
-
 typedef NS_ENUM(NSInteger, KSHContactsAuthorizationStatus) {
     KSHContactsAuthorizationStatusNotDetermined = CNAuthorizationStatusNotDetermined,
     KSHContactsAuthorizationStatusRestricted = CNAuthorizationStatusRestricted,
@@ -305,6 +307,11 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 
 @property (readonly,nonatomic) BOOL hasSpeechRecognitionAuthorization;
 @property (readonly,nonatomic) KSHSpeechRecognitionAuthorizationStatus speechRecognitionAuthorizationStatus;
+
+@property (readonly,nonatomic) BOOL hasBluetoothPeripheralAuthorization;
+@property (readonly,nonatomic) KSHBluetoothPeripheralAuthorizationStatus bluetoothPeripheralAuthorizationStatus;
+#else
+@property (readonly,nonatomic) BOOL hasAccessibilityAuthorization;
 #endif
 
 /**
@@ -350,9 +357,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  */
 @property (readonly,nonatomic) KSHRemindersAuthorizationStatus remindersAuthorizationStatus;
 
-@property (readonly,nonatomic) BOOL hasBluetoothPeripheralAuthorization;
-@property (readonly,nonatomic) KSHBluetoothPeripheralAuthorizationStatus bluetoothPeripheralAuthorizationStatus;
-
 @property (readonly,nonatomic) BOOL hasContactsAuthorization;
 @property (readonly,nonatomic) KSHContactsAuthorizationStatus contactsAuthorizationStatus;
 
@@ -382,9 +386,13 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 - (void)requestSiriAuthorizationWithCompletion:(KSHRequestSiriAuthorizationCompletionBlock)completion;
 
 - (void)requestSpeechRecognitionAuthorizationWithCompletion:(KSHRequestSpeechRecognitionAuthorizationCompletionBlock)completion;
+
+- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion;
+#else
+- (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences;
 #endif
 /**
- Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription or an exception will be thrown.
+ Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription on iOS or NSLocationUsageDescription on macOS, otherwise an exception will be thrown.
  
  @param authorization The location authorization to request
  @param completion The completion block to invoke when authorization status has been determined
@@ -403,7 +411,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  */
 - (void)requestRemindersAuthorizationWithCompletion:(KSHRequestRemindersAuthorizationCompletionBlock)completion;
 
-- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion;
 - (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion;
 
 @end

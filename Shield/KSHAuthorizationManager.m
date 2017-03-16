@@ -22,20 +22,31 @@
 #import <EventKit/EKEventStore.h>
 #if (TARGET_OS_IPHONE)
 #import <AVFoundation/AVMediaFormat.h>
+#else
+#import <AppKit/AppKit.h>
 #endif
 
+#if (TARGET_OS_IPHONE)
 @interface KSHAuthorizationManager () <CLLocationManagerDelegate,CBPeripheralManagerDelegate>
+#else
+@interface KSHAuthorizationManager () <CLLocationManagerDelegate>
+#endif
 @property (strong,nonatomic) CLLocationManager *locationManager;
 @property (copy,nonatomic) KSHRequestLocationAuthorizationCompletionBlock requestLocationAuthorizationCompletionBlock;
 
+#if (TARGET_OS_IPHONE)
 @property (strong,nonatomic) CBPeripheralManager *peripheralManager;
 @property (copy,nonatomic) KSHRequestBluetoothPeripheralAuthorizationCompletionBlock requestBluetoothPeripheralAuthorizationCompletionBlock;
+#endif
 @end
 
 @implementation KSHAuthorizationManager
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status == kCLAuthorizationStatusNotDetermined) {
+#if (TARGET_OS_OSX)
+        [self.locationManager startUpdatingLocation];
+#endif
         return;
     }
     
@@ -63,6 +74,7 @@
     [self setRequestLocationAuthorizationCompletionBlock:nil];
 }
 
+#if (TARGET_OS_IPHONE)
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
     if (peripheral.state == CBManagerStateUnknown ||
         peripheral.state == CBManagerStateResetting) {
@@ -86,6 +98,7 @@
     [self setPeripheralManager:nil];
     [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:nil];
 }
+#endif
 
 #if (TARGET_OS_IPHONE)
 - (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion; {
@@ -204,6 +217,33 @@
         });
     }];
 }
+- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion {
+    NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSBluetoothPeripheralUsageDescription"] != nil);
+    
+    if (self.hasBluetoothPeripheralAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHBluetoothPeripheralAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:completion];
+    [self setPeripheralManager:[[CBPeripheralManager alloc] initWithDelegate:self queue:nil]];
+}
+#else
+- (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences; {
+    NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @(displaySystemAlert)};
+    BOOL retval = AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
+    
+    if (!retval &&
+        openSystemPreferences) {
+        
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]];
+    }
+    
+    return retval;
+}
 #endif
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(void(^)(KSHLocationAuthorizationStatus status, NSError *error))completion; {
 #if (TARGET_OS_IPHONE)
@@ -216,7 +256,7 @@
     }
 #else
     NSParameterAssert(authorization == KSHLocationAuthorizationStatusAuthorizedAlways);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationAlwaysUsageDescription"] != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationUsageDescription"] != nil);
 #endif
     NSParameterAssert(completion != nil);
     
@@ -240,7 +280,7 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
 #else
-    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
 #endif
 }
 - (void)requestCalendarsAuthorizationWithCompletion:(KSHRequestCalendarsAuthorizationCompletionBlock)completion {
@@ -266,20 +306,6 @@
             completion(self.remindersAuthorizationStatus,error);
         });
     }];
-}
-- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSBluetoothPeripheralUsageDescription"] != nil);
-    
-    if (self.hasBluetoothPeripheralAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHBluetoothPeripheralAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:completion];
-    [self setPeripheralManager:[[CBPeripheralManager alloc] initWithDelegate:self queue:nil]];
 }
 - (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
@@ -345,6 +371,20 @@
 - (KSHSpeechRecognitionAuthorizationStatus)speechRecognitionAuthorizationStatus {
     return (KSHSpeechRecognitionAuthorizationStatus)[SFSpeechRecognizer authorizationStatus];
 }
+
+- (BOOL)hasBluetoothPeripheralAuthorization {
+    return self.bluetoothPeripheralAuthorizationStatus == KSHBluetoothPeripheralAuthorizationStatusAuthorized;
+}
+- (KSHBluetoothPeripheralAuthorizationStatus)bluetoothPeripheralAuthorizationStatus {
+    return (KSHBluetoothPeripheralAuthorizationStatus)[CBPeripheralManager authorizationStatus];
+}
+#else
+- (BOOL)hasAccessibilityAuthorization {
+    NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @NO};
+    BOOL retval = AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
+    
+    return retval;
+}
 #endif
 
 - (BOOL)hasLocationAuthorization {
@@ -378,13 +418,6 @@
 }
 - (KSHRemindersAuthorizationStatus)remindersAuthorizationStatus {
     return (KSHRemindersAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
-}
-
-- (BOOL)hasBluetoothPeripheralAuthorization {
-    return self.bluetoothPeripheralAuthorizationStatus == KSHBluetoothPeripheralAuthorizationStatusAuthorized;
-}
-- (KSHBluetoothPeripheralAuthorizationStatus)bluetoothPeripheralAuthorizationStatus {
-    return (KSHBluetoothPeripheralAuthorizationStatus)[CBPeripheralManager authorizationStatus];
 }
 
 - (BOOL)hasContactsAuthorization {
