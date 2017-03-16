@@ -16,22 +16,29 @@
 #import <TargetConditionals.h>
 
 #if (TARGET_OS_IPHONE)
-#import <AVFoundation/AVCaptureDevice.h>
-#import <Photos/PHPhotoLibrary.h>
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 #import <HealthKit/HKHealthStore.h>
+#if (TARGET_OS_IOS)
 #import <Intents/INPreferences.h>
 #import <Speech/SFSpeechRecognizer.h>
+#endif
+#endif
+#import <AVFoundation/AVCaptureDevice.h>
+#import <Photos/PHPhotoLibrary.h>
 #import <CoreBluetooth/CBPeripheralManager.h>
 #else
 #import <ApplicationServices/ApplicationServices.h>
 #endif
 #import <CoreLocation/CLLocationManager.h>
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 #import <EventKit/EKTypes.h>
 #import <Contacts/CNContactStore.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
 #if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 /**
  Enum defining the possible camera authorization status values. See AVAuthorizationStatus for more information.
  */
@@ -89,6 +96,7 @@ typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestMicrophoneAuthorizationCompletionBlock)(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error);
+#endif
 
 /**
  Enum defining the possible photo library authorization status values. See PHAuthorizationStatus for more information.
@@ -119,6 +127,7 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
  */
 typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error);
 
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 /**
  Enum defining the possible health share authorization status values. See HKAuthorizationStatus for more information.
  */
@@ -144,7 +153,9 @@ typedef NS_ENUM(NSInteger, KSHHealthShareAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestHealthShareAuthorizationCompletionBlock)(BOOL success, NSDictionary<HKObjectType *, NSNumber *> *objectsToAuthorizationStatus, NSError * _Nullable error);
+#endif
 
+#if (TARGET_OS_IOS)
 /**
  Enum defining the possible siri authorization status values. See INSiriAuthorizationStatus for more information.
  */
@@ -202,6 +213,7 @@ typedef NS_ENUM(NSInteger, KSHSpeechRecognitionAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestSpeechRecognitionAuthorizationCompletionBlock)(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error);
+#endif
 
 /**
  Enum defining the possible bluetooth peripheral authorization status values. See CBPeripheralManagerAuthorizationStatus for more information.
@@ -249,10 +261,12 @@ typedef NS_ENUM(int, KSHLocationAuthorizationStatus) {
      See kCLAuthorizationStatusDenied for more information.
      */
     KSHLocationAuthorizationStatusDenied = kCLAuthorizationStatusDenied,
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
     /**
      See kCLAuthorizationStatusAuthorizedAlways for more information.
      */
     KSHLocationAuthorizationStatusAuthorizedAlways = kCLAuthorizationStatusAuthorizedAlways,
+#endif
 #if (TARGET_OS_IPHONE)
     /**
      See kCLAuthorizationStatusAuthorizedWhenInUse for more information.
@@ -267,7 +281,7 @@ typedef NS_ENUM(int, KSHLocationAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthorizationStatus status, NSError * _Nullable error);
-
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 /**
  Enum defining the possible calendars authorization status values. See EKAuthorizationStatus for more information.
  */
@@ -354,6 +368,7 @@ typedef NS_ENUM(NSInteger, KSHContactsAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthorizationStatus status, NSError * _Nullable error);
+#endif
 
 /**
  KSHAuthorizationManager is an NSObject subclass that combines all the authorization methods into a consistent interface.
@@ -366,6 +381,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 @property (class,readonly,nonatomic) KSHAuthorizationManager *sharedManager;
 
 #if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 /**
  Get whether the user has authorized camera access.
  */
@@ -387,6 +403,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHMicrophoneAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHMicrophoneAuthorizationStatus microphoneAuthorizationStatus;
+#endif
 
 /**
  Get whether the user has authorized photo library access.
@@ -398,7 +415,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHPhotoLibraryAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
-
+#if (TARGET_OS_IOS)
 /**
  Get whether the user has authorized siri access.
  */
@@ -420,6 +437,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHSpeechRecognitionAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHSpeechRecognitionAuthorizationStatus speechRecognitionAuthorizationStatus;
+#endif
 
 /**
  Get whether the user has authorized bluetooth peripheral access.
@@ -442,10 +460,12 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  Get whether the user has authorized location access.
  */
 @property (readonly,nonatomic) BOOL hasLocationAuthorization;
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 /**
  Get whether the user has authorized location always access.
  */
 @property (readonly,nonatomic) BOOL hasLocationAuthorizationAlways;
+#endif
 #if (TARGET_OS_IPHONE)
 /**
  Get whether the user has authorized location when in use access.
@@ -458,7 +478,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHLocationAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHLocationAuthorizationStatus locationAuthorizationStatus;
-
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 /**
  Get whether the user has authorized calendars access.
  */
@@ -491,8 +511,10 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHContactsAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHContactsAuthorizationStatus contactsAuthorizationStatus;
+#endif
 
 #if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 /**
  Request camera authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCameraUsageDescription or an exception will be thrown.
  
@@ -505,12 +527,14 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion;
+#endif
 /**
  Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.
  
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(KSHRequestPhotoLibraryAuthorizationCompletionBlock)completion;
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 /**
  Returns the health share authorization status for the provided type.
  
@@ -526,6 +550,8 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestHealthShareAuthorizationToReadTypes:(nullable NSArray<HKObjectType *> *)readTypes writeTypes:(nullable NSArray<HKSampleType *> *)writeTypes completion:(KSHRequestHealthShareAuthorizationCompletionBlock)completion;
+#endif
+#if (TARGET_OS_IOS)
 /**
  Requst siri authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSSiriUsageDescription or an exception will be thrown.
  
@@ -544,6 +570,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion;
+#endif
 #else
 /**
  Request accessibility authorization from the user and optionally display the system alert. If *openSystemPreferences* is YES and this method returns NO the Security & Privacy -> Privacy pane in System Preferences will be opened automatically.
@@ -555,12 +582,13 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 - (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences;
 #endif
 /**
- Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription on iOS or NSLocationUsageDescription on macOS, otherwise an exception will be thrown.
+ Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription on iOS, NSLocationWhenInUseUsageDescription on tvOS or NSLocationUsageDescription on macOS, otherwise an exception will be thrown.
  
  @param authorization The location authorization to request
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(KSHRequestLocationAuthorizationCompletionBlock)completion;
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 /**
  Request calendars authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCalendarsUsageDescription or an exception will be thrown.
  
@@ -579,6 +607,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion;
+#endif
 
 @end
 

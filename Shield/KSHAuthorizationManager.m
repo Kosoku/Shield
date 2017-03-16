@@ -19,7 +19,9 @@
 #import <Stanley/KSTFunctions.h>
 
 #import <CoreLocation/CLLocationManagerDelegate.h>
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 #import <EventKit/EKEventStore.h>
+#endif
 #if (TARGET_OS_IPHONE)
 #import <AVFoundation/AVMediaFormat.h>
 #else
@@ -50,20 +52,18 @@
         return;
     }
     
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
     if (status == kCLAuthorizationStatusAuthorizedAlways ||
         status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        KSTDispatchMainAsync(^{
-            self.requestLocationAuthorizationCompletionBlock((KSHLocationAuthorizationStatus)status,nil);
-        });
-    }
+#elif (TARGET_OS_TV)
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
 #else
     if (status == kCLAuthorizationStatusAuthorizedAlways) {
+#endif
         KSTDispatchMainAsync(^{
             self.requestLocationAuthorizationCompletionBlock((KSHLocationAuthorizationStatus)status,nil);
         });
     }
-#endif
     else {
         KSTDispatchMainAsync(^{
             self.requestLocationAuthorizationCompletionBlock(self.locationAuthorizationStatus,nil);
@@ -101,6 +101,7 @@
 #endif
 
 #if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 - (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion; {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCameraUsageDescription"] != nil);
@@ -135,6 +136,7 @@
         });
     }];
 }
+#endif
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSPhotoLibraryUsageDescription"] != nil);
@@ -152,6 +154,7 @@
         });
     }];
 }
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
 - (KSHHealthShareAuthorizationStatus)healthShareAuthorizationStatusForType:(HKObjectType *)type {
     return (KSHHealthShareAuthorizationStatus)[[[HKHealthStore alloc] init] authorizationStatusForType:type];
 }
@@ -183,6 +186,8 @@
         });
     }];
 }
+#endif
+#if (TARGET_OS_IOS)
 - (void)requestSiriAuthorizationWithCompletion:(KSHRequestSiriAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSSiriUsageDescription"] != nil);
@@ -232,6 +237,7 @@
     [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:completion];
     [self setPeripheralManager:[[CBPeripheralManager alloc] initWithDelegate:self queue:nil]];
 }
+#endif
 #else
 - (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences; {
     NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @(displaySystemAlert)};
@@ -247,7 +253,7 @@
 }
 #endif
 - (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(void(^)(KSHLocationAuthorizationStatus status, NSError *error))completion; {
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
     NSParameterAssert(authorization == KSHLocationAuthorizationStatusAuthorizedAlways || authorization == KSHLocationAuthorizationStatusAuthorizedWhenInUse);
     if (authorization == KSHLocationAuthorizationStatusAuthorizedAlways) {
         NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationAlwaysUsageDescription"] != nil);
@@ -255,6 +261,9 @@
     else {
         NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationWhenInUseUsageDescription"] != nil);
     }
+#elif (TARGET_OS_TV)
+    NSParameterAssert(authorization == KSHLocationAuthorizationStatusAuthorizedWhenInUse);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationWhenInUseUsageDescription"] != nil);
 #else
     NSParameterAssert(authorization == KSHLocationAuthorizationStatusAuthorizedAlways);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSLocationUsageDescription"] != nil);
@@ -273,17 +282,20 @@
     [self setLocationManager:[[CLLocationManager alloc] init]];
     [self.locationManager setDelegate:self];
     
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
     if (authorization == KSHLocationAuthorizationStatusAuthorizedAlways) {
         [self.locationManager requestAlwaysAuthorization];
     }
     else {
         [self.locationManager requestWhenInUseAuthorization];
     }
+#elif (TARGET_OS_TV)
+    [self.locationManager requestWhenInUseAuthorization];
 #else
     [self.locationManager startUpdatingLocation];
 #endif
 }
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 - (void)requestCalendarsAuthorizationWithCompletion:(KSHRequestCalendarsAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCalendarsUsageDescription"] != nil);
@@ -327,6 +339,7 @@
         });
     }];
 }
+#endif
 
 + (KSHAuthorizationManager *)sharedManager {
     static dispatch_once_t onceToken;
@@ -338,6 +351,7 @@
 }
 
 #if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS)
 - (BOOL)hasCameraAuthorization {
     return self.cameraAuthorizationStatus == KSHCameraAuthorizationStatusAuthorized;
 }
@@ -351,6 +365,7 @@
 - (KSHMicrophoneAuthorizationStatus)microphoneAuthorizationStatus {
     return (KSHMicrophoneAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
 }
+#endif
 
 - (BOOL)hasPhotoLibraryAuthorization {
     return self.photoLibraryAuthorizationStatus == KSHPhotoLibraryAuthorizationStatusAuthorized;
@@ -358,7 +373,7 @@
 - (KSHPhotoLibraryAuthorizationStatus)photoLibraryAuthorizationStatus {
     return (KSHPhotoLibraryAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
 }
-
+#if (TARGET_OS_IOS)
 - (BOOL)hasSiriAuthorization {
     return self.siriAuthorizationStatus == KSHSiriAuthorizationStatusAuthorized;
 }
@@ -372,7 +387,7 @@
 - (KSHSpeechRecognitionAuthorizationStatus)speechRecognitionAuthorizationStatus {
     return (KSHSpeechRecognitionAuthorizationStatus)[SFSpeechRecognizer authorizationStatus];
 }
-
+#endif
 - (BOOL)hasBluetoothPeripheralAuthorization {
     return self.bluetoothPeripheralAuthorizationStatus == KSHBluetoothPeripheralAuthorizationStatusAuthorized;
 }
@@ -389,15 +404,19 @@
 #endif
 
 - (BOOL)hasLocationAuthorization {
-#if (TARGET_OS_IPHONE)
+#if (TARGET_OS_IOS || TARGET_OS_WATCH)
     return self.hasLocationAuthorizationAlways || self.hasLocationAuthorizationWhenInUse;
-#else 
+#elif (TARGET_OS_TV)
+    return self.hasLocationAuthorizationWhenInUse;
+#else
     return self.hasLocationAuthorizationAlways;
 #endif
 }
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 - (BOOL)hasLocationAuthorizationAlways {
     return self.locationAuthorizationStatus == KSHLocationAuthorizationStatusAuthorizedAlways;
 }
+#endif
 #if (TARGET_OS_IPHONE)
 - (BOOL)hasLocationAuthorizationWhenInUse {
     return self.locationAuthorizationStatus == KSHLocationAuthorizationStatusAuthorizedWhenInUse;
@@ -407,6 +426,7 @@
     return (KSHLocationAuthorizationStatus)[CLLocationManager authorizationStatus];
 }
 
+#if (TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH)
 - (BOOL)hasCalendarsAuthorization {
     return self.calendarsAuthorizationStatus == KSHCalendarsAuthorizationStatusAuthorized;
 }
@@ -427,5 +447,6 @@
 - (KSHContactsAuthorizationStatus)contactsAuthorizationStatus {
     return (KSHContactsAuthorizationStatus)[CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
 }
+#endif
 
 @end
