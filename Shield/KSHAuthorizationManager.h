@@ -38,37 +38,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-/**
- Enum defining the possible media library authorization status values. See MPMediaLibraryAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHMediaLibraryAuthorizationStatus) {
-    /**
-     See MPMediaLibraryAuthorizationStatusNotDetermined for more information.
-     */
-    KSHMediaLibraryAuthorizationStatusNotDetermined = MPMediaLibraryAuthorizationStatusNotDetermined,
-    /**
-     See MPMediaLibraryAuthorizationStatusDenied for more information.
-     */
-    KSHMediaLibraryAuthorizationStatusDenied = MPMediaLibraryAuthorizationStatusDenied,
-    /**
-     See MPMediaLibraryAuthorizationStatusRestricted for more information.
-     */
-    KSHMediaLibraryAuthorizationStatusRestricted = MPMediaLibraryAuthorizationStatusRestricted,
-    /**
-     See MPMediaLibraryAuthorizationStatusAuthorized for more information.
-     */
-    KSHMediaLibraryAuthorizationStatusAuthorized = MPMediaLibraryAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting media library access.
- 
- @param status The current media library authorization status
- @param error The error
- */
-typedef void(^KSHRequestMediaLibraryAuthorizationCompletionBlock)(KSHMediaLibraryAuthorizationStatus status, NSError * _Nullable error);
-#endif
-
 /**
  Enum defining the possible photo library authorization status values. See PHAuthorizationStatus for more information.
  */
@@ -316,19 +285,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 @property (class,readonly,nonatomic) KSHAuthorizationManager *sharedManager;
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-/**
- Get whether the user has authorized media library access.
- */
-@property (readonly,nonatomic) BOOL hasMediaLibraryAuthorization;
-/**
- Get the media library authorization status.
- 
- @see KSHMediaLibraryAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHMediaLibraryAuthorizationStatus mediaLibraryAuthorizationStatus;
-#endif
-
 /**
  Get whether the user has authorized photo library access.
  */
@@ -416,15 +372,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #endif
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-/**
- Request media library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSAppleMusicUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- @exception NSException Thrown if the NSAppleMusicUsageDescription key is not present in the info plist
- */
-- (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion;
-#endif
 /**
  Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.
  

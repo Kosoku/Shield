@@ -28,4 +28,5 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 #if (TARGET_OS_IOS)
 #import <Shield/KSHCameraAuthorization.h>
 #import <Shield/KSHMicrophoneAuthorization.h>
+#import <Shield/KSHMediaLibraryAuthorization.h>
 #endif

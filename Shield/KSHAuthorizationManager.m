@@ -68,25 +68,6 @@
 #endif
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-- (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion; {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSAppleMusicUsageDescription"] != nil);
-    
-    if (self.hasMediaLibraryAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHMediaLibraryAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
-        KSTDispatchMainAsync(^{
-            completion(self.mediaLibraryAuthorizationStatus,nil);
-        });
-    }];
-}
-#endif
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSPhotoLibraryUsageDescription"] != nil);
