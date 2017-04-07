@@ -69,23 +69,6 @@
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-- (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSMicrophoneUsageDescription"] != nil);
-    
-    if (self.hasMicrophoneAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHMicrophoneAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
-        KSTDispatchMainAsync(^{
-            completion(self.microphoneAuthorizationStatus,nil);
-        });
-    }];
-}
 - (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion; {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSAppleMusicUsageDescription"] != nil);
@@ -276,15 +259,6 @@
 }
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-- (BOOL)hasMicrophoneAuthorization {
-    return self.microphoneAuthorizationStatus == KSHMicrophoneAuthorizationStatusAuthorized;
-}
-- (KSHMicrophoneAuthorizationStatus)microphoneAuthorizationStatus {
-    return (KSHMicrophoneAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
-}
-#endif
-
 - (BOOL)hasPhotoLibraryAuthorization {
     return self.photoLibraryAuthorizationStatus == KSHPhotoLibraryAuthorizationStatusAuthorized;
 }

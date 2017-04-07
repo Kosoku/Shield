@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         }
             break;
         case AuthorizationTypeMicrophone: {
-            [KSHAuthorizationManager.sharedManager requestMicrophoneAuthorizationWithCompletion:^(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHMicrophoneAuthorization.sharedAuthorization requestMicrophoneAuthorizationWithCompletion:^(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

@@ -40,35 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Enum defining the possible microphone authorization status values. See AVAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
-    /**
-     See AVAuthorizationStatusNotDetermined for more information.
-     */
-    KSHMicrophoneAuthorizationStatusNotDetermined = AVAuthorizationStatusNotDetermined,
-    /**
-     See AVAuthorizationStatusRestricted for more information.
-     */
-    KSHMicrophoneAuthorizationStatusRestricted = AVAuthorizationStatusRestricted,
-    /**
-     See AVAuthorizationStatusDenied for more information.
-     */
-    KSHMicrophoneAuthorizationStatusDenied = AVAuthorizationStatusDenied,
-    /**
-     See AVAuthorizationStatusAuthorized for more information.
-     */
-    KSHMicrophoneAuthorizationStatusAuthorized = AVAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting microphone access.
- 
- @param status The current microphone authorization status
- @param error The error
- */
-typedef void(^KSHRequestMicrophoneAuthorizationCompletionBlock)(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error);
-
-/**
  Enum defining the possible media library authorization status values. See MPMediaLibraryAuthorizationStatus for more information.
  */
 typedef NS_ENUM(NSInteger, KSHMediaLibraryAuthorizationStatus) {
@@ -347,17 +318,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Get whether the user has authorized microphone access.
- */
-@property (readonly,nonatomic) BOOL hasMicrophoneAuthorization;
-/**
- Get the microphone authorization status.
- 
- @see KSHMicrophoneAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHMicrophoneAuthorizationStatus microphoneAuthorizationStatus;
-
-/**
  Get whether the user has authorized media library access.
  */
 @property (readonly,nonatomic) BOOL hasMediaLibraryAuthorization;
@@ -457,12 +417,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-/**
- Request microphone authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSMicrophoneUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion;
 /**
  Request media library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSAppleMusicUsageDescription or an exception will be thrown.
  
