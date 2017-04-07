@@ -24,3 +24,4 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <Shield/PublicHeader.h>
 
 #import <Shield/KSHAuthorizationManager.h>
+#import <Shield/KSHLocationAuthorization.h>

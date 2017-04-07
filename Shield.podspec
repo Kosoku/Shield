@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Shield'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g. camera, photo, location).'
 
 # This description is used to generate tags and improve search results.
@@ -42,9 +42,17 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.ios.frameworks = 'HealthKit', 'Intents', 'Speech', 'AVFoundation', 'Photos', 'CoreBluetooth', 'CoreLocation', 'EventKit', 'Contacts', 'MediaPlayer'
-  s.osx.frameworks = 'AppKit', 'ApplicationServices', 'CoreLocation', 'EventKit', 'Contacts'
-  s.tvos.frameworks = 'CoreLocation', 'Photos'
+  s.ios.frameworks = 'HealthKit', 'Intents', 'Speech', 'AVFoundation', 'Photos', 'CoreBluetooth', 'EventKit', 'Contacts', 'MediaPlayer'
+  s.osx.frameworks = 'AppKit', 'ApplicationServices', 'EventKit', 'Contacts'
+  s.tvos.frameworks = 'Photos'
   
   s.dependency 'Stanley'
+  
+  s.subspec 'Location' do |ss|
+    ss.source_files = 'Shield/**/KSHLocationAuthorization.{h,m}'
+    
+    ss.frameworks = 'CoreLocation'
+    
+    ss.dependency 'Stanley'
+  end
 end

@@ -105,7 +105,7 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         }
             break;
         case AuthorizationTypeLocation: {
-            [KSHAuthorizationManager.sharedManager requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedAlways completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHLocationAuthorization.sharedAuthorization requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedAlways completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

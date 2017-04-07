@@ -30,7 +30,6 @@
 #else
 #import <ApplicationServices/ApplicationServices.h>
 #endif
-#import <CoreLocation/CLLocationManager.h>
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 #import <EventKit/EKTypes.h>
 #import <Contacts/CNContactStore.h>
@@ -275,42 +274,6 @@ typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBlue
 #endif
 #endif
 
-/**
- Enum defining the possible location authorization status values. See CLAuthorizationStatus for more information.
- */
-typedef NS_ENUM(int, KSHLocationAuthorizationStatus) {
-    /**
-     See kCLAuthorizationStatusNotDetermined for more information.
-     */
-    KSHLocationAuthorizationStatusNotDetermined = kCLAuthorizationStatusNotDetermined,
-    /**
-     See kCLAuthorizationStatusRestricted for more information.
-     */
-    KSHLocationAuthorizationStatusRestricted = kCLAuthorizationStatusRestricted,
-    /**
-     See kCLAuthorizationStatusDenied for more information.
-     */
-    KSHLocationAuthorizationStatusDenied = kCLAuthorizationStatusDenied,
-#if (TARGET_OS_IOS || TARGET_OS_OSX)
-    /**
-     See kCLAuthorizationStatusAuthorizedAlways for more information.
-     */
-    KSHLocationAuthorizationStatusAuthorizedAlways = kCLAuthorizationStatusAuthorizedAlways,
-#endif
-#if (TARGET_OS_IPHONE)
-    /**
-     See kCLAuthorizationStatusAuthorizedWhenInUse for more information.
-     */
-    KSHLocationAuthorizationStatusAuthorizedWhenInUse = kCLAuthorizationStatusAuthorizedWhenInUse
-#endif
-};
-/**
- Completion block that is invoked after requesting location access.
- 
- @param status The current location authorization status
- @param error The error
- */
-typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthorizationStatus status, NSError * _Nullable error);
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 /**
  Enum defining the possible calendars authorization status values. See EKAuthorizationStatus for more information.
@@ -497,28 +460,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 @property (readonly,nonatomic) BOOL hasAccessibilityAuthorization;
 #endif
 
-/**
- Get whether the user has authorized location access.
- */
-@property (readonly,nonatomic) BOOL hasLocationAuthorization;
-#if (TARGET_OS_IOS || TARGET_OS_OSX)
-/**
- Get whether the user has authorized location always access.
- */
-@property (readonly,nonatomic) BOOL hasLocationAuthorizationAlways;
-#endif
-#if (TARGET_OS_IPHONE)
-/**
- Get whether the user has authorized location when in use access.
- */
-@property (readonly,nonatomic) BOOL hasLocationAuthorizationWhenInUse;
-#endif
-/**
- Get the location authorization status.
- 
- @see KSHLocationAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHLocationAuthorizationStatus locationAuthorizationStatus;
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 /**
  Get whether the user has authorized calendars access.
@@ -629,13 +570,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  */
 - (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences;
 #endif
-/**
- Request location authorization from the user and invoke the provided completion block when authorization status has been determined. The client should pass KSHLocationAuthorizationStatusAuthorizedAlways or KSHLocationAuthorizationStatusAuthorizedWhenInUse for authorization. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSLocationWhenInUseUsageDescription or NSLocationAlwaysUsageDescription on iOS, NSLocationWhenInUseUsageDescription on tvOS or NSLocationUsageDescription on macOS, otherwise an exception will be thrown.
- 
- @param authorization The location authorization to request
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestLocationAuthorization:(KSHLocationAuthorizationStatus)authorization completion:(KSHRequestLocationAuthorizationCompletionBlock)completion;
+
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 /**
  Request calendars authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCalendarsUsageDescription or an exception will be thrown.
