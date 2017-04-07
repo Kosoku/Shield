@@ -42,7 +42,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.ios.frameworks = 'HealthKit', 'Intents', 'Speech', 'AVFoundation', 'Photos', 'CoreBluetooth', 'CoreLocation', 'EventKit', 'Contacts'
+  s.ios.frameworks = 'HealthKit', 'Intents', 'Speech', 'AVFoundation', 'Photos', 'CoreBluetooth', 'CoreLocation', 'EventKit', 'Contacts', 'MediaPlayer'
   s.osx.frameworks = 'AppKit', 'ApplicationServices', 'CoreLocation', 'EventKit', 'Contacts'
   s.tvos.frameworks = 'CoreLocation', 'Photos'
   
