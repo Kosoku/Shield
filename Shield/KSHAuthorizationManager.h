@@ -98,13 +98,33 @@ typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
  */
 typedef void(^KSHRequestMicrophoneAuthorizationCompletionBlock)(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ Enum defining the possible media library authorization status values. See MPMediaLibraryAuthorizationStatus for more information.
+ */
 typedef NS_ENUM(NSInteger, KSHMediaLibraryAuthorizationStatus) {
+    /**
+     See MPMediaLibraryAuthorizationStatusNotDetermined for more information.
+     */
     KSHMediaLibraryAuthorizationStatusNotDetermined = MPMediaLibraryAuthorizationStatusNotDetermined,
+    /**
+     See MPMediaLibraryAuthorizationStatusDenied for more information.
+     */
     KSHMediaLibraryAuthorizationStatusDenied = MPMediaLibraryAuthorizationStatusDenied,
+    /**
+     See MPMediaLibraryAuthorizationStatusRestricted for more information.
+     */
     KSHMediaLibraryAuthorizationStatusRestricted = MPMediaLibraryAuthorizationStatusRestricted,
+    /**
+     See MPMediaLibraryAuthorizationStatusAuthorized for more information.
+     */
     KSHMediaLibraryAuthorizationStatusAuthorized = MPMediaLibraryAuthorizationStatusAuthorized
 };
-
+/**
+ Completion block that is invoked after requesting media library access.
+ 
+ @param status The current media library authorization status
+ @param error The error
+ */
 typedef void(^KSHRequestMediaLibraryAuthorizationCompletionBlock)(KSHMediaLibraryAuthorizationStatus status, NSError * _Nullable error);
 #endif
 
@@ -549,7 +569,10 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  */
 - (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion;
 /**
- Request media library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread.
+ Request media library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSAppleMusicUsageDescription or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ @exception NSException Thrown if the NSAppleMusicUsageDescription key is not present in the info plist
  */
 - (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion;
 #endif

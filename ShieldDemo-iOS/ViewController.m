@@ -30,7 +30,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeContacts,
     AuthorizationTypeHealthShare,
     AuthorizationTypeSiri,
-    AuthorizationTypeSpeechRecognition
+    AuthorizationTypeSpeechRecognition,
+    AuthorizationTypeMediaLibrary
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -55,7 +56,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeContacts),
                                   @(AuthorizationTypeHealthShare),
                                   @(AuthorizationTypeSiri),
-                                  @(AuthorizationTypeSpeechRecognition)]];
+                                  @(AuthorizationTypeSpeechRecognition),
+                                  @(AuthorizationTypeMediaLibrary)]];
     [self setAuthorizationTitles:@[@"Photo Library",
                                    @"Location",
                                    @"Camera",
@@ -66,7 +68,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                    @"Contacts",
                                    @"Health Share",
                                    @"Siri",
-                                   @"Speech Recognition"]];
+                                   @"Speech Recognition",
+                                   @"Media Library"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -157,6 +160,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeSpeechRecognition: {
             [KSHAuthorizationManager.sharedManager requestSpeechRecognitionAuthorizationWithCompletion:^(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeMediaLibrary: {
+            [KSHAuthorizationManager.sharedManager requestMediaLibraryAuthorizationWithCompletion:^(KSHMediaLibraryAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

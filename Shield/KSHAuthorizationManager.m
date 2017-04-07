@@ -138,6 +138,7 @@
 }
 - (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion; {
     NSParameterAssert(completion != nil);
+    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSAppleMusicUsageDescription"] != nil);
     
     if (self.hasMediaLibraryAuthorization) {
         KSTDispatchMainAsync(^{

@@ -36,6 +36,8 @@
 	<string>LOCALIZE</string>
 	<key>NSVideoSubscriberAccountUsageDescription</key>
 	<string>LOCALIZE</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSMicrophoneUsageDescription</key>

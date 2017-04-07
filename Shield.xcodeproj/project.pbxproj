@@ -61,6 +61,7 @@
 		076730D61E779CE800030F0C /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D41E779CE800030F0C /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		076730D91E779E8200030F0C /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D81E779E8200030F0C /* Stanley.framework */; };
 		076730DB1E779E9500030F0C /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730DA1E779E9500030F0C /* Photos.framework */; };
+		079728AF1E980C3F00E86545 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079728AE1E980C3F00E86545 /* MediaPlayer.framework */; };
 		07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C94D771E7B0B7C0014155A /* Stanley.framework */; };
 /* End PBXBuildFile section */
 
@@ -186,6 +187,7 @@
 		076730D41E779CE800030F0C /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		076730D81E779E8200030F0C /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
 		076730DA1E779E9500030F0C /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
+		079728AE1E980C3F00E86545 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079728AF1E980C3F00E86545 /* MediaPlayer.framework in Frameworks */,
 				072DB9F31E7AD52A0070907C /* Speech.framework in Frameworks */,
 				072DB9F11E7AD08F0070907C /* Intents.framework in Frameworks */,
 				072DB9EE1E79E7A60070907C /* HealthKit.framework in Frameworks */,
@@ -388,6 +391,7 @@
 		076730D71E779CFF00030F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				079728AE1E980C3F00E86545 /* MediaPlayer.framework */,
 				07C94D771E7B0B7C0014155A /* Stanley.framework */,
 				072DBA611E7B00BF0070907C /* CoreLocation.framework */,
 				072DBA5F1E7AFEBE0070907C /* Photos.framework */,
