@@ -69,23 +69,6 @@
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-- (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion; {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCameraUsageDescription"] != nil);
-    
-    if (self.hasCameraAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHCameraAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-        KSTDispatchMainAsync(^{
-            completion(self.cameraAuthorizationStatus,nil);
-        });
-    }];
-}
 - (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSMicrophoneUsageDescription"] != nil);
@@ -294,13 +277,6 @@
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-- (BOOL)hasCameraAuthorization {
-    return self.cameraAuthorizationStatus == KSHCameraAuthorizationStatusAuthorized;
-}
-- (KSHCameraAuthorizationStatus)cameraAuthorizationStatus {
-    return (KSHCameraAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-}
-
 - (BOOL)hasMicrophoneAuthorization {
     return self.microphoneAuthorizationStatus == KSHMicrophoneAuthorizationStatusAuthorized;
 }

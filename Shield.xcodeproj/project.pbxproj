@@ -68,6 +68,8 @@
 		079728B51E9812E200E86545 /* KSHLocationAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728B11E9812E200E86545 /* KSHLocationAuthorization.m */; };
 		079728B61E9812E200E86545 /* KSHLocationAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728B11E9812E200E86545 /* KSHLocationAuthorization.m */; };
 		079728B71E9812E200E86545 /* KSHLocationAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728B11E9812E200E86545 /* KSHLocationAuthorization.m */; };
+		079728BA1E981DAA00E86545 /* KSHCameraAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728B81E981DAA00E86545 /* KSHCameraAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		079728BB1E981DAA00E86545 /* KSHCameraAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728B91E981DAA00E86545 /* KSHCameraAuthorization.m */; };
 		07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C94D771E7B0B7C0014155A /* Stanley.framework */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +198,8 @@
 		079728AE1E980C3F00E86545 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		079728B01E9812E200E86545 /* KSHLocationAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSHLocationAuthorization.h; sourceTree = "<group>"; };
 		079728B11E9812E200E86545 /* KSHLocationAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSHLocationAuthorization.m; sourceTree = "<group>"; };
+		079728B81E981DAA00E86545 /* KSHCameraAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHCameraAuthorization.h; path = iOS/KSHCameraAuthorization.h; sourceTree = "<group>"; };
+		079728B91E981DAA00E86545 /* KSHCameraAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHCameraAuthorization.m; path = iOS/KSHCameraAuthorization.m; sourceTree = "<group>"; };
 		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -369,6 +373,8 @@
 				076730B11E77992B00030F0C /* KSHAuthorizationManager.m */,
 				079728B01E9812E200E86545 /* KSHLocationAuthorization.h */,
 				079728B11E9812E200E86545 /* KSHLocationAuthorization.m */,
+				079728B81E981DAA00E86545 /* KSHCameraAuthorization.h */,
+				079728B91E981DAA00E86545 /* KSHCameraAuthorization.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -455,6 +461,7 @@
 			files = (
 				076730A91E7797F600030F0C /* Shield.h in Headers */,
 				079728B21E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
+				079728BA1E981DAA00E86545 /* KSHCameraAuthorization.h in Headers */,
 				076730B21E77992B00030F0C /* KSHAuthorizationManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -745,6 +752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				076730B31E77992B00030F0C /* KSHAuthorizationManager.m in Sources */,
+				079728BB1E981DAA00E86545 /* KSHCameraAuthorization.m in Sources */,
 				079728B51E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

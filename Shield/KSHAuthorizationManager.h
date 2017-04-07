@@ -40,35 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Enum defining the possible camera authorization status values. See AVAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHCameraAuthorizationStatus) {
-    /**
-     See AVAuthorizationStatusNotDetermined for more information.
-     */
-    KSHCameraAuthorizationStatusNotDetermined = AVAuthorizationStatusNotDetermined,
-    /**
-     See AVAuthorizationStatusRestricted for more information.
-     */
-    KSHCameraAuthorizationStatusRestricted = AVAuthorizationStatusRestricted,
-    /**
-     See AVAuthorizationStatusDenied for more information.
-     */
-    KSHCameraAuthorizationStatusDenied = AVAuthorizationStatusDenied,
-    /**
-     See AVAuthorizationStatusAuthorized for more information.
-     */
-    KSHCameraAuthorizationStatusAuthorized = AVAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting camera access.
- 
- @param status The current camera authorization status
- @param error The error
- */
-typedef void(^KSHRequestCameraAuthorizationCompletionBlock)(KSHCameraAuthorizationStatus status, NSError * _Nullable error);
-
-/**
  Enum defining the possible microphone authorization status values. See AVAuthorizationStatus for more information.
  */
 typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
@@ -376,17 +347,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Get whether the user has authorized camera access.
- */
-@property (readonly,nonatomic) BOOL hasCameraAuthorization;
-/**
- Get the camera authorization status.
- 
- @see KSHCameraAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHCameraAuthorizationStatus cameraAuthorizationStatus;
-
-/**
  Get whether the user has authorized microphone access.
  */
 @property (readonly,nonatomic) BOOL hasMicrophoneAuthorization;
@@ -497,12 +457,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-/**
- Request camera authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCameraUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion;
 /**
  Request microphone authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSMicrophoneUsageDescription or an exception will be thrown.
  

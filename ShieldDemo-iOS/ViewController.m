@@ -111,7 +111,7 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         }
             break;
         case AuthorizationTypeCamera: {
-            [KSHAuthorizationManager.sharedManager requestCameraAuthorizationWithCompletion:^(KSHCameraAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHCameraAuthorization.sharedAuthorization requestCameraAuthorizationWithCompletion:^(KSHCameraAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
