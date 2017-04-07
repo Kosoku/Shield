@@ -30,3 +30,4 @@ Apple:
 - `EventKit`, `iOS` and `macOS`
 - `Contacts`, `iOS` and `macOS`
 - `AppKit`, `macOS` only
+- `MediaPlayer`, `iOS` only
