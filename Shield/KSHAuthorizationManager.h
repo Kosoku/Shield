@@ -18,6 +18,7 @@
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 #import <HealthKit/HKHealthStore.h>
+#import <MediaPlayer/MPMediaLibrary.h>
 #if (TARGET_OS_IOS)
 #import <Intents/INPreferences.h>
 #import <Speech/SFSpeechRecognizer.h>
@@ -96,6 +97,15 @@ typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestMicrophoneAuthorizationCompletionBlock)(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error);
+
+typedef NS_ENUM(NSInteger, KSHMediaLibraryAuthorizationStatus) {
+    KSHMediaLibraryAuthorizationStatusNotDetermined = MPMediaLibraryAuthorizationStatusNotDetermined,
+    KSHMediaLibraryAuthorizationStatusDenied = MPMediaLibraryAuthorizationStatusDenied,
+    KSHMediaLibraryAuthorizationStatusRestricted = MPMediaLibraryAuthorizationStatusRestricted,
+    KSHMediaLibraryAuthorizationStatusAuthorized = MPMediaLibraryAuthorizationStatusAuthorized
+};
+
+typedef void(^KSHRequestMediaLibraryAuthorizationCompletionBlock)(KSHMediaLibraryAuthorizationStatus status, NSError * _Nullable error);
 #endif
 
 /**
@@ -403,6 +413,17 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @see KSHMicrophoneAuthorizationStatus
  */
 @property (readonly,nonatomic) KSHMicrophoneAuthorizationStatus microphoneAuthorizationStatus;
+
+/**
+ Get whether the user has authorized media library access.
+ */
+@property (readonly,nonatomic) BOOL hasMediaLibraryAuthorization;
+/**
+ Get the media library authorization status.
+ 
+ @see KSHMediaLibraryAuthorizationStatus
+ */
+@property (readonly,nonatomic) KSHMediaLibraryAuthorizationStatus mediaLibraryAuthorizationStatus;
 #endif
 
 /**
@@ -527,6 +548,10 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @param completion The completion block to invoke when authorization status has been determined
  */
 - (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion;
+/**
+ Request media library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread.
+ */
+- (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion;
 #endif
 /**
  Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.

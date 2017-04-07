@@ -136,6 +136,22 @@
         });
     }];
 }
+- (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion; {
+    NSParameterAssert(completion != nil);
+    
+    if (self.hasMediaLibraryAuthorization) {
+        KSTDispatchMainAsync(^{
+            completion(KSHMediaLibraryAuthorizationStatusAuthorized,nil);
+        });
+        return;
+    }
+    
+    [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
+        KSTDispatchMainAsync(^{
+            completion(self.mediaLibraryAuthorizationStatus,nil);
+        });
+    }];
+}
 #endif
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
     NSParameterAssert(completion != nil);
