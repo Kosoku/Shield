@@ -15,12 +15,15 @@
 
 #import "KSHCameraAuthorization.h"
 
+#if (TARGET_OS_IOS)
 #import <Stanley/KSTFunctions.h>
 
 #import <AVFoundation/AVFoundation.h>
+#endif
 
 @implementation KSHCameraAuthorization
 
+#if (TARGET_OS_IOS)
 - (void)requestCameraAuthorizationWithCompletion:(KSHRequestCameraAuthorizationCompletionBlock)completion; {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCameraUsageDescription"] != nil);
@@ -54,5 +57,6 @@
 - (KSHCameraAuthorizationStatus)cameraAuthorizationStatus {
     return (KSHCameraAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 }
+#endif
 
 @end

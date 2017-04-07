@@ -27,7 +27,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   s.author           = { 'William Towe' => 'willbur1984@gmail.com' }
   s.source           = { :git => 'https://github.com/Kosoku/Shield.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
+  
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.12'
   s.tvos.deployment_target = '10.0'
@@ -40,12 +40,6 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   # s.resource_bundles = {
   #   '${POD_NAME}' => ['${POD_NAME}/Assets/*.png']
   # }
-
-  s.ios.frameworks = 'HealthKit', 'Intents', 'Speech', 'AVFoundation', 'Photos', 'CoreBluetooth', 'EventKit', 'Contacts', 'MediaPlayer'
-  s.osx.frameworks = 'AppKit', 'ApplicationServices', 'EventKit', 'Contacts'
-  s.tvos.frameworks = 'Photos'
-  
-  s.dependency 'Stanley'
   
   s.subspec 'Camera' do |ss|
     ss.ios.deployment_target = '10.0'
@@ -58,6 +52,10 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Location' do |ss|
+    ss.ios.deployment_target = '10.0'
+    ss.osx.deployment_target = '10.12'
+    ss.tvos.deployment_target = '10.0'
+    
     ss.source_files = 'Shield/**/KSHLocationAuthorization.{h,m}'
     
     ss.frameworks = 'CoreLocation'
