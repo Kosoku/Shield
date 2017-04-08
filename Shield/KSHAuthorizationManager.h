@@ -38,35 +38,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #if (TARGET_OS_IPHONE)
-/**
- Enum defining the possible photo library authorization status values. See PHAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
-    /**
-     See PHAuthorizationStatusNotDetermined for more information.
-     */
-    KSHPhotoLibraryAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
-    /**
-     See PHAuthorizationStatusRestricted for more information.
-     */
-    KSHPhotoLibraryAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
-    /**
-     See PHAuthorizationStatusDenied for more information.
-     */
-    KSHPhotoLibraryAuthorizationStatusDenied = PHAuthorizationStatusDenied,
-    /**
-     See PHAuthorizationStatusAuthorized for more information.
-     */
-    KSHPhotoLibraryAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting photo library access.
- 
- @param status The current photo library authorization status
- @param error The error
- */
-typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error);
-
 #if (TARGET_OS_IOS)
 /**
  Enum defining the possible health share authorization status values. See HKAuthorizationStatus for more information.
@@ -285,16 +256,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 @property (class,readonly,nonatomic) KSHAuthorizationManager *sharedManager;
 
 #if (TARGET_OS_IPHONE)
-/**
- Get whether the user has authorized photo library access.
- */
-@property (readonly,nonatomic) BOOL hasPhotoLibraryAuthorization;
-/**
- Get the photo library authorization status.
- 
- @see KSHPhotoLibraryAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
 #if (TARGET_OS_IOS)
 /**
  Get whether the user has authorized siri access.
@@ -372,12 +333,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #endif
 
 #if (TARGET_OS_IPHONE)
-/**
- Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestPhotoLibraryAuthorizationWithCompletion:(KSHRequestPhotoLibraryAuthorizationCompletionBlock)completion;
 #if (TARGET_OS_IOS)
 /**
  Returns the health share authorization status for the provided type.

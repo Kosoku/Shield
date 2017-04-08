@@ -68,23 +68,6 @@
 #endif
 
 #if (TARGET_OS_IPHONE)
-- (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSPhotoLibraryUsageDescription"] != nil);
-    
-    if (self.hasPhotoLibraryAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHPhotoLibraryAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        KSTDispatchMainAsync(^{
-            completion((KSHPhotoLibraryAuthorizationStatus)status,nil);
-        });
-    }];
-}
 #if (TARGET_OS_IOS)
 - (KSHHealthShareAuthorizationStatus)healthShareAuthorizationStatusForType:(HKObjectType *)type {
     return (KSHHealthShareAuthorizationStatus)[[[HKHealthStore alloc] init] authorizationStatusForType:type];
@@ -240,12 +223,6 @@
 }
 
 #if (TARGET_OS_IPHONE)
-- (BOOL)hasPhotoLibraryAuthorization {
-    return self.photoLibraryAuthorizationStatus == KSHPhotoLibraryAuthorizationStatusAuthorized;
-}
-- (KSHPhotoLibraryAuthorizationStatus)photoLibraryAuthorizationStatus {
-    return (KSHPhotoLibraryAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
-}
 #if (TARGET_OS_IOS)
 - (BOOL)hasSiriAuthorization {
     return self.siriAuthorizationStatus == KSHSiriAuthorizationStatusAuthorized;
