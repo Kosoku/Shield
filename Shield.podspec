@@ -34,11 +34,10 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   
   s.requires_arc = true
 
-  s.source_files = 'Shield/**/*.{h,m}'
+  s.ios.source_files = 'Shield/*.{h,m}', 'Shield/iOS/*.{h,m}'
+  s.osx.source_files = 'Shield/*.{h,m}', 'Shield/macOS/*.{h,m}'
   s.tvos.source_files = 'Shield/KSHLocationAuthorization.{h,m}', 'Shield/iOS/KSHPhotosAuthorization.{h,m}'
   s.exclude_files = 'Shield/Shield-Info.h'
-  s.ios.exclude_files = 'Shield/macOS'
-  s.osx.exclude_files = 'Shield/iOS'
   
   # s.resource_bundles = {
   #   '${POD_NAME}' => ['${POD_NAME}/Assets/*.png']
