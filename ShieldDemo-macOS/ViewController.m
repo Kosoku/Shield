@@ -40,29 +40,29 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
 - (IBAction)_buttonAction:(NSButton *)sender {
     switch ((AuthorizationType)sender.tag) {
         case AuthorizationTypeLocation: {
-            [KSHAuthorizationManager.sharedManager requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedAlways completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHLocationAuthorization.sharedAuthorization requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedAlways completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;
         case AuthorizationTypeAccessibility: {
-            [KSHAuthorizationManager.sharedManager requestAccessibilityAuthorizationDisplayingSystemAlert:YES openSystemPreferencesIfNecessary:NO];
+            [KSHAccessibilityAuthorization.sharedAuthorization requestAccessibilityAuthorizationDisplayingSystemAlert:YES openSystemPreferencesIfNecessary:NO];
         }
             break;
         case AuthorizationTypeContacts: {
-            [KSHAuthorizationManager.sharedManager requestContactsAuthorizationWithCompletion:^(KSHContactsAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHContactsAuthorization.sharedAuthorization requestContactsAuthorizationWithCompletion:^(KSHContactsAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;
         case AuthorizationTypeReminders: {
-            [KSHAuthorizationManager.sharedManager requestRemindersAuthorizationWithCompletion:^(KSHRemindersAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHEventAuthorization.sharedAuthorization requestRemindersAuthorizationWithCompletion:^(KSHRemindersAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;
         case AuthorizationTypeCalendars: {
-            [KSHAuthorizationManager.sharedManager requestCalendarsAuthorizationWithCompletion:^(KSHCalendarsAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHEventAuthorization.sharedAuthorization requestCalendarsAuthorizationWithCompletion:^(KSHCalendarsAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

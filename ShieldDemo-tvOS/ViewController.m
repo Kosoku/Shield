@@ -67,13 +67,13 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch ((AuthorizationType)self.authorizationTypes[indexPath.row].integerValue) {
         case AuthorizationTypePhotoLibrary: {
-            [KSHAuthorizationManager.sharedManager requestPhotoLibraryAuthorizationWithCompletion:^(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHPhotosAuthorization.sharedAuthorization requestPhotoLibraryAuthorizationWithCompletion:^(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;
         case AuthorizationTypeLocation: {
-            [KSHAuthorizationManager.sharedManager requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedWhenInUse completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHLocationAuthorization.sharedAuthorization requestLocationAuthorization:KSHLocationAuthorizationStatusAuthorizedWhenInUse completion:^(KSHLocationAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
