@@ -24,15 +24,16 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <Shield/PublicHeader.h>
 
 #import <Shield/KSHLocationAuthorization.h>
-#if (TARGET_OS_OSX)
-#import <Shield/KSHAccessibilityAuthorization.h>
-#endif
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 #import <Shield/KSHEventAuthorization.h>
 #import <Shield/KSHContactsAuthorization.h>
+#import <Shield/KSHAccountsAuthorization.h>
 #endif
 #if (TARGET_OS_IOS || TARGET_OS_TV)
 #import <Shield/KSHPhotosAuthorization.h>
+#endif
+#if (TARGET_OS_OSX)
+#import <Shield/KSHAccessibilityAuthorization.h>
 #endif
 #if (TARGET_OS_IOS)
 #import <Shield/KSHCameraAuthorization.h>

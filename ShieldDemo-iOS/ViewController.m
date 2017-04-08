@@ -31,7 +31,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeHealthShare,
     AuthorizationTypeSiri,
     AuthorizationTypeSpeechRecognition,
-    AuthorizationTypeMediaLibrary
+    AuthorizationTypeMediaLibrary,
+    AuthorizationTypeTwitter
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -57,7 +58,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeHealthShare),
                                   @(AuthorizationTypeSiri),
                                   @(AuthorizationTypeSpeechRecognition),
-                                  @(AuthorizationTypeMediaLibrary)]];
+                                  @(AuthorizationTypeMediaLibrary),
+                                  @(AuthorizationTypeTwitter)]];
     [self setAuthorizationTitles:@[@"Photo Library",
                                    @"Location",
                                    @"Camera",
@@ -69,7 +71,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                    @"Health Share",
                                    @"Siri",
                                    @"Speech Recognition",
-                                   @"Media Library"]];
+                                   @"Media Library",
+                                   @"Twitter"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -167,6 +170,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeMediaLibrary: {
             [KSHMediaLibraryAuthorization.sharedAuthorization requestMediaLibraryAuthorizationWithCompletion:^(KSHMediaLibraryAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeTwitter: {
+            [KSHAccountsAuthorization.sharedAuthorization requestAccountsAuthorizationForType:KSHAccountsTypeTwitter options:nil completion:^(BOOL success, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(success),error);
             }];
         }
             break;

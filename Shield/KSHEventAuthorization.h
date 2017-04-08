@@ -79,7 +79,7 @@ typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAutho
 @interface KSHEventAuthorization : NSObject
 
 /**
- Get the shared bluetooth authorization object.
+ Get the shared event authorization object.
  */
 @property (class,readonly,nonatomic) KSHEventAuthorization *sharedAuthorization;
 

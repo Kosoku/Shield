@@ -50,7 +50,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 @interface KSHContactsAuthorization : NSObject
 
 /**
- Get the shared bluetooth authorization object.
+ Get the shared contacts authorization object.
  */
 @property (class,readonly,nonatomic) KSHContactsAuthorization *sharedAuthorization;
 
@@ -69,6 +69,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  Request contacts authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSContactsUsageDescription or an exception will be thrown.
  
  @param completion The completion block to invoke when authorization status has been determined
+ @exception NSException Thrown if *completion* is nil or the NSContactsUsageDescription key is not present in the info plist
  */
 - (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion;
 

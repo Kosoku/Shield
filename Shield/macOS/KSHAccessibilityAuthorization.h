@@ -15,10 +15,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface KSHAccessibilityAuthorization : NSObject
 
 /**
- Get the shared bluetooth authorization object.
+ Get the shared accessibility authorization object.
  */
 @property (class,readonly,nonatomic) KSHAccessibilityAuthorization *sharedAuthorization;
 
@@ -37,3 +39,5 @@
 - (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences;
 
 @end
+
+NS_ASSUME_NONNULL_END
