@@ -22,11 +22,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeContacts,
     AuthorizationTypeAccessibility,
     AuthorizationTypeCalendars,
-    AuthorizationTypeReminders
+    AuthorizationTypeReminders,
+    AuthorizationTypeTwitter
 };
 
 @interface ViewController ()
-@property (weak,nonatomic) IBOutlet NSButton *locationButton, *contactsButton, *accessibilityButton, *calendarsButton, *remindersButton;
+@property (weak,nonatomic) IBOutlet NSButton *locationButton, *contactsButton, *accessibilityButton, *calendarsButton, *remindersButton, *twitterButton;
 @end
 
 @implementation ViewController
@@ -64,6 +65,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeCalendars: {
             [KSHEventAuthorization.sharedAuthorization requestCalendarsAuthorizationWithCompletion:^(KSHCalendarsAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeTwitter: {
+            [KSHAccountsAuthorization.sharedAuthorization requestAccountsAuthorizationForType:KSHAccountsTypeTwitter options:nil completion:^(BOOL success, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(success),error);
             }];
         }
             break;

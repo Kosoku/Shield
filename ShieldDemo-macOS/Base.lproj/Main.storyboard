@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -737,8 +737,19 @@
                                     <action selector="_buttonAction:" target="XfG-lQ-9wD" id="fkj-h1-Lu7"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="T3w-bQ-Ta1">
+                                <rect key="frame" x="9" y="57" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Twitter" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kUL-vv-Ivf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="_buttonAction:" target="XfG-lQ-9wD" id="g7U-iJ-3gN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="T3w-bQ-Ta1" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="Hmb-Y3-kos"/>
                             <constraint firstItem="ygb-S2-reO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="KAH-EW-DWn"/>
                             <constraint firstItem="maK-SL-XS0" firstAttribute="top" secondItem="5vb-Ce-fQ5" secondAttribute="bottom" constant="12" id="MVK-uY-a51"/>
                             <constraint firstItem="5d1-TA-CrP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="QRd-oz-TSg"/>
@@ -747,6 +758,7 @@
                             <constraint firstItem="ygb-S2-reO" firstAttribute="top" secondItem="5d1-TA-CrP" secondAttribute="bottom" constant="12" id="VsE-Ec-zEe"/>
                             <constraint firstItem="5vb-Ce-fQ5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="aOf-eD-wfw"/>
                             <constraint firstItem="5vb-Ce-fQ5" firstAttribute="top" secondItem="ygb-S2-reO" secondAttribute="bottom" constant="12" id="cq2-vM-9RT"/>
+                            <constraint firstItem="T3w-bQ-Ta1" firstAttribute="top" secondItem="maK-SL-XS0" secondAttribute="bottom" constant="12" id="f2K-4c-F1A"/>
                             <constraint firstItem="BuP-nW-Pg9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="pOL-J5-79K"/>
                             <constraint firstItem="5d1-TA-CrP" firstAttribute="top" secondItem="BuP-nW-Pg9" secondAttribute="bottom" constant="12" id="pXJ-9a-AMT"/>
                         </constraints>
