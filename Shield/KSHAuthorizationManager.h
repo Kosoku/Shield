@@ -39,35 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Enum defining the possible speech recognition authorization status values. See SFSpeechRecognizerAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHSpeechRecognitionAuthorizationStatus) {
-    /**
-     See SFSpeechRecognizerAuthorizationStatusNotDetermined for more information.
-     */
-    KSHSpeechRecognitionAuthorizationStatusNotDetermined = SFSpeechRecognizerAuthorizationStatusNotDetermined,
-    /**
-     See SFSpeechRecognizerAuthorizationStatusRestricted for more information.
-     */
-    KSHSpeechRecognitionAuthorizationStatusRestricted = SFSpeechRecognizerAuthorizationStatusRestricted,
-    /**
-     See SFSpeechRecognizerAuthorizationStatusDenied for more information.
-     */
-    KSHSpeechRecognitionAuthorizationStatusDenied = SFSpeechRecognizerAuthorizationStatusDenied,
-    /**
-     See SFSpeechRecognizerAuthorizationStatusAuthorized for more information.
-     */
-    KSHSpeechRecognitionAuthorizationStatusAuthorized = SFSpeechRecognizerAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting speech recognition access.
- 
- @param status The current speech recognition authorization status
- @param error The error
- */
-typedef void(^KSHRequestSpeechRecognitionAuthorizationCompletionBlock)(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error);
-
-/**
  Enum defining the possible bluetooth peripheral authorization status values. See CBPeripheralManagerAuthorizationStatus for more information.
  */
 typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
@@ -200,17 +171,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Get whether the user has authorized speech recognition access.
- */
-@property (readonly,nonatomic) BOOL hasSpeechRecognitionAuthorization;
-/**
- Get the speech recognition authorization status.
- 
- @see KSHSpeechRecognitionAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHSpeechRecognitionAuthorizationStatus speechRecognitionAuthorizationStatus;
-
-/**
  Get whether the user has authorized bluetooth peripheral access.
  */
 @property (readonly,nonatomic) BOOL hasBluetoothPeripheralAuthorization;
@@ -265,12 +225,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-/**
- Request speech recognition authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSSpeechRecognitionUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestSpeechRecognitionAuthorizationWithCompletion:(KSHRequestSpeechRecognitionAuthorizationCompletionBlock)completion;
 /**
  Request bluetooth peripheral authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSBluetoothPeripheralUsageDescription and include the bluetooth-peripheral mode in the UIBackgroundModes array otherwise an exception will be thrown.
  

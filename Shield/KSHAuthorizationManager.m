@@ -69,23 +69,6 @@
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-- (void)requestSpeechRecognitionAuthorizationWithCompletion:(KSHRequestSpeechRecognitionAuthorizationCompletionBlock)completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSSpeechRecognitionUsageDescription"] != nil);
-    
-    if (self.hasSpeechRecognitionAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHSpeechRecognitionAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
-        KSTDispatchMainAsync(^{
-            completion((KSHSpeechRecognitionAuthorizationStatus)status,nil);
-        });
-    }];
-}
 - (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSBluetoothPeripheralUsageDescription"] != nil);
@@ -174,12 +157,6 @@
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-- (BOOL)hasSpeechRecognitionAuthorization {
-    return self.speechRecognitionAuthorizationStatus == KSHSpeechRecognitionAuthorizationStatusAuthorized;
-}
-- (KSHSpeechRecognitionAuthorizationStatus)speechRecognitionAuthorizationStatus {
-    return (KSHSpeechRecognitionAuthorizationStatus)[SFSpeechRecognizer authorizationStatus];
-}
 - (BOOL)hasBluetoothPeripheralAuthorization {
     return self.bluetoothPeripheralAuthorizationStatus == KSHBluetoothPeripheralAuthorizationStatusAuthorized;
 }

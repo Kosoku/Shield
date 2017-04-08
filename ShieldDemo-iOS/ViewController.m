@@ -153,13 +153,13 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         }
             break;
         case AuthorizationTypeSiri: {
-            [KSHAuthorizationManager.sharedManager requestSiriAuthorizationWithCompletion:^(KSHSiriAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHSiriAuthorization.sharedAuthorization requestSiriAuthorizationWithCompletion:^(KSHSiriAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;
         case AuthorizationTypeSpeechRecognition: {
-            [KSHAuthorizationManager.sharedManager requestSpeechRecognitionAuthorizationWithCompletion:^(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHSpeechAuthorization.sharedAuthorization requestSpeechRecognitionAuthorizationWithCompletion:^(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
