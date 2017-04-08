@@ -16,6 +16,6 @@
 #ifndef __SHIELD_INFO__
 #define __SHIELD_INFO__
 
-#define KSH_BUNDLE_SHORT_VERSION_STRING 0.8.0
+#define KSH_BUNDLE_SHORT_VERSION_STRING 0.9.0
 
 #endif

@@ -40,34 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Enum defining the possible health share authorization status values. See HKAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHHealthShareAuthorizationStatus) {
-    /**
-     See HKAuthorizationStatusNotDetermined for more information.
-     */
-    KSHHealthShareAuthorizationStatusNotDetermined = HKAuthorizationStatusNotDetermined,
-    /**
-     See HKAuthorizationStatusSharingDenied for more information.
-     */
-    KSHHealthShareAuthorizationStatusDenied = HKAuthorizationStatusSharingDenied,
-    /**
-     See HKAuthorizationStatusSharingAuthorized for more information.
-     */
-    KSHHealthShareAuthorizationStatusAuthorized = HKAuthorizationStatusSharingAuthorized
-};
-/**
- Completion block that is invoked after requesting health share access.
- 
- @param success Whether access was granted
- @param objectsToAuthorizationStatus A dictionary of the object types that were passed in to the authorization status for each type
- @param error The error
- */
-typedef void(^KSHRequestHealthShareAuthorizationCompletionBlock)(BOOL success, NSDictionary<HKObjectType *, NSNumber *> *objectsToAuthorizationStatus, NSError * _Nullable error);
-#endif
-
-#if (TARGET_OS_IOS)
-/**
  Enum defining the possible siri authorization status values. See INSiriAuthorizationStatus for more information.
  */
 typedef NS_ENUM(NSInteger, KSHSiriAuthorizationStatus) {
@@ -333,23 +305,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #endif
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-/**
- Returns the health share authorization status for the provided type.
- 
- @param type The type for which to return health share authorization status
- @return The health share authorization status
- */
-- (KSHHealthShareAuthorizationStatus)healthShareAuthorizationStatusForType:(HKObjectType *)type;
-/**
- Request health share authorization to read for *readTypes* and to write for *writeTypes* and invoke the provided completion block when authorization has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSHealthShareUsageDescription if *readTypes* is non-null and NSHealthUpdateUsageDescription if *writeTypes* is non-null, otherwise an exception will be thrown.
- 
- @param readTypes The types to read from
- @param writeTypes The types to write to
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestHealthShareAuthorizationToReadTypes:(nullable NSArray<HKObjectType *> *)readTypes writeTypes:(nullable NSArray<HKSampleType *> *)writeTypes completion:(KSHRequestHealthShareAuthorizationCompletionBlock)completion;
-#endif
 #if (TARGET_OS_IOS)
 /**
  Requst siri authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSSiriUsageDescription or an exception will be thrown.

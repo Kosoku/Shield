@@ -99,7 +99,7 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch ((AuthorizationType)self.authorizationTypes[indexPath.row].integerValue) {
         case AuthorizationTypePhotoLibrary: {
-            [KSHAuthorizationManager.sharedManager requestPhotoLibraryAuthorizationWithCompletion:^(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHPhotosAuthorization.sharedAuthorization requestPhotoLibraryAuthorizationWithCompletion:^(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }
@@ -147,7 +147,7 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         }
             break;
         case AuthorizationTypeHealthShare: {
-            [KSHAuthorizationManager.sharedManager requestHealthShareAuthorizationToReadTypes:@[[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMassIndex]] writeTypes:@[[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]] completion:^(BOOL success, NSDictionary<HKObjectType *,NSNumber *> * _Nonnull objectsToAuthorizationStatus, NSError * _Nullable error) {
+            [KSHHealthAuthorization.sharedAuthorization requestHealthAuthorizationToReadTypes:@[[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMassIndex]] writeTypes:@[[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]] completion:^(BOOL success, NSDictionary<HKObjectType *,NSNumber *> * _Nonnull objectsToAuthorizationStatus, NSError * _Nullable error) {
                 NSLog(@"%@ %@ %@",@(success),objectsToAuthorizationStatus,error);
             }];
         }

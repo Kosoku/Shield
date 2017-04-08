@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import <Photos/PHPhotoLibrary.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enum defining the possible photo library authorization status values. See PHAuthorizationStatus for more information.
  */
@@ -71,3 +73,5 @@ typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibrar
 - (void)requestPhotoLibraryAuthorizationWithCompletion:(KSHRequestPhotoLibraryAuthorizationCompletionBlock)completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

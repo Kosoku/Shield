@@ -78,6 +78,8 @@
 		079728C71E991CCE00E86545 /* KSHPhotosAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728C41E991CCE00E86545 /* KSHPhotosAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		079728C81E991CCE00E86545 /* KSHPhotosAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728C51E991CCE00E86545 /* KSHPhotosAuthorization.m */; };
 		079728C91E991CCE00E86545 /* KSHPhotosAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728C51E991CCE00E86545 /* KSHPhotosAuthorization.m */; };
+		079728CC1E9923CF00E86545 /* KSHHealthAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728CA1E9923CF00E86545 /* KSHHealthAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		079728CD1E9923CF00E86545 /* KSHHealthAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728CB1E9923CF00E86545 /* KSHHealthAuthorization.m */; };
 		07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C94D771E7B0B7C0014155A /* Stanley.framework */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +216,8 @@
 		079728C11E982B8A00E86545 /* KSHMediaLibraryAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHMediaLibraryAuthorization.m; path = iOS/KSHMediaLibraryAuthorization.m; sourceTree = "<group>"; };
 		079728C41E991CCE00E86545 /* KSHPhotosAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHPhotosAuthorization.h; path = iOS/KSHPhotosAuthorization.h; sourceTree = "<group>"; };
 		079728C51E991CCE00E86545 /* KSHPhotosAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHPhotosAuthorization.m; path = iOS/KSHPhotosAuthorization.m; sourceTree = "<group>"; };
+		079728CA1E9923CF00E86545 /* KSHHealthAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHHealthAuthorization.h; path = iOS/KSHHealthAuthorization.h; sourceTree = "<group>"; };
+		079728CB1E9923CF00E86545 /* KSHHealthAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHHealthAuthorization.m; path = iOS/KSHHealthAuthorization.m; sourceTree = "<group>"; };
 		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -395,6 +399,8 @@
 				079728C11E982B8A00E86545 /* KSHMediaLibraryAuthorization.m */,
 				079728C41E991CCE00E86545 /* KSHPhotosAuthorization.h */,
 				079728C51E991CCE00E86545 /* KSHPhotosAuthorization.m */,
+				079728CA1E9923CF00E86545 /* KSHHealthAuthorization.h */,
+				079728CB1E9923CF00E86545 /* KSHHealthAuthorization.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 				079728C61E991CCE00E86545 /* KSHPhotosAuthorization.h in Headers */,
 				076730A91E7797F600030F0C /* Shield.h in Headers */,
 				079728BE1E9826A700E86545 /* KSHMicrophoneAuthorization.h in Headers */,
+				079728CC1E9923CF00E86545 /* KSHHealthAuthorization.h in Headers */,
 				079728C21E982B8A00E86545 /* KSHMediaLibraryAuthorization.h in Headers */,
 				079728B21E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
 				079728BA1E981DAA00E86545 /* KSHCameraAuthorization.h in Headers */,
@@ -782,6 +789,7 @@
 				079728BB1E981DAA00E86545 /* KSHCameraAuthorization.m in Sources */,
 				079728BF1E9826A700E86545 /* KSHMicrophoneAuthorization.m in Sources */,
 				079728B51E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
+				079728CD1E9923CF00E86545 /* KSHHealthAuthorization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
