@@ -47,7 +47,7 @@ typedef void(^KSHRequestHealthAuthorizationCompletionBlock)(BOOL success, NSDict
 @interface KSHHealthAuthorization : NSObject
 
 /**
- Get the shared media library authorization object.
+ Get the shared health library authorization object.
  */
 @property (class,readonly,nonatomic) KSHHealthAuthorization *sharedAuthorization;
 

@@ -69,23 +69,6 @@
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-- (void)requestSiriAuthorizationWithCompletion:(KSHRequestSiriAuthorizationCompletionBlock)completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSSiriUsageDescription"] != nil);
-    
-    if (self.hasSiriAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHSiriAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [INPreferences requestSiriAuthorization:^(INSiriAuthorizationStatus status) {
-        KSTDispatchMainAsync(^{
-            completion((KSHSiriAuthorizationStatus)status,nil);
-        });
-    }];
-}
 - (void)requestSpeechRecognitionAuthorizationWithCompletion:(KSHRequestSpeechRecognitionAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSSpeechRecognitionUsageDescription"] != nil);
@@ -191,13 +174,6 @@
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-- (BOOL)hasSiriAuthorization {
-    return self.siriAuthorizationStatus == KSHSiriAuthorizationStatusAuthorized;
-}
-- (KSHSiriAuthorizationStatus)siriAuthorizationStatus {
-    return (KSHSiriAuthorizationStatus)[INPreferences siriAuthorizationStatus];
-}
-
 - (BOOL)hasSpeechRecognitionAuthorization {
     return self.speechRecognitionAuthorizationStatus == KSHSpeechRecognitionAuthorizationStatusAuthorized;
 }

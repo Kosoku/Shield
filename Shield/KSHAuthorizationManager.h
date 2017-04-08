@@ -20,7 +20,6 @@
 #import <HealthKit/HKHealthStore.h>
 #import <MediaPlayer/MPMediaLibrary.h>
 #if (TARGET_OS_IOS)
-#import <Intents/INPreferences.h>
 #import <Speech/SFSpeechRecognizer.h>
 #endif
 #endif
@@ -39,35 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-/**
- Enum defining the possible siri authorization status values. See INSiriAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHSiriAuthorizationStatus) {
-    /**
-     See INSiriAuthorizationStatusNotDetermined for more information.
-     */
-    KSHSiriAuthorizationStatusNotDetermined = INSiriAuthorizationStatusNotDetermined,
-    /**
-     See INSiriAuthorizationStatusRestricted for more information.
-     */
-    KSHSiriAuthorizationStatusRestricted = INSiriAuthorizationStatusRestricted,
-    /**
-     See INSiriAuthorizationStatusDenied for more information.
-     */
-    KSHSiriAuthorizationStatusDenied = INSiriAuthorizationStatusDenied,
-    /**
-     See INSiriAuthorizationStatusAuthorized for more information.
-     */
-    KSHSiriAuthorizationStatusAuthorized = INSiriAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting siri access.
- 
- @param status The current siri authorization status
- @param error The error
- */
-typedef void(^KSHRequestSiriAuthorizationCompletionBlock)(KSHSiriAuthorizationStatus status, NSError * _Nullable error);
-
 /**
  Enum defining the possible speech recognition authorization status values. See SFSpeechRecognizerAuthorizationStatus for more information.
  */
@@ -230,17 +200,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
 /**
- Get whether the user has authorized siri access.
- */
-@property (readonly,nonatomic) BOOL hasSiriAuthorization;
-/**
- Get the siri authorization status.
- 
- @see KSHSiriAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHSiriAuthorizationStatus siriAuthorizationStatus;
-
-/**
  Get whether the user has authorized speech recognition access.
  */
 @property (readonly,nonatomic) BOOL hasSpeechRecognitionAuthorization;
@@ -306,12 +265,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 
 #if (TARGET_OS_IPHONE)
 #if (TARGET_OS_IOS)
-/**
- Requst siri authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSSiriUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestSiriAuthorizationWithCompletion:(KSHRequestSiriAuthorizationCompletionBlock)completion;
 /**
  Request speech recognition authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSSpeechRecognitionUsageDescription or an exception will be thrown.
  
