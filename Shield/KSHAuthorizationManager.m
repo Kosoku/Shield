@@ -55,30 +55,6 @@
 #endif
 
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
-- (void)requestCalendarsAuthorizationWithCompletion:(KSHRequestCalendarsAuthorizationCompletionBlock)completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSCalendarsUsageDescription"] != nil);
-    
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    
-    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
-        KSTDispatchMainAsync(^{
-            completion(self.calendarsAuthorizationStatus,error);
-        });
-    }];
-}
-- (void)requestRemindersAuthorizationWithCompletion:(KSHRequestRemindersAuthorizationCompletionBlock)completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSRemindersUsageDescription"] != nil);
-    
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    
-    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
-        KSTDispatchMainAsync(^{
-            completion(self.remindersAuthorizationStatus,error);
-        });
-    }];
-}
 - (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSContactsUsageDescription"] != nil);
@@ -121,20 +97,6 @@
 #endif
 
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
-- (BOOL)hasCalendarsAuthorization {
-    return self.calendarsAuthorizationStatus == KSHCalendarsAuthorizationStatusAuthorized;
-}
-- (KSHCalendarsAuthorizationStatus)calendarsAuthorizationStatus {
-    return (KSHCalendarsAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
-}
-
-- (BOOL)hasRemindersAuthorization {
-    return self.remindersAuthorizationStatus == KSHRemindersAuthorizationStatusAuthorized;
-}
-- (KSHRemindersAuthorizationStatus)remindersAuthorizationStatus {
-    return (KSHRemindersAuthorizationStatus)[EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
-}
-
 - (BOOL)hasContactsAuthorization {
     return self.contactsAuthorizationStatus == KSHContactsAuthorizationStatusAuthorized;
 }

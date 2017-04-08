@@ -37,63 +37,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
-/**
- Enum defining the possible calendars authorization status values. See EKAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHCalendarsAuthorizationStatus) {
-    /**
-     See EKAuthorizationStatusNotDetermined for more information.
-     */
-    KSHCalendarsAuthorizationStatusNotDetermined = EKAuthorizationStatusNotDetermined,
-    /**
-     See EKAuthorizationStatusRestricted for more information.
-     */
-    KSHCalendarsAuthorizationStatusRestricted = EKAuthorizationStatusRestricted,
-    /**
-     See EKAuthorizationStatusDenied for more information.
-     */
-    KSHCalendarsAuthorizationStatusDenied = EKAuthorizationStatusDenied,
-    /**
-     See EKAuthorizationStatusAuthorized for more information.
-     */
-    KSHCalendarsAuthorizationStatusAuthorized = EKAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting calendars access.
- 
- @param status The current calendars authorization status
- @param error The error
- */
-typedef void(^KSHRequestCalendarsAuthorizationCompletionBlock)(KSHCalendarsAuthorizationStatus status, NSError * _Nullable error);
-
-/**
- Enum defining the possible reminders authorization status values. See EKAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHRemindersAuthorizationStatus) {
-    /**
-     See EKAuthorizationStatusNotDetermined for more information.
-     */
-    KSHRemindersAuthorizationStatusNotDetermined = EKAuthorizationStatusNotDetermined,
-    /**
-     See EKAuthorizationStatusRestricted for more information.
-     */
-    KSHRemindersAuthorizationStatusRestricted = EKAuthorizationStatusRestricted,
-    /**
-     See EKAuthorizationStatusDenied for more information.
-     */
-    KSHRemindersAuthorizationStatusDenied = EKAuthorizationStatusDenied,
-    /**
-     See EKAuthorizationStatusAuthorized for more information.
-     */
-    KSHRemindersAuthorizationStatusAuthorized = EKAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting reminders access.
- 
- @param status The current reminders authorization status
- @param error The error
- */
-typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAuthorizationStatus status, NSError * _Nullable error);
 
 /**
  Enum defining possible contacts authorization status values. See CNAuthorizationStatus for more information.
@@ -145,27 +88,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #endif
 
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
-/**
- Get whether the user has authorized calendars access.
- */
-@property (readonly,nonatomic) BOOL hasCalendarsAuthorization;
-/**
- Get the calendars authorization status.
- 
- @see KSHCalendarsAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHCalendarsAuthorizationStatus calendarsAuthorizationStatus;
 
-/**
- Get whether the user has authorized reminders access.
- */
-@property (readonly,nonatomic) BOOL hasRemindersAuthorization;
-/**
- Get the reminders authorization status.
- 
- @see KSHRemindersAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHRemindersAuthorizationStatus remindersAuthorizationStatus;
 
 /**
  Get whether the user has authorized contacts access.
@@ -193,18 +116,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #endif
 
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
-/**
- Request calendars authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSCalendarsUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestCalendarsAuthorizationWithCompletion:(KSHRequestCalendarsAuthorizationCompletionBlock)completion;
-/**
- Request reminders authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSRemindersUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestRemindersAuthorizationWithCompletion:(KSHRequestRemindersAuthorizationCompletionBlock)completion;
 /**
  Request contacts authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSContactsUsageDescription or an exception will be thrown.
  
