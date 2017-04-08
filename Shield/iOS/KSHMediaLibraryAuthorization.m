@@ -15,13 +15,12 @@
 
 #import "KSHMediaLibraryAuthorization.h"
 
-#if (TARGET_OS_IOS)
 #import <Stanley/KSTFunctions.h>
-#endif
+
+#import <MediaPlayer/MediaPlayer.h>
 
 @implementation KSHMediaLibraryAuthorization
 
-#if (TARGET_OS_IOS)
 - (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion; {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSAppleMusicUsageDescription"] != nil);
@@ -55,6 +54,5 @@
 - (KSHMediaLibraryAuthorizationStatus)mediaLibraryAuthorizationStatus {
     return (KSHMediaLibraryAuthorizationStatus)[MPMediaLibrary authorizationStatus];
 }
-#endif
 
 @end

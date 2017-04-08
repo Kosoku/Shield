@@ -14,13 +14,10 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
-#if (TARGET_OS_IOS)
 #import <MediaPlayer/MPMediaLibrary.h>
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
-#if (TARGET_OS_IOS)
 /**
  Enum defining the possible media library authorization status values. See MPMediaLibraryAuthorizationStatus for more information.
  */
@@ -49,11 +46,9 @@ typedef NS_ENUM(NSInteger, KSHMediaLibraryAuthorizationStatus) {
  @param error The error
  */
 typedef void(^KSHRequestMediaLibraryAuthorizationCompletionBlock)(KSHMediaLibraryAuthorizationStatus status, NSError * _Nullable error);
-#endif
 
 @interface KSHMediaLibraryAuthorization : NSObject
 
-#if (TARGET_OS_IOS)
 /**
  Get the shared media library authorization object.
  */
@@ -77,7 +72,6 @@ typedef void(^KSHRequestMediaLibraryAuthorizationCompletionBlock)(KSHMediaLibrar
  @exception NSException Thrown if the NSAppleMusicUsageDescription key is not present in the info plist
  */
 - (void)requestMediaLibraryAuthorizationWithCompletion:(KSHRequestMediaLibraryAuthorizationCompletionBlock)completion;
-#endif
 
 @end
 

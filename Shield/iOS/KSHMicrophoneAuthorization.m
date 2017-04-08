@@ -15,15 +15,12 @@
 
 #import "KSHMicrophoneAuthorization.h"
 
-#if (TARGET_OS_IOS)
 #import <Stanley/KSTFunctions.h>
 
 #import <AVFoundation/AVFoundation.h>
-#endif
 
 @implementation KSHMicrophoneAuthorization
 
-#if (TARGET_OS_IOS)
 - (void)requestMicrophoneAuthorizationWithCompletion:(KSHRequestMicrophoneAuthorizationCompletionBlock)completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSMicrophoneUsageDescription"] != nil);
@@ -57,6 +54,5 @@
 - (KSHMicrophoneAuthorizationStatus)microphoneAuthorizationStatus {
     return (KSHMicrophoneAuthorizationStatus)[AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
 }
-#endif
 
 @end
