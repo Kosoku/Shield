@@ -90,6 +90,10 @@
 		079728DD1E993FA400E86545 /* KSHEventAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728DA1E993FA400E86545 /* KSHEventAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		079728DE1E993FA400E86545 /* KSHEventAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728DB1E993FA400E86545 /* KSHEventAuthorization.m */; };
 		079728DF1E993FA400E86545 /* KSHEventAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728DB1E993FA400E86545 /* KSHEventAuthorization.m */; };
+		079728E21E99416A00E86545 /* KSHContactsAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728E01E99416A00E86545 /* KSHContactsAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		079728E31E99416A00E86545 /* KSHContactsAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728E01E99416A00E86545 /* KSHContactsAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		079728E41E99416A00E86545 /* KSHContactsAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728E11E99416A00E86545 /* KSHContactsAuthorization.m */; };
+		079728E51E99416A00E86545 /* KSHContactsAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 079728E11E99416A00E86545 /* KSHContactsAuthorization.m */; };
 		07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C94D771E7B0B7C0014155A /* Stanley.framework */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +240,8 @@
 		079728D71E993DEA00E86545 /* KSHBluetoothAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHBluetoothAuthorization.m; path = iOS/KSHBluetoothAuthorization.m; sourceTree = "<group>"; };
 		079728DA1E993FA400E86545 /* KSHEventAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSHEventAuthorization.h; sourceTree = "<group>"; };
 		079728DB1E993FA400E86545 /* KSHEventAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSHEventAuthorization.m; sourceTree = "<group>"; };
+		079728E01E99416A00E86545 /* KSHContactsAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSHContactsAuthorization.h; sourceTree = "<group>"; };
+		079728E11E99416A00E86545 /* KSHContactsAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSHContactsAuthorization.m; sourceTree = "<group>"; };
 		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -427,6 +433,8 @@
 				079728D71E993DEA00E86545 /* KSHBluetoothAuthorization.m */,
 				079728DA1E993FA400E86545 /* KSHEventAuthorization.h */,
 				079728DB1E993FA400E86545 /* KSHEventAuthorization.m */,
+				079728E01E99416A00E86545 /* KSHContactsAuthorization.h */,
+				079728E11E99416A00E86545 /* KSHContactsAuthorization.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -492,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				072DBA021E7AD8F80070907C /* Shield.h in Headers */,
+				079728E31E99416A00E86545 /* KSHContactsAuthorization.h in Headers */,
 				079728B31E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
 				079728DD1E993FA400E86545 /* KSHEventAuthorization.h in Headers */,
 				072DBA031E7AD8F80070907C /* KSHAuthorizationManager.h in Headers */,
@@ -515,6 +524,7 @@
 			files = (
 				079728D81E993DEA00E86545 /* KSHBluetoothAuthorization.h in Headers */,
 				079728C61E991CCE00E86545 /* KSHPhotosAuthorization.h in Headers */,
+				079728E21E99416A00E86545 /* KSHContactsAuthorization.h in Headers */,
 				079728DC1E993FA400E86545 /* KSHEventAuthorization.h in Headers */,
 				076730A91E7797F600030F0C /* Shield.h in Headers */,
 				079728BE1E9826A700E86545 /* KSHMicrophoneAuthorization.h in Headers */,
@@ -778,6 +788,7 @@
 				072DBA041E7AD9000070907C /* KSHAuthorizationManager.m in Sources */,
 				079728B61E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
 				079728DF1E993FA400E86545 /* KSHEventAuthorization.m in Sources */,
+				079728E51E99416A00E86545 /* KSHContactsAuthorization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,6 +829,7 @@
 				076730B31E77992B00030F0C /* KSHAuthorizationManager.m in Sources */,
 				079728C81E991CCE00E86545 /* KSHPhotosAuthorization.m in Sources */,
 				079728C31E982B8A00E86545 /* KSHMediaLibraryAuthorization.m in Sources */,
+				079728E41E99416A00E86545 /* KSHContactsAuthorization.m in Sources */,
 				079728D51E993B1200E86545 /* KSHSpeechAuthorization.m in Sources */,
 				079728DE1E993FA400E86545 /* KSHEventAuthorization.m in Sources */,
 				079728BB1E981DAA00E86545 /* KSHCameraAuthorization.m in Sources */,

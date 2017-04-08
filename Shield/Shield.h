@@ -27,6 +27,7 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 #import <Shield/KSHLocationAuthorization.h>
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 #import <Shield/KSHEventAuthorization.h>
+#import <Shield/KSHContactsAuthorization.h>
 #endif
 #if (TARGET_OS_IOS || TARGET_OS_TV)
 #import <Shield/KSHPhotosAuthorization.h>

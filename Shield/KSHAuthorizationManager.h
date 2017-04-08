@@ -36,38 +36,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#if (TARGET_OS_IOS || TARGET_OS_OSX)
-
-/**
- Enum defining possible contacts authorization status values. See CNAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHContactsAuthorizationStatus) {
-    /**
-     See CNAuthorizationStatusNotDetermined for more information.
-     */
-    KSHContactsAuthorizationStatusNotDetermined = CNAuthorizationStatusNotDetermined,
-    /**
-     See CNAuthorizationStatusRestricted for more information.
-     */
-    KSHContactsAuthorizationStatusRestricted = CNAuthorizationStatusRestricted,
-    /**
-     See CNAuthorizationStatusDenied for more information.
-     */
-    KSHContactsAuthorizationStatusDenied = CNAuthorizationStatusDenied,
-    /**
-     See CNAuthorizationStatusAuthorized for more information.
-     */
-    KSHContactsAuthorizationStatusAuthorized = CNAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting contacts access.
- 
- @param status The current contacts authorization status
- @param error The error
- */
-typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthorizationStatus status, NSError * _Nullable error);
-#endif
-
 /**
  KSHAuthorizationManager is an NSObject subclass that combines all the authorization methods into a consistent interface.
  */
@@ -87,21 +55,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 @property (readonly,nonatomic) BOOL hasAccessibilityAuthorization;
 #endif
 
-#if (TARGET_OS_IOS || TARGET_OS_OSX)
-
-
-/**
- Get whether the user has authorized contacts access.
- */
-@property (readonly,nonatomic) BOOL hasContactsAuthorization;
-/**
- Get the contacts authorization status.
- 
- @see KSHContactsAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHContactsAuthorizationStatus contactsAuthorizationStatus;
-#endif
-
 #if (TARGET_OS_IPHONE)
 
 #else
@@ -113,15 +66,6 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
  @return YES if the user has granted accessibility authorization, otherwise NO
  */
 - (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences;
-#endif
-
-#if (TARGET_OS_IOS || TARGET_OS_OSX)
-/**
- Request contacts authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSContactsUsageDescription or an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestContactsAuthorizationWithCompletion:(KSHRequestContactsAuthorizationCompletionBlock)completion;
 #endif
 
 @end
