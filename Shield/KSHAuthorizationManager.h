@@ -36,39 +36,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-/**
- Enum defining the possible bluetooth peripheral authorization status values. See CBPeripheralManagerAuthorizationStatus for more information.
- */
-typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
-    /**
-     See CBPeripheralManagerAuthorizationStatusNotDetermined for more information.
-     */
-    KSHBluetoothPeripheralAuthorizationStatusNotDetermined = CBPeripheralManagerAuthorizationStatusNotDetermined,
-    /**
-     See CBPeripheralManagerAuthorizationStatusRestricted for more information.
-     */
-    KSHBluetoothPeripheralAuthorizationStatusRestricted = CBPeripheralManagerAuthorizationStatusRestricted,
-    /**
-     See CBPeripheralManagerAuthorizationStatusDenied for more information.
-     */
-    KSHBluetoothPeripheralAuthorizationStatusDenied = CBPeripheralManagerAuthorizationStatusDenied,
-    /**
-     See CBPeripheralManagerAuthorizationStatusAuthorized for more information.
-     */
-    KSHBluetoothPeripheralAuthorizationStatusAuthorized = CBPeripheralManagerAuthorizationStatusAuthorized
-};
-/**
- Completion block that is invoked after requesting bluetooth peripheral access.
- 
- @param status The current bluetooth peripheral authorization status
- @param error The error
- */
-typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error);
-#endif
-#endif
-
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 /**
  Enum defining the possible calendars authorization status values. See EKAuthorizationStatus for more information.
@@ -169,18 +136,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 @property (class,readonly,nonatomic) KSHAuthorizationManager *sharedManager;
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-/**
- Get whether the user has authorized bluetooth peripheral access.
- */
-@property (readonly,nonatomic) BOOL hasBluetoothPeripheralAuthorization;
-/**
- Get the bluetooth peripheral authorization status.
- 
- @see KSHBluetoothPeripheralAuthorizationStatus
- */
-@property (readonly,nonatomic) KSHBluetoothPeripheralAuthorizationStatus bluetoothPeripheralAuthorizationStatus;
-#endif
+
 #else
 /**
  Get whether the user has authorized accessibility access.
@@ -224,14 +180,7 @@ typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthori
 #endif
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-/**
- Request bluetooth peripheral authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSBluetoothPeripheralUsageDescription and include the bluetooth-peripheral mode in the UIBackgroundModes array otherwise an exception will be thrown.
- 
- @param completion The completion block to invoke when authorization status has been determined
- */
-- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion;
-#endif
+
 #else
 /**
  Request accessibility authorization from the user and optionally display the system alert. If *openSystemPreferences* is YES and this method returns NO the Security & Privacy -> Privacy pane in System Preferences will be opened automatically.

@@ -135,7 +135,7 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         }
             break;
         case AuthorizationTypeBluetoothPeripheral: {
-            [KSHAuthorizationManager.sharedManager requestBluetoothPeripheralAuthorizationWithCompletion:^(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error) {
+            [KSHBluetoothAuthorization.sharedAuthorization requestBluetoothPeripheralAuthorizationWithCompletion:^(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

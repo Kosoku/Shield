@@ -33,58 +33,12 @@
 @interface KSHAuthorizationManager ()
 #endif
 
-#if (TARGET_OS_IOS)
-@property (strong,nonatomic) CBPeripheralManager *peripheralManager;
-@property (copy,nonatomic) KSHRequestBluetoothPeripheralAuthorizationCompletionBlock requestBluetoothPeripheralAuthorizationCompletionBlock;
-#endif
 @end
 
 @implementation KSHAuthorizationManager
 
-#if (TARGET_OS_IOS)
-- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
-    if (peripheral.state == CBManagerStateUnknown ||
-        peripheral.state == CBManagerStateResetting) {
-        
-        return;
-    }
-    
-    if (peripheral.state == CBManagerStatePoweredOn ||
-        peripheral.state == CBManagerStatePoweredOff) {
-        
-        KSTDispatchMainAsync(^{
-            self.requestBluetoothPeripheralAuthorizationCompletionBlock(KSHBluetoothPeripheralAuthorizationStatusAuthorized,nil);
-        });
-    }
-    else {
-        KSTDispatchMainAsync(^{
-            self.requestBluetoothPeripheralAuthorizationCompletionBlock((KSHBluetoothPeripheralAuthorizationStatus)[CBPeripheralManager authorizationStatus],nil);
-        });
-    }
-    
-    [self setPeripheralManager:nil];
-    [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:nil];
-}
-#endif
-
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-- (void)requestBluetoothPeripheralAuthorizationWithCompletion:(KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)completion {
-    NSParameterAssert(completion != nil);
-    NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSBluetoothPeripheralUsageDescription"] != nil);
-    NSParameterAssert([[NSBundle mainBundle].infoDictionary[@"UIBackgroundModes"] containsObject:@"bluetooth-peripheral"]);
-    
-    if (self.hasBluetoothPeripheralAuthorization) {
-        KSTDispatchMainAsync(^{
-            completion(KSHBluetoothPeripheralAuthorizationStatusAuthorized,nil);
-        });
-        return;
-    }
-    
-    [self setRequestBluetoothPeripheralAuthorizationCompletionBlock:completion];
-    [self setPeripheralManager:[[CBPeripheralManager alloc] initWithDelegate:self queue:nil]];
-}
-#endif
+
 #else
 - (BOOL)requestAccessibilityAuthorizationDisplayingSystemAlert:(BOOL)displaySystemAlert openSystemPreferencesIfNecessary:(BOOL)openSystemPreferences; {
     NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @(displaySystemAlert)};
@@ -156,14 +110,7 @@
 }
 
 #if (TARGET_OS_IPHONE)
-#if (TARGET_OS_IOS)
-- (BOOL)hasBluetoothPeripheralAuthorization {
-    return self.bluetoothPeripheralAuthorizationStatus == KSHBluetoothPeripheralAuthorizationStatusAuthorized;
-}
-- (KSHBluetoothPeripheralAuthorizationStatus)bluetoothPeripheralAuthorizationStatus {
-    return (KSHBluetoothPeripheralAuthorizationStatus)[CBPeripheralManager authorizationStatus];
-}
-#endif
+
 #else
 - (BOOL)hasAccessibilityAuthorization {
     NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @NO};
