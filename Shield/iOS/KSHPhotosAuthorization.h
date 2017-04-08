@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
  */
 typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHPhotosAuthorization wraps the APIs needed to request Photos access from the user.
+ */
 @interface KSHPhotosAuthorization : NSObject
 
 /**

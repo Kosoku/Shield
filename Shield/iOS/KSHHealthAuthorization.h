@@ -44,6 +44,9 @@ typedef NS_ENUM(NSInteger, KSHHealthAuthorizationStatus) {
  */
 typedef void(^KSHRequestHealthAuthorizationCompletionBlock)(BOOL success, NSDictionary<HKObjectType *, NSNumber *> *objectsToAuthorizationStatus, NSError * _Nullable error);
 
+/**
+ KSHHealthAuthorization wraps the APIs needed to request health access from the user.
+ */
 @interface KSHHealthAuthorization : NSObject
 
 /**

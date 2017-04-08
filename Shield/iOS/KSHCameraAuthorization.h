@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHCameraAuthorizationStatus) {
  */
 typedef void(^KSHRequestCameraAuthorizationCompletionBlock)(KSHCameraAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHCameraAuthorization wraps APIs needed to request camera access from the user.
+ */
 @interface KSHCameraAuthorization : NSObject
 
 /**

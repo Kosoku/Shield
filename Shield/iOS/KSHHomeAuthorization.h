@@ -1,8 +1,8 @@
 //
-//  Shield.h
+//  KSHHomeAuthorization.h
 //  Shield
 //
-//  Created by William Towe on 3/13/17.
+//  Created by William Towe on 4/8/17.
 //  Copyright © 2017 Kosoku Interactive, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,33 +15,33 @@
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for Shield.
-FOUNDATION_EXPORT double ShieldVersionNumber;
+NS_ASSUME_NONNULL_BEGIN
 
-//! Project version string for Shield.
-FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
+/**
+ Block that is invoked when the authorization status has been determined.
+ 
+ @param success Whether authorization was granted by the user
+ @param error The error describing the reason for failure if the user denied access
+ */
+typedef void(^KSHRequestHomeAuthorizationCompletionBlock)(BOOL success, NSError * _Nullable error);
 
-// In this header, you should import all the public headers of your framework using statements like #import <Shield/PublicHeader.h>
+/**
+ KSHHomeAuthorization wraps the APIs necessary to request home access from the user.
+ */
+@interface KSHHomeAuthorization : NSObject
 
-#import <Shield/KSHLocationAuthorization.h>
-#if (TARGET_OS_IOS || TARGET_OS_OSX)
-#import <Shield/KSHEventAuthorization.h>
-#import <Shield/KSHContactsAuthorization.h>
-#import <Shield/KSHAccountsAuthorization.h>
-#endif
-#if (TARGET_OS_IOS || TARGET_OS_TV)
-#import <Shield/KSHPhotosAuthorization.h>
-#endif
-#if (TARGET_OS_OSX)
-#import <Shield/KSHAccessibilityAuthorization.h>
-#endif
-#if (TARGET_OS_IOS)
-#import <Shield/KSHCameraAuthorization.h>
-#import <Shield/KSHMicrophoneAuthorization.h>
-#import <Shield/KSHMediaLibraryAuthorization.h>
-#import <Shield/KSHHealthAuthorization.h>
-#import <Shield/KSHSiriAuthorization.h>
-#import <Shield/KSHSpeechAuthorization.h>
-#import <Shield/KSHBluetoothAuthorization.h>
-#import <Shield/KSHHomeAuthorization.h>
-#endif
+/**
+ Get the shared home authorization.
+ */
+@property (class,readonly,nonatomic) KSHHomeAuthorization *sharedAuthorization;
+
+/**
+ Request home authorization from the user and invoke *completion* block when the authorization status has been determined. The *completion* block is always invoked on the main thread. The client must provide a reason in their info plist using the NSHomeKitUsageDescription key or an exception will be thrown.
+ 
+ @param completion The completion block to invoke when authorization status has been determined
+ @exception NSException Thrown if *completion* is nil or the NSHomeKitUsageDescription key is not present in the info plist
+ */
+- (void)requestHomeAuthorizationWithCompletion:(KSHRequestHomeAuthorizationCompletionBlock)completion;
+@end
+
+NS_ASSUME_NONNULL_END

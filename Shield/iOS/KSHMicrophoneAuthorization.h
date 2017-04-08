@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHMicrophoneAuthorizationStatus) {
  */
 typedef void(^KSHRequestMicrophoneAuthorizationCompletionBlock)(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHMicrophoneAuthorization wraps APIs needed to request microphone access from the user.
+ */
 @interface KSHMicrophoneAuthorization : NSObject
 
 /**

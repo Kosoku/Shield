@@ -76,6 +76,9 @@ typedef NS_ENUM(NSInteger, KSHRemindersAuthorizationStatus) {
  */
 typedef void(^KSHRequestRemindersAuthorizationCompletionBlock)(KSHRemindersAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHEventAuthorization wraps the APIs needed to request event access from the user.
+ */
 @interface KSHEventAuthorization : NSObject
 
 /**

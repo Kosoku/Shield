@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHBluetoothPeripheralAuthorizationStatus) {
  */
 typedef void(^KSHRequestBluetoothPeripheralAuthorizationCompletionBlock)(KSHBluetoothPeripheralAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHBluetoothAuthorization wraps the APIs needed to request bluetooh peripheral access from the user.
+ */
 @interface KSHBluetoothAuthorization : NSObject
 
 /**

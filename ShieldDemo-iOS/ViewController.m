@@ -32,7 +32,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeSiri,
     AuthorizationTypeSpeechRecognition,
     AuthorizationTypeMediaLibrary,
-    AuthorizationTypeTwitter
+    AuthorizationTypeTwitter,
+    AuthorizationTypeHome
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -59,20 +60,22 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeSiri),
                                   @(AuthorizationTypeSpeechRecognition),
                                   @(AuthorizationTypeMediaLibrary),
-                                  @(AuthorizationTypeTwitter)]];
-    [self setAuthorizationTitles:@[@"Photo Library",
+                                  @(AuthorizationTypeTwitter),
+                                  @(AuthorizationTypeHome)]];
+    [self setAuthorizationTitles:@[@"Photos",
                                    @"Location",
                                    @"Camera",
                                    @"Microphone",
                                    @"Calendars",
                                    @"Reminders",
-                                   @"Bluetooth Peripheral",
+                                   @"Bluetooth",
                                    @"Contacts",
-                                   @"Health Share",
+                                   @"Health",
                                    @"Siri",
                                    @"Speech Recognition",
                                    @"Media Library",
-                                   @"Twitter"]];
+                                   @"Twitter",
+                                   @"Home"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -175,6 +178,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeTwitter: {
             [KSHAccountsAuthorization.sharedAuthorization requestAccountsAuthorizationForType:KSHAccountsTypeTwitter options:nil completion:^(BOOL success, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(success),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeHome: {
+            [KSHHomeAuthorization.sharedAuthorization requestHomeAuthorizationWithCompletion:^(BOOL success, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(success),error);
             }];
         }

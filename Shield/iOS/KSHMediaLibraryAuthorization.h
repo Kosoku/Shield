@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHMediaLibraryAuthorizationStatus) {
  */
 typedef void(^KSHRequestMediaLibraryAuthorizationCompletionBlock)(KSHMediaLibraryAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHMediaLibraryAuthorization wraps the APIs needed to request media library access from the user.
+ */
 @interface KSHMediaLibraryAuthorization : NSObject
 
 /**

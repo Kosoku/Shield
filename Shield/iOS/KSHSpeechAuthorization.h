@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHSpeechRecognitionAuthorizationStatus) {
  */
 typedef void(^KSHRequestSpeechRecognitionAuthorizationCompletionBlock)(KSHSpeechRecognitionAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHSpeechAuthorization wraps the APIs needed to request speech recognizer access from the user.
+ */
 @interface KSHSpeechAuthorization : NSObject
 
 /**

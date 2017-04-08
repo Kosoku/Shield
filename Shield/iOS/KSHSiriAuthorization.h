@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHSiriAuthorizationStatus) {
  */
 typedef void(^KSHRequestSiriAuthorizationCompletionBlock)(KSHSiriAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHSiriAuthorization wraps the APIs needed to request Siri access from the user.
+ */
 @interface KSHSiriAuthorization : NSObject
 
 /**

@@ -146,6 +146,17 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.dependency 'Stanley'
   end
   
+  s.subspec 'Accounts' do |ss|
+    ss.ios.deployment_target = '10.0'
+    ss.osx.deployment_target = '10.12'
+    
+    ss.source_files = 'Shield/**/KSHAccountsAuthorization.{h,m}'
+    
+    ss.frameworks = 'Accounts'
+    
+    ss.dependency 'Stanley'
+  end
+  
   s.subspec 'Location' do |ss|
     ss.ios.deployment_target = '10.0'
     ss.osx.deployment_target = '10.12'

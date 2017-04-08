@@ -46,6 +46,8 @@
 	<string>LOCALIZE</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>LOCALIZE</string>
+	<key>NSHomeKitUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSSiriUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>NSSpeechRecognitionUsageDescription</key>

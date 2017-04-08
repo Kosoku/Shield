@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, KSHContactsAuthorizationStatus) {
  */
 typedef void(^KSHRequestContactsAuthorizationCompletionBlock)(KSHContactsAuthorizationStatus status, NSError * _Nullable error);
 
+/**
+ KSHContactsAuthorization wraps the APIs needed to request contacts access from the user.
+ */
 @interface KSHContactsAuthorization : NSObject
 
 /**

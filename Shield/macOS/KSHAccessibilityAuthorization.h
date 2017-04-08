@@ -17,6 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ KSHAccessibilityAuthorization wraps the APIs needed to request accessibility access from the user.
+ */
 @interface KSHAccessibilityAuthorization : NSObject
 
 /**
