@@ -31,3 +31,8 @@ Apple:
 - `Contacts`, `iOS` and `macOS`
 - `AppKit`, `macOS` only
 - `MediaPlayer`, `iOS` only
+- 'HomeKit', 'iOS' only
+- 'Security', 'macOS' only
+- 'CoreMotion', 'iOS' only
+- 'Accounts', 'iOS' and 'macOS'
+- 'MediaPlayer', 'iOS' only
