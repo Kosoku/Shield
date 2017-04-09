@@ -36,3 +36,4 @@ Apple:
 - `CoreMotion`, `iOS` only
 - `Accounts`, `iOS` and `macOS`
 - `MediaPlayer`, `iOS` only
+- `LocalAuthorization`, `iOS` and `macOS`
