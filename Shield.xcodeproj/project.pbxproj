@@ -97,6 +97,8 @@
 		07A409EA1E9987380092B23B /* KSHHomeAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409E81E9987380092B23B /* KSHHomeAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A409EB1E9987380092B23B /* KSHHomeAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409E91E9987380092B23B /* KSHHomeAuthorization.m */; };
 		07A409ED1E998F2A0092B23B /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A409EC1E998F2A0092B23B /* HomeKit.framework */; };
+		07A409F01E99B60D0092B23B /* KSHMotionAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409EE1E99B60D0092B23B /* KSHMotionAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A409F11E99B60D0092B23B /* KSHMotionAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409EF1E99B60D0092B23B /* KSHMotionAuthorization.m */; };
 		07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C94D771E7B0B7C0014155A /* Stanley.framework */; };
 /* End PBXBuildFile section */
 
@@ -250,6 +252,8 @@
 		07A409E81E9987380092B23B /* KSHHomeAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHHomeAuthorization.h; path = iOS/KSHHomeAuthorization.h; sourceTree = "<group>"; };
 		07A409E91E9987380092B23B /* KSHHomeAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHHomeAuthorization.m; path = iOS/KSHHomeAuthorization.m; sourceTree = "<group>"; };
 		07A409EC1E998F2A0092B23B /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/HomeKit.framework; sourceTree = DEVELOPER_DIR; };
+		07A409EE1E99B60D0092B23B /* KSHMotionAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHMotionAuthorization.h; path = iOS/KSHMotionAuthorization.h; sourceTree = "<group>"; };
+		07A409EF1E99B60D0092B23B /* KSHMotionAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHMotionAuthorization.m; path = iOS/KSHMotionAuthorization.m; sourceTree = "<group>"; };
 		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -448,6 +452,8 @@
 				079728EF1E99726E00E86545 /* KSHAccountsAuthorization.m */,
 				07A409E81E9987380092B23B /* KSHHomeAuthorization.h */,
 				07A409E91E9987380092B23B /* KSHHomeAuthorization.m */,
+				07A409EE1E99B60D0092B23B /* KSHMotionAuthorization.h */,
+				07A409EF1E99B60D0092B23B /* KSHMotionAuthorization.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				076730A91E7797F600030F0C /* Shield.h in Headers */,
 				079728BE1E9826A700E86545 /* KSHMicrophoneAuthorization.h in Headers */,
 				079728CC1E9923CF00E86545 /* KSHHealthAuthorization.h in Headers */,
+				07A409F01E99B60D0092B23B /* KSHMotionAuthorization.h in Headers */,
 				079728C21E982B8A00E86545 /* KSHMediaLibraryAuthorization.h in Headers */,
 				079728F01E99726E00E86545 /* KSHAccountsAuthorization.h in Headers */,
 				079728D41E993B1200E86545 /* KSHSpeechAuthorization.h in Headers */,
@@ -852,6 +859,7 @@
 				07A409EB1E9987380092B23B /* KSHHomeAuthorization.m in Sources */,
 				079728BB1E981DAA00E86545 /* KSHCameraAuthorization.m in Sources */,
 				079728BF1E9826A700E86545 /* KSHMicrophoneAuthorization.m in Sources */,
+				07A409F11E99B60D0092B23B /* KSHMotionAuthorization.m in Sources */,
 				079728B51E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
 				079728F11E99726E00E86545 /* KSHAccountsAuthorization.m in Sources */,
 				079728D91E993DEA00E86545 /* KSHBluetoothAuthorization.m in Sources */,

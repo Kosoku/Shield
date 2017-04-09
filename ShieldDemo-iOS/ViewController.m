@@ -33,7 +33,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeSpeechRecognition,
     AuthorizationTypeMediaLibrary,
     AuthorizationTypeTwitter,
-    AuthorizationTypeHome
+    AuthorizationTypeHome,
+    AuthorizationTypeMotion
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -61,7 +62,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeSpeechRecognition),
                                   @(AuthorizationTypeMediaLibrary),
                                   @(AuthorizationTypeTwitter),
-                                  @(AuthorizationTypeHome)]];
+                                  @(AuthorizationTypeHome),
+                                  @(AuthorizationTypeMotion)]];
     [self setAuthorizationTitles:@[@"Photos",
                                    @"Location",
                                    @"Camera",
@@ -75,7 +77,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                    @"Speech Recognition",
                                    @"Media Library",
                                    @"Twitter",
-                                   @"Home"]];
+                                   @"Home",
+                                   @"Motion"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -184,6 +187,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeHome: {
             [KSHHomeAuthorization.sharedAuthorization requestHomeAuthorizationWithCompletion:^(BOOL success, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(success),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeMotion: {
+            [KSHMotionAuthorization.sharedAuthorization requestMotionAuthorizationWithCompletion:^(BOOL success, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(success),error);
             }];
         }

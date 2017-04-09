@@ -50,6 +50,8 @@
 	<string>LOCALIZE</string>
 	<key>NSSiriUsageDescription</key>
 	<string>LOCALIZE</string>
+	<key>NSMotionUsageDescription</key>
+	<string>LOCALIZE</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>LOCALIZE</string>
 	<key>UIBackgroundModes</key>

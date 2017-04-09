@@ -44,4 +44,5 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 #import <Shield/KSHSpeechAuthorization.h>
 #import <Shield/KSHBluetoothAuthorization.h>
 #import <Shield/KSHHomeAuthorization.h>
+#import <Shield/KSHMotionAuthorization.h>
 #endif
