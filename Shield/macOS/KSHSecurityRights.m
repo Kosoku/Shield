@@ -1,8 +1,8 @@
 //
-//  Shield-Info.h
+//  KSHSecurityRights.m
 //  Shield
 //
-//  Created by William Towe on 3/13/17.
+//  Created by William Towe on 4/9/17.
 //  Copyright © 2017 Kosoku Interactive, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,9 +13,31 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __SHIELD_INFO__
-#define __SHIELD_INFO__
+#import "KSHSecurityRights.h"
 
-#define KSH_BUNDLE_SHORT_VERSION_STRING 0.20.0
+@interface KSHSecurityRights ()
+@property (readwrite,copy,nonatomic) NSSet<NSString *> *rightStrings;
+@property (readwrite,assign,nonatomic) AuthorizationItemSet authorizationItemSet;
+@property (readwrite,assign,nonatomic) AuthorizationRef authorizationRef;
+@end
 
-#endif
+@implementation KSHSecurityRights
+
+- (void)dealloc {
+    if (_authorizationRef != NULL) {
+        AuthorizationFree(_authorizationRef, kAuthorizationFlagDestroyRights);
+    }
+}
+
+- (instancetype)initWithAuthorizationRef:(AuthorizationRef)authorizationRef authorizationItemSet:(AuthorizationItemSet)authorizationItemSet rightStrings:(NSSet<NSString *> *)rightStrings {
+    if (!(self = [super init]))
+        return nil;
+    
+    _authorizationRef = authorizationRef;
+    _authorizationItemSet = authorizationItemSet;
+    _rightStrings = [rightStrings copy];
+    
+    return self;
+}
+
+@end

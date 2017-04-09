@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Shield'
-  s.version          = '0.19.0'
+  s.version          = '0.20.0'
   s.summary          = 'Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g. camera, photo, location).'
 
 # This description is used to generate tags and improve search results.
@@ -195,6 +195,16 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.source_files = 'Shield/**/KSHAccessibilityAuthorization.{h,m}'
     
     ss.frameworks = 'ApplicationServices', 'AppKit'
+    
+    ss.dependency 'Stanley'
+  end
+  
+  s.subspec 'Security' do |ss|
+    ss.osx.deployment_target = '10.12'
+    
+    ss.source_files = 'Shield/**/KSHSecurityAuthorization.{h,m}', 'Shield/**/KSHSecurityRights.{h,m}'
+    
+    ss.frameworks = 'Security'
     
     ss.dependency 'Stanley'
   end

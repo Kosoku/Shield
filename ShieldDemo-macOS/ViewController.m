@@ -23,20 +23,15 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeAccessibility,
     AuthorizationTypeCalendars,
     AuthorizationTypeReminders,
-    AuthorizationTypeTwitter
+    AuthorizationTypeTwitter,
+    AuthorizationTypeSecurity
 };
 
 @interface ViewController ()
-@property (weak,nonatomic) IBOutlet NSButton *locationButton, *contactsButton, *accessibilityButton, *calendarsButton, *remindersButton, *twitterButton;
+
 @end
 
 @implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    
-}
 
 - (IBAction)_buttonAction:(NSButton *)sender {
     switch ((AuthorizationType)sender.tag) {
@@ -71,6 +66,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeTwitter: {
             [KSHAccountsAuthorization.sharedAuthorization requestAccountsAuthorizationForType:KSHAccountsTypeTwitter options:nil completion:^(BOOL success, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(success),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeSecurity: {
+            [KSHSecurityAuthorization.sharedAuthorization requestSecurityAuthorizationForRightStrings:[NSSet setWithArray:@[[NSString stringWithFormat:@"%@.right",[NSBundle mainBundle].infoDictionary[@"CFBundleIdentifier"]]]] completion:^(KSHSecurityRights * _Nullable securityRights, NSError * _Nullable error) {
+                NSLog(@"%@ %@",securityRights,error);
             }];
         }
             break;

@@ -99,6 +99,19 @@
 		07A409ED1E998F2A0092B23B /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A409EC1E998F2A0092B23B /* HomeKit.framework */; };
 		07A409F01E99B60D0092B23B /* KSHMotionAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409EE1E99B60D0092B23B /* KSHMotionAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A409F11E99B60D0092B23B /* KSHMotionAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409EF1E99B60D0092B23B /* KSHMotionAuthorization.m */; };
+		07A409F41E99D72F0092B23B /* KSHSecurityAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409F21E99D72F0092B23B /* KSHSecurityAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A409F51E99D72F0092B23B /* KSHSecurityAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409F31E99D72F0092B23B /* KSHSecurityAuthorization.m */; };
+		07A409F81E99EAE10092B23B /* KSHSecurityRights.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409F61E99EAE10092B23B /* KSHSecurityRights.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A409F91E99EAE10092B23B /* KSHSecurityRights.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409F71E99EAE10092B23B /* KSHSecurityRights.m */; };
+		07A409FD1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409FB1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07A409FE1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409FB1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07A409FF1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A409FB1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07A40A001E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409FC1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m */; };
+		07A40A011E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409FC1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m */; };
+		07A40A021E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A409FC1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m */; };
+		07A40A081E9A04850092B23B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07A40A061E9A04850092B23B /* Localizable.strings */; };
+		07A40A091E9A04850092B23B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07A40A061E9A04850092B23B /* Localizable.strings */; };
+		07A40A0A1E9A04850092B23B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07A40A061E9A04850092B23B /* Localizable.strings */; };
 		07C94D781E7B0B7C0014155A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C94D771E7B0B7C0014155A /* Stanley.framework */; };
 /* End PBXBuildFile section */
 
@@ -254,6 +267,13 @@
 		07A409EC1E998F2A0092B23B /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/HomeKit.framework; sourceTree = DEVELOPER_DIR; };
 		07A409EE1E99B60D0092B23B /* KSHMotionAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHMotionAuthorization.h; path = iOS/KSHMotionAuthorization.h; sourceTree = "<group>"; };
 		07A409EF1E99B60D0092B23B /* KSHMotionAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHMotionAuthorization.m; path = iOS/KSHMotionAuthorization.m; sourceTree = "<group>"; };
+		07A409F21E99D72F0092B23B /* KSHSecurityAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHSecurityAuthorization.h; path = macOS/KSHSecurityAuthorization.h; sourceTree = "<group>"; };
+		07A409F31E99D72F0092B23B /* KSHSecurityAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHSecurityAuthorization.m; path = macOS/KSHSecurityAuthorization.m; sourceTree = "<group>"; };
+		07A409F61E99EAE10092B23B /* KSHSecurityRights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHSecurityRights.h; path = macOS/KSHSecurityRights.h; sourceTree = "<group>"; };
+		07A409F71E99EAE10092B23B /* KSHSecurityRights.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHSecurityRights.m; path = macOS/KSHSecurityRights.m; sourceTree = "<group>"; };
+		07A409FB1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KSHPrivateExtensions.h"; sourceTree = "<group>"; };
+		07A409FC1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KSHPrivateExtensions.m"; sourceTree = "<group>"; };
+		07A40A071E9A04850092B23B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -417,6 +437,7 @@
 				072DBA011E7AD89A0070907C /* Shield-macOS-Info.plist */,
 				072DBA561E7AF41E0070907C /* Shield-tvOS-Info.plist */,
 				076730AD1E77982C00030F0C /* Shield-Info.h */,
+				07A40A061E9A04850092B23B /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -454,6 +475,11 @@
 				07A409E91E9987380092B23B /* KSHHomeAuthorization.m */,
 				07A409EE1E99B60D0092B23B /* KSHMotionAuthorization.h */,
 				07A409EF1E99B60D0092B23B /* KSHMotionAuthorization.m */,
+				07A409F21E99D72F0092B23B /* KSHSecurityAuthorization.h */,
+				07A409F31E99D72F0092B23B /* KSHSecurityAuthorization.m */,
+				07A409F61E99EAE10092B23B /* KSHSecurityRights.h */,
+				07A409F71E99EAE10092B23B /* KSHSecurityRights.m */,
+				07A409FA1E99F3210092B23B /* Private */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -512,6 +538,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		07A409FA1E99F3210092B23B /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				07A409FB1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h */,
+				07A409FC1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -519,11 +554,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A409F81E99EAE10092B23B /* KSHSecurityRights.h in Headers */,
 				072DBA021E7AD8F80070907C /* Shield.h in Headers */,
 				079728F21E99727300E86545 /* KSHAccountsAuthorization.h in Headers */,
+				07A409FE1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h in Headers */,
 				079728E31E99416A00E86545 /* KSHContactsAuthorization.h in Headers */,
 				079728E81E99430600E86545 /* KSHAccessibilityAuthorization.h in Headers */,
 				079728B31E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
+				07A409F41E99D72F0092B23B /* KSHSecurityAuthorization.h in Headers */,
 				079728DD1E993FA400E86545 /* KSHEventAuthorization.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +570,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A409FF1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h in Headers */,
 				079728B41E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
 				079728C71E991CCE00E86545 /* KSHPhotosAuthorization.h in Headers */,
 				072DBA3B1E7AF3DA0070907C /* Shield.h in Headers */,
@@ -554,6 +593,7 @@
 				079728C21E982B8A00E86545 /* KSHMediaLibraryAuthorization.h in Headers */,
 				079728F01E99726E00E86545 /* KSHAccountsAuthorization.h in Headers */,
 				079728D41E993B1200E86545 /* KSHSpeechAuthorization.h in Headers */,
+				07A409FD1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h in Headers */,
 				079728B21E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
 				079728BA1E981DAA00E86545 /* KSHCameraAuthorization.h in Headers */,
 				079728D01E99377200E86545 /* KSHSiriAuthorization.h in Headers */,
@@ -567,6 +607,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 072DB9FE1E7AD86E0070907C /* Build configuration list for PBXNativeTarget "Shield-macOS" */;
 			buildPhases = (
+				07A40A041E9A027B0092B23B /* genstrings */,
 				072DB9F41E7AD86E0070907C /* Sources */,
 				072DB9F51E7AD86E0070907C /* Frameworks */,
 				072DB9F61E7AD86E0070907C /* Headers */,
@@ -604,6 +645,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 072DBA381E7AF37D0070907C /* Build configuration list for PBXNativeTarget "Shield-tvOS" */;
 			buildPhases = (
+				07A40A051E9A02880092B23B /* genstrings */,
 				072DBA2E1E7AF37D0070907C /* Sources */,
 				072DBA2F1E7AF37D0070907C /* Frameworks */,
 				072DBA301E7AF37D0070907C /* Headers */,
@@ -641,6 +683,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 076730AA1E7797F600030F0C /* Build configuration list for PBXNativeTarget "Shield-iOS" */;
 			buildPhases = (
+				07A40A031E9A026D0092B23B /* genstrings */,
 				076730A01E7797F600030F0C /* Sources */,
 				076730A11E7797F600030F0C /* Frameworks */,
 				076730A21E7797F600030F0C /* Headers */,
@@ -758,6 +801,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A40A091E9A04850092B23B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +818,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A40A0A1E9A04850092B23B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +835,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A40A081E9A04850092B23B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,15 +851,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		07A40A031E9A026D0092B23B /* genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = genstrings;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = scripts/./genstrings.sh;
+		};
+		07A40A041E9A027B0092B23B /* genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = genstrings;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = scripts/./genstrings.sh;
+		};
+		07A40A051E9A02880092B23B /* genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = genstrings;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = scripts/./genstrings.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		072DB9F41E7AD86E0070907C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				079728E91E99430600E86545 /* KSHAccessibilityAuthorization.m in Sources */,
+				07A40A011E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */,
 				079728B61E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
+				07A409F51E99D72F0092B23B /* KSHSecurityAuthorization.m in Sources */,
 				079728DF1E993FA400E86545 /* KSHEventAuthorization.m in Sources */,
 				079728F31E99727B00E86545 /* KSHAccountsAuthorization.m in Sources */,
+				07A409F91E99EAE10092B23B /* KSHSecurityRights.m in Sources */,
 				079728E51E99416A00E86545 /* KSHContactsAuthorization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -832,6 +926,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A40A021E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */,
 				079728C91E991CCE00E86545 /* KSHPhotosAuthorization.m in Sources */,
 				079728B71E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
 			);
@@ -863,6 +958,7 @@
 				079728B51E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
 				079728F11E99726E00E86545 /* KSHAccountsAuthorization.m in Sources */,
 				079728D91E993DEA00E86545 /* KSHBluetoothAuthorization.m in Sources */,
+				07A40A001E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */,
 				079728CD1E9923CF00E86545 /* KSHHealthAuthorization.m in Sources */,
 				079728D11E99377200E86545 /* KSHSiriAuthorization.m in Sources */,
 			);
@@ -929,6 +1025,14 @@
 				076730C91E7799A000030F0C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		07A40A061E9A04850092B23B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07A40A071E9A04850092B23B /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

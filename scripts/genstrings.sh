@@ -1,0 +1,1 @@
+genstrings -o $SRCROOT/Shield/en.lproj $SRCROOT/Shield/* $SRCROOT/Shield/iOS/* $SRCROOT/Shield/macOS/*
