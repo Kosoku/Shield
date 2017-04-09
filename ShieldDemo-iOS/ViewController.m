@@ -34,7 +34,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeMediaLibrary,
     AuthorizationTypeTwitter,
     AuthorizationTypeHome,
-    AuthorizationTypeMotion
+    AuthorizationTypeMotion,
+    AuthorizationTypeLocal
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -63,7 +64,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeMediaLibrary),
                                   @(AuthorizationTypeTwitter),
                                   @(AuthorizationTypeHome),
-                                  @(AuthorizationTypeMotion)]];
+                                  @(AuthorizationTypeMotion),
+                                  @(AuthorizationTypeLocal)]];
     [self setAuthorizationTitles:@[@"Photos",
                                    @"Location",
                                    @"Camera",
@@ -78,7 +80,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                    @"Media Library",
                                    @"Twitter",
                                    @"Home",
-                                   @"Motion"]];
+                                   @"Motion",
+                                   @"Local"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -193,6 +196,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeMotion: {
             [KSHMotionAuthorization.sharedAuthorization requestMotionAuthorizationWithCompletion:^(BOOL success, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(success),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeLocal: {
+            [KSHLocalAuthorization.sharedAuthorization requestLocalAuthorizationForPolicy:KSHLocalAuthorizationPolicyBiometrics localizedReason:@"wants to do stuff and things." completion:^(BOOL success, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(success),error);
             }];
         }

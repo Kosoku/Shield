@@ -32,6 +32,7 @@ typedef void(^KSHRequestSecurityAuthorizationCompletionBlock)(KSHSecurityRights 
  The error domain for security authorization errors.
  */
 FOUNDATION_EXPORT NSString *const KSHSecurityAuthorizationErrorDomain;
+
 /**
  The user denied security authorization. For example, closing the username/password dialog.
  */

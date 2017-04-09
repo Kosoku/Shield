@@ -55,6 +55,10 @@
 		076730D61E779CE800030F0C /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D41E779CE800030F0C /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		076730D91E779E8200030F0C /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D81E779E8200030F0C /* Stanley.framework */; };
 		076730DB1E779E9500030F0C /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730DA1E779E9500030F0C /* Photos.framework */; };
+		076797FC1E9AB530009AB0F9 /* KSHLocalAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 076797FA1E9AB530009AB0F9 /* KSHLocalAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		076797FD1E9AB530009AB0F9 /* KSHLocalAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 076797FA1E9AB530009AB0F9 /* KSHLocalAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		076797FE1E9AB530009AB0F9 /* KSHLocalAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 076797FB1E9AB530009AB0F9 /* KSHLocalAuthorization.m */; };
+		076797FF1E9AB530009AB0F9 /* KSHLocalAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 076797FB1E9AB530009AB0F9 /* KSHLocalAuthorization.m */; };
 		079728AF1E980C3F00E86545 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079728AE1E980C3F00E86545 /* MediaPlayer.framework */; };
 		079728B21E9812E200E86545 /* KSHLocationAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728B01E9812E200E86545 /* KSHLocationAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		079728B31E9812E200E86545 /* KSHLocationAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 079728B01E9812E200E86545 /* KSHLocationAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -235,6 +239,8 @@
 		076730D41E779CE800030F0C /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		076730D81E779E8200030F0C /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
 		076730DA1E779E9500030F0C /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
+		076797FA1E9AB530009AB0F9 /* KSHLocalAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSHLocalAuthorization.h; sourceTree = "<group>"; };
+		076797FB1E9AB530009AB0F9 /* KSHLocalAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSHLocalAuthorization.m; sourceTree = "<group>"; };
 		079728AE1E980C3F00E86545 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		079728B01E9812E200E86545 /* KSHLocationAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSHLocationAuthorization.h; sourceTree = "<group>"; };
 		079728B11E9812E200E86545 /* KSHLocationAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSHLocationAuthorization.m; sourceTree = "<group>"; };
@@ -479,6 +485,8 @@
 				07A409F31E99D72F0092B23B /* KSHSecurityAuthorization.m */,
 				07A409F61E99EAE10092B23B /* KSHSecurityRights.h */,
 				07A409F71E99EAE10092B23B /* KSHSecurityRights.m */,
+				076797FA1E9AB530009AB0F9 /* KSHLocalAuthorization.h */,
+				076797FB1E9AB530009AB0F9 /* KSHLocalAuthorization.m */,
 				07A409FA1E99F3210092B23B /* Private */,
 			);
 			name = Source;
@@ -561,6 +569,7 @@
 				079728E31E99416A00E86545 /* KSHContactsAuthorization.h in Headers */,
 				079728E81E99430600E86545 /* KSHAccessibilityAuthorization.h in Headers */,
 				079728B31E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
+				076797FD1E9AB530009AB0F9 /* KSHLocalAuthorization.h in Headers */,
 				07A409F41E99D72F0092B23B /* KSHSecurityAuthorization.h in Headers */,
 				079728DD1E993FA400E86545 /* KSHEventAuthorization.h in Headers */,
 			);
@@ -590,6 +599,7 @@
 				079728BE1E9826A700E86545 /* KSHMicrophoneAuthorization.h in Headers */,
 				079728CC1E9923CF00E86545 /* KSHHealthAuthorization.h in Headers */,
 				07A409F01E99B60D0092B23B /* KSHMotionAuthorization.h in Headers */,
+				076797FC1E9AB530009AB0F9 /* KSHLocalAuthorization.h in Headers */,
 				079728C21E982B8A00E86545 /* KSHMediaLibraryAuthorization.h in Headers */,
 				079728F01E99726E00E86545 /* KSHAccountsAuthorization.h in Headers */,
 				079728D41E993B1200E86545 /* KSHSpeechAuthorization.h in Headers */,
@@ -901,6 +911,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				076797FF1E9AB530009AB0F9 /* KSHLocalAuthorization.m in Sources */,
 				079728E91E99430600E86545 /* KSHAccessibilityAuthorization.m in Sources */,
 				07A40A011E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */,
 				079728B61E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
@@ -950,6 +961,7 @@
 				079728C31E982B8A00E86545 /* KSHMediaLibraryAuthorization.m in Sources */,
 				079728E41E99416A00E86545 /* KSHContactsAuthorization.m in Sources */,
 				079728D51E993B1200E86545 /* KSHSpeechAuthorization.m in Sources */,
+				076797FE1E9AB530009AB0F9 /* KSHLocalAuthorization.m in Sources */,
 				079728DE1E993FA400E86545 /* KSHEventAuthorization.m in Sources */,
 				07A409EB1E9987380092B23B /* KSHHomeAuthorization.m in Sources */,
 				079728BB1E981DAA00E86545 /* KSHCameraAuthorization.m in Sources */,

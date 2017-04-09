@@ -24,7 +24,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeCalendars,
     AuthorizationTypeReminders,
     AuthorizationTypeTwitter,
-    AuthorizationTypeSecurity
+    AuthorizationTypeSecurity,
+    AuthorizationTypeLocal
 };
 
 @interface ViewController ()
@@ -72,6 +73,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeSecurity: {
             [KSHSecurityAuthorization.sharedAuthorization requestSecurityAuthorizationForRightStrings:[NSSet setWithArray:@[[NSString stringWithFormat:@"%@.right",[NSBundle mainBundle].infoDictionary[@"CFBundleIdentifier"]]]] completion:^(KSHSecurityRights * _Nullable securityRights, NSError * _Nullable error) {
                 NSLog(@"%@ %@",securityRights,error);
+            }];
+        }
+            break;
+        case AuthorizationTypeLocal: {
+            [KSHLocalAuthorization.sharedAuthorization requestLocalAuthorizationForPolicy:KSHLocalAuthorizationPolicyBiometrics localizedReason:@"do stuff and things" completion:^(BOOL success, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(success),error);
             }];
         }
             break;
