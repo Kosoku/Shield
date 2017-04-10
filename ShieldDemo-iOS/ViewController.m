@@ -18,6 +18,7 @@
 #import <Shield/Shield.h>
 
 #import <HealthKit/HealthKit.h>
+#import <UserNotifications/UserNotifications.h>
 
 typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypePhotoLibrary,
@@ -35,7 +36,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeTwitter,
     AuthorizationTypeHome,
     AuthorizationTypeMotion,
-    AuthorizationTypeLocal
+    AuthorizationTypeLocal,
+    AuthorizationTypeNotification
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -65,7 +67,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                   @(AuthorizationTypeTwitter),
                                   @(AuthorizationTypeHome),
                                   @(AuthorizationTypeMotion),
-                                  @(AuthorizationTypeLocal)]];
+                                  @(AuthorizationTypeLocal),
+                                  @(AuthorizationTypeNotification)]];
     [self setAuthorizationTitles:@[@"Photos",
                                    @"Location",
                                    @"Camera",
@@ -81,7 +84,8 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
                                    @"Twitter",
                                    @"Home",
                                    @"Motion",
-                                   @"Local"]];
+                                   @"Local",
+                                   @"Notification"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -203,6 +207,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeLocal: {
             [KSHLocalAuthorization.sharedAuthorization requestLocalAuthorizationForPolicy:KSHLocalAuthorizationPolicyBiometrics localizedReason:@"wants to do stuff and things." completion:^(BOOL success, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(success),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeNotification: {
+            [KSHNotificationAuthorization.sharedAuthorization requestNotificationAuthorizationForOptions:KSHNotificationAuthorizationOptionsBadge completion:^(KSHNotificationAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;
