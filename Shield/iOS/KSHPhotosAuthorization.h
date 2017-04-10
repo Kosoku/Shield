@@ -21,23 +21,23 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Enum defining the possible photo library authorization status values. See PHAuthorizationStatus for more information.
  */
-typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
+typedef NS_ENUM(NSInteger, KSHPhotosAuthorizationStatus) {
     /**
      See PHAuthorizationStatusNotDetermined for more information.
      */
-    KSHPhotoLibraryAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
+    KSHPhotosAuthorizationStatusNotDetermined = PHAuthorizationStatusNotDetermined,
     /**
      See PHAuthorizationStatusRestricted for more information.
      */
-    KSHPhotoLibraryAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
+    KSHPhotosAuthorizationStatusRestricted = PHAuthorizationStatusRestricted,
     /**
      See PHAuthorizationStatusDenied for more information.
      */
-    KSHPhotoLibraryAuthorizationStatusDenied = PHAuthorizationStatusDenied,
+    KSHPhotosAuthorizationStatusDenied = PHAuthorizationStatusDenied,
     /**
      See PHAuthorizationStatusAuthorized for more information.
      */
-    KSHPhotoLibraryAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
+    KSHPhotosAuthorizationStatusAuthorized = PHAuthorizationStatusAuthorized
 };
 /**
  Completion block that is invoked after requesting photo library access.
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, KSHPhotoLibraryAuthorizationStatus) {
  @param status The current photo library authorization status
  @param error The error
  */
-typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibraryAuthorizationStatus status, NSError * _Nullable error);
+typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotosAuthorizationStatus status, NSError * _Nullable error);
 
 /**
  KSHPhotosAuthorization wraps the APIs needed to request Photos access from the user.
@@ -64,9 +64,9 @@ typedef void(^KSHRequestPhotoLibraryAuthorizationCompletionBlock)(KSHPhotoLibrar
 /**
  Get the photo library authorization status.
  
- @see KSHPhotoLibraryAuthorizationStatus
+ @see KSHPhotosAuthorizationStatus
  */
-@property (readonly,nonatomic) KSHPhotoLibraryAuthorizationStatus photoLibraryAuthorizationStatus;
+@property (readonly,nonatomic) KSHPhotosAuthorizationStatus photoLibraryAuthorizationStatus;
 
 /**
  Request photo library authorization from the user and invoke the provided completion block when authorization status has been determined. The completion block is always invoked on the main thread. The client must provide a reason in their plist using NSPhotoLibraryUsageDescription or an exception will be thrown.

@@ -21,20 +21,20 @@
 
 @implementation KSHPhotosAuthorization
 
-- (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotoLibraryAuthorizationStatus status, NSError *error))completion {
+- (void)requestPhotoLibraryAuthorizationWithCompletion:(void (^)(KSHPhotosAuthorizationStatus status, NSError *error))completion {
     NSParameterAssert(completion != nil);
     NSParameterAssert([NSBundle mainBundle].infoDictionary[@"NSPhotoLibraryUsageDescription"] != nil);
     
     if (self.hasPhotoLibraryAuthorization) {
         KSTDispatchMainAsync(^{
-            completion(KSHPhotoLibraryAuthorizationStatusAuthorized,nil);
+            completion(KSHPhotosAuthorizationStatusAuthorized,nil);
         });
         return;
     }
     
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         KSTDispatchMainAsync(^{
-            completion((KSHPhotoLibraryAuthorizationStatus)status,nil);
+            completion((KSHPhotosAuthorizationStatus)status,nil);
         });
     }];
 }
@@ -49,10 +49,10 @@
 }
 
 - (BOOL)hasPhotoLibraryAuthorization {
-    return self.photoLibraryAuthorizationStatus == KSHPhotoLibraryAuthorizationStatusAuthorized;
+    return self.photoLibraryAuthorizationStatus == KSHPhotosAuthorizationStatusAuthorized;
 }
-- (KSHPhotoLibraryAuthorizationStatus)photoLibraryAuthorizationStatus {
-    return (KSHPhotoLibraryAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
+- (KSHPhotosAuthorizationStatus)photoLibraryAuthorizationStatus {
+    return (KSHPhotosAuthorizationStatus)[PHPhotoLibrary authorizationStatus];
 }
 
 @end
