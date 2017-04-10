@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Shield'
-  s.version          = '0.22.0'
+  s.version          = '0.23.0'
   s.summary          = 'Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g. camera, photo, location).'
 
 # This description is used to generate tags and improve search results.
@@ -36,7 +36,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
 
   s.ios.source_files = 'Shield/*.{h,m}', 'Shield/iOS/*.{h,m}', 'Shield/Private/*.{h,m}'
   s.osx.source_files = 'Shield/*.{h,m}', 'Shield/macOS/*.{h,m}', 'Shield/Private/*.{h,m}'
-  s.tvos.source_files = 'Shield/KSHLocationAuthorization.{h,m}', 'Shield/iOS/KSHPhotosAuthorization.{h,m}', 'Shield/Private/*.{h,m}'
+  s.tvos.source_files = 'Shield/KSHLocationAuthorization.{h,m}', 'Shield/iOS/KSHPhotosAuthorization.{h,m}', 'Shield/iOS/KSHNotificationAuthorization.{h,m}', 'Shield/Private/*.{h,m}'
   s.exclude_files = 'Shield/Shield-Info.h'
   s.private_header_files = 'Shield/Private/*.h'
   
@@ -141,6 +141,17 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.source_files = 'Shield/**/KSHPhotosAuthorization.{h,m}'
     
     ss.frameworks = 'Photos'
+    
+    ss.dependency 'Stanley'
+  end
+  
+  s.subspec 'Notification' do |ss|
+    ss.ios.deployment_target = '10.0'
+    ss.tvos.deployment_target = '10.0'
+    
+    ss.source_files = 'Shield/**/KSHNotificationAuthorization.{h,m}'
+    
+    ss.frameworks = 'UserNotifications'
     
     ss.dependency 'Stanley'
   end
