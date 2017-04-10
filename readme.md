@@ -37,3 +37,4 @@ Apple:
 - `Accounts`, `iOS` and `macOS`
 - `MediaPlayer`, `iOS` only
 - `LocalAuthorization`, `iOS` and `macOS`
+- `UserNotifications`, `iOS` and `tvOS`
