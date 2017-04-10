@@ -20,7 +20,8 @@
 typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypePhotoLibrary,
     AuthorizationTypeLocation,
-    AuthorizationTypeNotification
+    AuthorizationTypeNotification,
+    AuthorizationTypeVideoSubscriberAccount
 };
 
 @interface ViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -37,10 +38,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     
     [self setAuthorizationTypes:@[@(AuthorizationTypePhotoLibrary),
                                   @(AuthorizationTypeLocation),
-                                  @(AuthorizationTypeNotification)]];
+                                  @(AuthorizationTypeNotification),
+                                  @(AuthorizationTypeVideoSubscriberAccount)]];
     [self setAuthorizationTitles:@[@"Photos",
                                    @"Location",
-                                   @"Notification"]];
+                                   @"Notification",
+                                   @"Video Subscriber Account"]];
     
     [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain]];
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -83,6 +86,12 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             break;
         case AuthorizationTypeNotification: {
             [KSHNotificationAuthorization.sharedAuthorization requestNotificationAuthorizationForOptions:KSHNotificationAuthorizationOptionsBadge completion:^(KSHNotificationAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeVideoSubscriberAccount: {
+            [KSHVideoSubscriberAccountAuthorization.sharedAuthorization requestVideoSubscriberAccountAuthorizationWithCompletion:^(KSHVideoSubscriberAccountAuthorizationStatus status, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(status),error);
             }];
         }

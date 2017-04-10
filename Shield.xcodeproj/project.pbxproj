@@ -121,6 +121,11 @@
 		07D5BCF31E9C088A000CD5B1 /* KSHNotificationAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D5BCF01E9C088A000CD5B1 /* KSHNotificationAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07D5BCF41E9C088A000CD5B1 /* KSHNotificationAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D5BCF11E9C088A000CD5B1 /* KSHNotificationAuthorization.m */; };
 		07D5BCF51E9C088A000CD5B1 /* KSHNotificationAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D5BCF11E9C088A000CD5B1 /* KSHNotificationAuthorization.m */; };
+		07D5BCF81E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D5BCF61E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07D5BCF91E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D5BCF61E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07D5BCFA1E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D5BCF71E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m */; };
+		07D5BCFB1E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D5BCF71E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m */; };
+		07D5BCFE1E9C38C8000CD5B1 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D5BCFD1E9C38C8000CD5B1 /* HomeKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +292,10 @@
 		07C94D771E7B0B7C0014155A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-appletvsimulator/Stanley.framework"; sourceTree = "<group>"; };
 		07D5BCF01E9C088A000CD5B1 /* KSHNotificationAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHNotificationAuthorization.h; path = iOS/KSHNotificationAuthorization.h; sourceTree = "<group>"; };
 		07D5BCF11E9C088A000CD5B1 /* KSHNotificationAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHNotificationAuthorization.m; path = iOS/KSHNotificationAuthorization.m; sourceTree = "<group>"; };
+		07D5BCF61E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSHVideoSubscriberAccountAuthorization.h; path = iOS/KSHVideoSubscriberAccountAuthorization.h; sourceTree = "<group>"; };
+		07D5BCF71E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSHVideoSubscriberAccountAuthorization.m; path = iOS/KSHVideoSubscriberAccountAuthorization.m; sourceTree = "<group>"; };
+		07D5BCFC1E9C383E000CD5B1 /* ShieldDemo-tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ShieldDemo-tvOS.entitlements"; sourceTree = "<group>"; };
+		07D5BCFD1E9C38C8000CD5B1 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/HomeKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				072DBA621E7B00BF0070907C /* CoreLocation.framework in Frameworks */,
+				07D5BCFE1E9C38C8000CD5B1 /* HomeKit.framework in Frameworks */,
 				072DBA601E7AFEBE0070907C /* Photos.framework in Frameworks */,
 				072DBA581E7AF45D0070907C /* Stanley.framework in Frameworks */,
 				072DBA5B1E7AF4700070907C /* Shield.framework in Frameworks */,
@@ -387,6 +397,7 @@
 		072DBA431E7AF3F10070907C /* ShieldDemo-tvOS */ = {
 			isa = PBXGroup;
 			children = (
+				07D5BCFC1E9C383E000CD5B1 /* ShieldDemo-tvOS.entitlements */,
 				072DBA471E7AF3F10070907C /* AppDelegate.h */,
 				072DBA481E7AF3F10070907C /* AppDelegate.m */,
 				072DBA4A1E7AF3F10070907C /* ViewController.h */,
@@ -495,6 +506,8 @@
 				076797FB1E9AB530009AB0F9 /* KSHLocalAuthorization.m */,
 				07D5BCF01E9C088A000CD5B1 /* KSHNotificationAuthorization.h */,
 				07D5BCF11E9C088A000CD5B1 /* KSHNotificationAuthorization.m */,
+				07D5BCF61E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h */,
+				07D5BCF71E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m */,
 				07A409FA1E99F3210092B23B /* Private */,
 			);
 			name = Source;
@@ -528,6 +541,7 @@
 		076730D71E779CFF00030F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07D5BCFD1E9C38C8000CD5B1 /* HomeKit.framework */,
 				07A409EC1E998F2A0092B23B /* HomeKit.framework */,
 				079728AE1E980C3F00E86545 /* MediaPlayer.framework */,
 				07C94D771E7B0B7C0014155A /* Stanley.framework */,
@@ -588,6 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D5BCF31E9C088A000CD5B1 /* KSHNotificationAuthorization.h in Headers */,
+				07D5BCF91E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h in Headers */,
 				07A409FF1E99F3640092B23B /* NSBundle+KSHPrivateExtensions.h in Headers */,
 				079728B41E9812E200E86545 /* KSHLocationAuthorization.h in Headers */,
 				079728C71E991CCE00E86545 /* KSHPhotosAuthorization.h in Headers */,
@@ -605,6 +620,7 @@
 				079728E21E99416A00E86545 /* KSHContactsAuthorization.h in Headers */,
 				079728DC1E993FA400E86545 /* KSHEventAuthorization.h in Headers */,
 				076730A91E7797F600030F0C /* Shield.h in Headers */,
+				07D5BCF81E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.h in Headers */,
 				079728BE1E9826A700E86545 /* KSHMicrophoneAuthorization.h in Headers */,
 				079728CC1E9923CF00E86545 /* KSHHealthAuthorization.h in Headers */,
 				07A409F01E99B60D0092B23B /* KSHMotionAuthorization.h in Headers */,
@@ -761,10 +777,14 @@
 					};
 					072DBA411E7AF3F10070907C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = C6AZ27TEW2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.appletvos = {
 								enabled = 0;
+							};
+							com.apple.HomeKit = {
+								enabled = 1;
 							};
 						};
 					};
@@ -948,6 +968,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07A40A021E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */,
+				07D5BCFB1E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m in Sources */,
 				079728C91E991CCE00E86545 /* KSHPhotosAuthorization.m in Sources */,
 				079728B71E9812E200E86545 /* KSHLocationAuthorization.m in Sources */,
 				07D5BCF51E9C088A000CD5B1 /* KSHNotificationAuthorization.m in Sources */,
@@ -984,6 +1005,7 @@
 				079728D91E993DEA00E86545 /* KSHBluetoothAuthorization.m in Sources */,
 				07A40A001E99F3640092B23B /* NSBundle+KSHPrivateExtensions.m in Sources */,
 				079728CD1E9923CF00E86545 /* KSHHealthAuthorization.m in Sources */,
+				07D5BCFA1E9C28D6000CD5B1 /* KSHVideoSubscriberAccountAuthorization.m in Sources */,
 				079728D11E99377200E86545 /* KSHSiriAuthorization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1437,8 +1459,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "ShieldDemo-tvOS/ShieldDemo-tvOS.entitlements";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C6AZ27TEW2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1490,8 +1514,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "ShieldDemo-tvOS/ShieldDemo-tvOS.entitlements";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C6AZ27TEW2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

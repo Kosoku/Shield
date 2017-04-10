@@ -47,6 +47,7 @@ You can install *Shield* using [cocoapods](https://cocoapods.org/), [Carthage](h
 - `Shield/Security`, wraps `Security` authorization APIs for elevating execution privileges (`macOS`)
 - `Shield/Local`, wraps `LocalAuthentication` Touch ID authorization APIs (`iOS`/`macOS`)
 - `Shield/Notification`, wraps `UserNotifications` authorization APIs (`iOS`/`tvOS`)
+- `Shield/VideoSubscriberAccount`, wraps `VideoSubscriberAccount` authorization APIs (`iOS`/`tvOS`)
 
 ### Dependencies
 
@@ -75,3 +76,4 @@ Apple:
 - `MediaPlayer`, `iOS` only
 - `LocalAuthorization`, `iOS` and `macOS`
 - `UserNotifications`, `iOS` and `tvOS`
+- `VideoSubscriberAccount`, `iOS` and `tvOS`

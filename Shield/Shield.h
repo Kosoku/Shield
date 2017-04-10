@@ -33,6 +33,7 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 #if (TARGET_OS_IOS || TARGET_OS_TV)
 #import <Shield/KSHPhotosAuthorization.h>
 #import <Shield/KSHNotificationAuthorization.h>
+#import <Shield/KSHVideoSubscriberAccountAuthorization.h>
 #endif
 #if (TARGET_OS_OSX)
 #import <Shield/KSHAccessibilityAuthorization.h>
