@@ -42,6 +42,8 @@
 		072DBA5C1E7AF4700070907C /* Shield.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 072DBA331E7AF37D0070907C /* Shield.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		072DBA601E7AFEBE0070907C /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DBA5F1E7AFEBE0070907C /* Photos.framework */; };
 		072DBA621E7B00BF0070907C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072DBA611E7B00BF0070907C /* CoreLocation.framework */; };
+		0745316F1E9EBA7100CEF9E0 /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D41E779CE800030F0C /* Stanley.framework */; };
+		074531711E9EBA7F00CEF9E0 /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074531701E9EBA7F00CEF9E0 /* Stanley.framework */; };
 		076730A91E7797F600030F0C /* Shield.h in Headers */ = {isa = PBXBuildFile; fileRef = 076730A71E7797F600030F0C /* Shield.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		076730BC1E7799A000030F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 076730BB1E7799A000030F0C /* main.m */; };
 		076730BF1E7799A000030F0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 076730BE1E7799A000030F0C /* AppDelegate.m */; };
@@ -53,7 +55,6 @@
 		076730D01E7799AC00030F0C /* Shield.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 076730A51E7797F600030F0C /* Shield.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		076730D51E779CE800030F0C /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D41E779CE800030F0C /* Stanley.framework */; };
 		076730D61E779CE800030F0C /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D41E779CE800030F0C /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		076730D91E779E8200030F0C /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730D81E779E8200030F0C /* Stanley.framework */; };
 		076730DB1E779E9500030F0C /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076730DA1E779E9500030F0C /* Photos.framework */; };
 		076797FC1E9AB530009AB0F9 /* KSHLocalAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 076797FA1E9AB530009AB0F9 /* KSHLocalAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		076797FD1E9AB530009AB0F9 /* KSHLocalAuthorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 076797FA1E9AB530009AB0F9 /* KSHLocalAuthorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -231,6 +232,7 @@
 		072DBA571E7AF45D0070907C /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		072DBA5F1E7AFEBE0070907C /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.1.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
 		072DBA611E7B00BF0070907C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		074531701E9EBA7F00CEF9E0 /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "../../Library/Developer/Xcode/DerivedData/Shield-gihurrrwbjpxthdungfvofthitcz/Build/Products/Debug-iphonesimulator/Stanley.framework"; sourceTree = "<group>"; };
 		076730A51E7797F600030F0C /* Shield.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shield.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		076730A71E7797F600030F0C /* Shield.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shield.h; sourceTree = "<group>"; };
 		076730A81E7797F600030F0C /* Shield-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shield-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0745316F1E9EBA7100CEF9E0 /* Stanley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076730D91E779E8200030F0C /* Stanley.framework in Frameworks */,
+				074531711E9EBA7F00CEF9E0 /* Stanley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +544,7 @@
 		076730D71E779CFF00030F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				074531701E9EBA7F00CEF9E0 /* Stanley.framework */,
 				07D5BCFD1E9C38C8000CD5B1 /* HomeKit.framework */,
 				07A409EC1E998F2A0092B23B /* HomeKit.framework */,
 				079728AE1E980C3F00E86545 /* MediaPlayer.framework */,
