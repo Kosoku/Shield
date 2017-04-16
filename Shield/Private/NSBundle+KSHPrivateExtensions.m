@@ -18,7 +18,7 @@
 @implementation NSBundle (KSHPrivateExtensions)
 
 + (NSBundle *)KSH_frameworkBundle; {
-    return [NSBundle bundleWithIdentifier:@"com.kosoku.shield"];
+    return [NSBundle bundleWithIdentifier:@"com.kosoku.shield"] ?: [self bundleWithURL:[[[NSBundle mainBundle].privateFrameworksURL URLByAppendingPathComponent:@"Shield.framework" isDirectory:YES] URLByAppendingPathComponent:@"Shield.bundle" isDirectory:YES]] ?: [self bundleWithURL:[[NSBundle mainBundle] URLForResource:@"Shield" withExtension:@"bundle"]];
 }
 
 @end
