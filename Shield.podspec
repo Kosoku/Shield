@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Shield'
-  s.version          = '0.27.0'
+  s.version          = '0.27.1'
   s.summary          = 'Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g. camera, photo, location).'
 
 # This description is used to generate tags and improve search results.
@@ -40,9 +40,11 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   s.exclude_files = 'Shield/Shield-Info.h'
   s.private_header_files = 'Shield/Private/*.h'
   
-  s.resource_bundles = {
-    'Shield' => ['Shield/**/*.{xcassets,lproj}']
-  }
+  s.subspec 'Core' do |ss|
+    ss.resource_bundles = {
+      'Shield' => ['Shield/**/*.{xcassets,lproj}']
+    }
+  end
   
   s.subspec 'Camera' do |ss|
     ss.ios.deployment_target = '10.0'
@@ -52,6 +54,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'AVFoundation'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Microphone' do |ss|
@@ -62,6 +65,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'AVFoundation'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'MediaLibrary' do |ss|
@@ -72,6 +76,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'MediaPlayer'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Health' do |ss|
@@ -82,6 +87,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'HealthKit'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Siri' do |ss|
@@ -92,6 +98,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'Intents'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Speech' do |ss|
@@ -102,6 +109,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'Speech'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Bluetooth' do |ss|
@@ -112,6 +120,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'CoreBluetooth'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Home' do |ss|
@@ -122,6 +131,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'HomeKit'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Motion' do |ss|
@@ -132,6 +142,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'CoreMotion'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Photos' do |ss|
@@ -143,6 +154,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'Photos'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Notification' do |ss|
@@ -154,6 +166,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'UserNotifications'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'VideoSubscriberAccount' do |ss|
@@ -165,6 +178,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'VideoSubscriberAccount'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Event' do |ss|
@@ -176,6 +190,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'EventKit'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Contacts' do |ss|
@@ -187,6 +202,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'Contacts'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Accounts' do |ss|
@@ -198,6 +214,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'Accounts'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Local' do |ss|
@@ -209,6 +226,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'LocalAuthentication'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Location' do |ss|
@@ -221,6 +239,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'CoreLocation'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Accessibility' do |ss|
@@ -231,6 +250,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'ApplicationServices', 'AppKit'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
   
   s.subspec 'Security' do |ss|
@@ -241,5 +261,6 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.frameworks = 'Security'
     
     ss.dependency 'Stanley'
+    ss.dependency 'Shield/Core'
   end
 end
