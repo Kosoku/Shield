@@ -16,20 +16,11 @@
 #import "KSHLocalAuthorization.h"
 #import "NSBundle+KSHPrivateExtensions.h"
 
-#import <Stanley/KSTFunctions.h>
+#import <Stanley/Stanley.h>
 
 #import <LocalAuthentication/LocalAuthentication.h>
 
 NSString *const KSHLocalAuthorizationErrorDomain = @"com.kosoku.shield.local.error";
-
-NSInteger const KSHLocalAuthorizationErrorCodeFailed = LAErrorAuthenticationFailed;
-NSInteger const KSHLocalAuthorizationErrorCodeUserCancel = LAErrorUserCancel;
-NSInteger const KSHLocalAuthorizationErrorCodeUserFallback = LAErrorUserFallback;
-NSInteger const KSHLocalAuthorizationErrorCodeSystemCancel = LAErrorSystemCancel;
-NSInteger const KSHLocalAuthorizationErrorCodePasscodeNotSet = LAErrorPasscodeNotSet;
-NSInteger const KSHLocalAuthorizationErrorCodeTouchIDNotAvailable = LAErrorTouchIDNotAvailable;
-NSInteger const KSHLocalAuthorizationErrorCodeTouchIDNotEnrolled = LAErrorTouchIDNotEnrolled;
-NSInteger const KSHLocalAuthorizationErrorCodeTouchIDLockout = LAErrorTouchIDLockout;
 
 @interface KSHLocalAuthorization ()
 - (NSString *)_localizedStringForErrorCode:(NSInteger)errorCode;
@@ -37,6 +28,11 @@ NSInteger const KSHLocalAuthorizationErrorCodeTouchIDLockout = LAErrorTouchIDLoc
 
 @implementation KSHLocalAuthorization
 
+- (BOOL)canRequestLocalAuthorizationForPolicy:(KSHLocalAuthorizationPolicy)policy error:(NSError **)error; {
+    LAContext *context = [[LAContext alloc] init];
+    
+    return [context canEvaluatePolicy:(LAPolicy)policy error:error];
+}
 - (void)requestLocalAuthorizationForPolicy:(KSHLocalAuthorizationPolicy)policy localizedReason:(NSString *)localizedReason completion:(KSHRequestLocalAuthorizationCompletionBlock)completion {
     [self requestLocalAuthorizationForPolicy:policy localizedReason:localizedReason localizedCancelTitle:nil localizedFallbackTitle:nil completion:completion];
 }

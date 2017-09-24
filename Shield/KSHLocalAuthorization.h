@@ -15,6 +15,7 @@
 
 #import <Foundation/Foundation.h>
 #import <LocalAuthentication/LAContext.h>
+#import <LocalAuthentication/LAError.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,42 +41,46 @@ typedef NS_ENUM(NSInteger, KSHLocalAuthorizationPolicy) {
 typedef void(^KSHRequestLocalAuthorizationCompletionBlock)(BOOL success, NSError * _Nullable error);
 
 /**
+ Enum for possible error codes for errors with the KSHLocalAuthorizationErrorDomain domain.
+ */
+typedef NS_ENUM(NSInteger, KSHLocalAuthorizationErrorCode) {
+    /**
+     The user entered credentials but they were invalid.
+     */
+    KSHLocalAuthorizationErrorCodeFailed = LAErrorAuthenticationFailed,
+    /**
+     The user tapped the cancel button.
+     */
+    KSHLocalAuthorizationErrorCodeUserCancel = LAErrorUserCancel,
+    /**
+     The user tapped the fallback button.
+     */
+    KSHLocalAuthorizationErrorCodeUserFallback = LAErrorUserFallback,
+    /**
+     The system cancelled the request (e.g. another application was brought to the foreground).
+     */
+    KSHLocalAuthorizationErrorCodeSystemCancel = LAErrorSystemCancel,
+    /**
+     The user has not set a passcode.
+     */
+    KSHLocalAuthorizationErrorCodePasscodeNotSet = LAErrorPasscodeNotSet,
+    /**
+     Touch ID is not available on the device.
+     */
+    KSHLocalAuthorizationErrorCodeTouchIDNotAvailable = LAErrorTouchIDNotAvailable,
+    /**
+     The user has not registered any fingers with Touch ID.
+     */
+    KSHLocalAuthorizationErrorCodeTouchIDNotEnrolled = LAErrorTouchIDNotEnrolled,
+    /**
+     The user failed to authenticate too many times using Touch ID.
+     */
+    KSHLocalAuthorizationErrorCodeTouchIDLockout = LAErrorTouchIDLockout
+};
+/**
  The error domain for local authorization errors.
  */
 FOUNDATION_EXPORT NSString *const KSHLocalAuthorizationErrorDomain;
-
-/**
- The user entered credentials but they were invalid.
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeFailed;
-/**
- The user tapped the cancel button.
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeUserCancel;
-/**
- The user tapped the fallback button.
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeUserFallback;
-/**
- The system cancelled the request (e.g. another application was brought to the foreground).
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeSystemCancel;
-/**
- The user has not set a passcode.
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodePasscodeNotSet;
-/**
- Touch ID is not available on the device.
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeTouchIDNotAvailable;
-/**
- The user has not registered any fingers with Touch ID.
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeTouchIDNotEnrolled;
-/**
- The user failed to authenticate too many times using Touch ID.
- */
-FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeTouchIDLockout;
 
 /**
  KSHLocalAuthorization wraps the APIs needed to request local authentication from the user using Touch ID (if available) or username/password.
@@ -87,6 +92,14 @@ FOUNDATION_EXPORT NSInteger const KSHLocalAuthorizationErrorCodeTouchIDLockout;
  */
 @property (class,readonly,nonatomic) KSHLocalAuthorization *sharedAuthorization;
 
+/**
+ Returns whether the policy can be evaluated or would always evaluate to NO. For example, passing KSHLocalAuthorizationPolicyBiometrics when touch ID hardware is not available would return NO with an appropriate error.
+ 
+ @param policy The policy to test for possible evaluation
+ @param error If the method returns NO, contains more information about the reason for failure
+ @return YES if the policy can be evaluated, otherwise NO
+ */
+- (BOOL)canRequestLocalAuthorizationForPolicy:(KSHLocalAuthorizationPolicy)policy error:(NSError **)error;
 /**
  Calls `[self requestLocalAuthorizationForPolicy:policy localizedReason:localizedReason localizedCancelTitle:nil localizedFallbackTitle:nil completion:completion]`.
  
