@@ -29,18 +29,22 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^KSHRequestSecurityAuthorizationCompletionBlock)(KSHSecurityRights * _Nullable securityRights, NSError * _Nullable error);
 
 /**
+ Enum for possible error codes for error with the KSHSecurityAuthorizationErrorDomain domain.
+ */
+typedef NS_ENUM(NSInteger,KSHSecurityAuthorizationErrorCode) {
+    /**
+     The user denied security authorization. For example, closing the username/password dialog.
+     */
+    KSHSecurityAuthorizationErrorCodeDenied = errAuthorizationDenied,
+    /**
+     The user cancelled security authorization. For example, clicking the close button on the username/password dialog.
+     */
+    KSHSecurityAuthorizationErrorCodeCancelled = errAuthorizationCanceled
+};
+/**
  The error domain for security authorization errors.
  */
 FOUNDATION_EXPORT NSString *const KSHSecurityAuthorizationErrorDomain;
-
-/**
- The user denied security authorization. For example, closing the username/password dialog.
- */
-FOUNDATION_EXPORT NSInteger const KSHSecurityAuthorizationErrorCodeDenied;
-/**
- The user cancelled security authorization. For example, clicking the close button on the username/password dialog.
- */
-FOUNDATION_EXPORT NSInteger const KSHSecurityAuthorizationErrorCodeCancelled;
 
 /**
  KSHSecurityAuthorization wraps the APIs necessary for requesting elevated privileges from the user for a set of rights. Note that these methods will not work if the client app is sandboxed.

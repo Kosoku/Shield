@@ -17,12 +17,9 @@
 #import "KSHSecurityRights.h"
 #import "NSBundle+KSHPrivateExtensions.h"
 
-#import <Stanley/KSTFunctions.h>
+#import <Stanley/Stanley.h>
 
 NSString *const KSHSecurityAuthorizationErrorDomain = @"com.kosoku.shield.security.error";
-
-NSInteger const KSHSecurityAuthorizationErrorCodeDenied = errAuthorizationDenied;
-NSInteger const KSHSecurityAuthorizationErrorCodeCancelled = errAuthorizationCanceled;
 
 @interface KSHSecurityAuthorization ()
 - (NSString *)_localizedStringForErrorCode:(NSInteger)errorCode;
