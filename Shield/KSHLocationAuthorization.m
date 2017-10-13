@@ -109,6 +109,10 @@
     return kRetval;
 }
         
+- (BOOL)locationServicesEnabled {
+    return [CLLocationManager locationServicesEnabled];
+}
+        
 - (BOOL)hasLocationAuthorization {
 #if (TARGET_OS_IOS)
     return self.hasLocationAuthorizationAlways || self.hasLocationAuthorizationWhenInUse;

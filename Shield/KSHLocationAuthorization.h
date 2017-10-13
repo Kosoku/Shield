@@ -66,6 +66,11 @@ typedef void(^KSHRequestLocationAuthorizationCompletionBlock)(KSHLocationAuthori
 @property (class,readonly,nonatomic) KSHLocationAuthorization *sharedAuthorization;
 
 /**
+ Get whether location services are enabled. This will be NO if the user has disabled location services entirely within the Settings app.
+ */
+@property (readonly,nonatomic) BOOL locationServicesEnabled;
+
+/**
  Get whether the user has authorized location access.
  */
 @property (readonly,nonatomic) BOOL hasLocationAuthorization;
