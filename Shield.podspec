@@ -42,7 +42,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   
   s.subspec 'Core' do |ss|
     ss.resource_bundles = {
-      'Shield' => ['Shield/**/*.{xcassets,lproj}']
+      'Shield' => ['Shield/**/*.{lproj}']
     }
   end
   
