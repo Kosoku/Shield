@@ -56,7 +56,6 @@ typedef NS_OPTIONS(NSUInteger, KSHNotificationAuthorizationOptions) {
      See UNAuthorizationOptionBadge for more information.
      */
     KSHNotificationAuthorizationOptionsBadge = UNAuthorizationOptionBadge,
-#if (TARGET_OS_IOS)
     /**
      See UNAuthorizationOptionSound for more information.
      */
@@ -69,7 +68,6 @@ typedef NS_OPTIONS(NSUInteger, KSHNotificationAuthorizationOptions) {
      See UNAuthorizationOptionCarPlay for more information.
      */
     KSHNotificationAuthorizationOptionsCarPlay = UNAuthorizationOptionCarPlay
-#endif
 };
 
 /**
