@@ -160,6 +160,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   s.subspec 'Notification' do |ss|
     ss.ios.deployment_target = '10.0'
     ss.tvos.deployment_target = '10.0'
+    ss.osx.deployment_target = '10.14'
     
     ss.source_files = 'Shield/**/KSHNotificationAuthorization.{h,m}'
     
