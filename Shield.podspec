@@ -36,7 +36,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
 
   s.ios.source_files = 'Shield/*.{h,m}', 'Shield/iOS/*.{h,m}', 'Shield/Private/*.{h,m}'
   s.osx.source_files = 'Shield/*.{h,m}', 'Shield/macOS/*.{h,m}', 'Shield/Private/*.{h,m}'
-  s.tvos.source_files = 'Shield/KSHLocationAuthorization.{h,m}', 'Shield/iOS/KSHPhotosAuthorization.{h,m}', 'Shield/iOS/KSHNotificationAuthorization.{h,m}', 'Shield/iOS/KSHVideoSubscriberAccountAuthorization.{h,m}', 'Shield/Private/*.{h,m}'
+  s.tvos.source_files = 'Shield/KSHLocationAuthorization.{h,m}', 'Shield/iOS/KSHPhotosAuthorization.{h,m}', 'Shield/KSHNotificationAuthorization.{h,m}', 'Shield/iOS/KSHVideoSubscriberAccountAuthorization.{h,m}', 'Shield/Private/*.{h,m}'
   s.exclude_files = 'Shield/Shield-Info.h'
   s.private_header_files = 'Shield/Private/*.h'
   
