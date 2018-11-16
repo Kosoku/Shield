@@ -25,7 +25,10 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
     AuthorizationTypeReminders,
     AuthorizationTypeTwitter,
     AuthorizationTypeSecurity,
-    AuthorizationTypeLocal
+    AuthorizationTypeLocal,
+    AuthorizationTypePhotos,
+    AuthorizationTypeCamera,
+    AuthorizationTypeMicrophone
 };
 
 @interface ViewController ()
@@ -79,6 +82,24 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
         case AuthorizationTypeLocal: {
             [KSHLocalAuthorization.sharedAuthorization requestLocalAuthorizationForPolicy:KSHLocalAuthorizationPolicyBiometrics localizedReason:@"do stuff and things" completion:^(BOOL success, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(success),error);
+            }];
+        }
+            break;
+        case AuthorizationTypePhotos: {
+            [KSHPhotosAuthorization.sharedAuthorization requestPhotoLibraryAuthorizationWithCompletion:^(KSHPhotosAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeCamera: {
+            [KSHCameraAuthorization.sharedAuthorization requestCameraAuthorizationWithCompletion:^(KSHCameraAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
+            }];
+        }
+            break;
+        case AuthorizationTypeMicrophone: {
+            [KSHMicrophoneAuthorization.sharedAuthorization requestMicrophoneAuthorizationWithCompletion:^(KSHMicrophoneAuthorizationStatus status, NSError * _Nullable error) {
+                NSLog(@"%@ %@",@(status),error);
             }];
         }
             break;

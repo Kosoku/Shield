@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -664,12 +664,15 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="480" height="270"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="1cv-ta-BF1"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -748,7 +751,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="IX7-qJ-aNn">
-                                <rect key="frame" x="9" y="24" width="91" height="32"/>
+                                <rect key="frame" x="9" y="24" width="90" height="32"/>
                                 <buttonCell key="cell" type="push" title="Security" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cgl-hM-lGc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -767,22 +770,58 @@
                                     <action selector="_buttonAction:" target="XfG-lQ-9wD" id="jMn-HF-5S9"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="NIW-Ug-DHz">
+                                <rect key="frame" x="101" y="189" width="83" height="32"/>
+                                <buttonCell key="cell" type="push" title="Photos" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zdd-aE-6lu">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="_buttonAction:" target="XfG-lQ-9wD" id="8Ja-4T-Q0X"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="cCf-IG-loW">
+                                <rect key="frame" x="125" y="156" width="87" height="32"/>
+                                <buttonCell key="cell" type="push" title="Camera" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WSN-pE-hCu">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="_buttonAction:" target="XfG-lQ-9wD" id="CcH-eN-oqZ"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="nIT-3A-cqb">
+                                <rect key="frame" x="110" y="123" width="112" height="32"/>
+                                <buttonCell key="cell" type="push" title="Microphone" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uB6-Wv-p6w">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="_buttonAction:" target="XfG-lQ-9wD" id="gFP-Zr-akc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="cCf-IG-loW" firstAttribute="leading" secondItem="ygb-S2-reO" secondAttribute="trailing" constant="12" id="CRw-LE-kjE"/>
                             <constraint firstItem="T3w-bQ-Ta1" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="Hmb-Y3-kos"/>
                             <constraint firstItem="ygb-S2-reO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="KAH-EW-DWn"/>
+                            <constraint firstItem="nIT-3A-cqb" firstAttribute="leading" secondItem="5vb-Ce-fQ5" secondAttribute="trailing" constant="12" id="KBD-er-SbT"/>
                             <constraint firstItem="maK-SL-XS0" firstAttribute="top" secondItem="5vb-Ce-fQ5" secondAttribute="bottom" constant="12" id="MVK-uY-a51"/>
                             <constraint firstItem="5d1-TA-CrP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="QRd-oz-TSg"/>
                             <constraint firstItem="maK-SL-XS0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="Usg-4B-PwT"/>
                             <constraint firstItem="BuP-nW-Pg9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="V4J-j3-9Ac"/>
                             <constraint firstItem="ygb-S2-reO" firstAttribute="top" secondItem="5d1-TA-CrP" secondAttribute="bottom" constant="12" id="VsE-Ec-zEe"/>
                             <constraint firstItem="5vb-Ce-fQ5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="aOf-eD-wfw"/>
+                            <constraint firstItem="nIT-3A-cqb" firstAttribute="top" secondItem="cCf-IG-loW" secondAttribute="bottom" constant="12" id="amX-Id-YMM"/>
                             <constraint firstItem="h0T-xw-peE" firstAttribute="leading" secondItem="BuP-nW-Pg9" secondAttribute="trailing" constant="12" id="bAb-bl-xmG"/>
                             <constraint firstItem="IX7-qJ-aNn" firstAttribute="top" secondItem="T3w-bQ-Ta1" secondAttribute="bottom" constant="12" id="c5W-xH-NNx"/>
                             <constraint firstItem="5vb-Ce-fQ5" firstAttribute="top" secondItem="ygb-S2-reO" secondAttribute="bottom" constant="12" id="cq2-vM-9RT"/>
                             <constraint firstItem="T3w-bQ-Ta1" firstAttribute="top" secondItem="maK-SL-XS0" secondAttribute="bottom" constant="12" id="f2K-4c-F1A"/>
                             <constraint firstItem="h0T-xw-peE" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="iZG-Vn-pfa"/>
+                            <constraint firstItem="NIW-Ug-DHz" firstAttribute="top" secondItem="h0T-xw-peE" secondAttribute="bottom" constant="12" id="kKO-ev-KIs"/>
                             <constraint firstItem="IX7-qJ-aNn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="lvg-3r-H3y"/>
+                            <constraint firstItem="NIW-Ug-DHz" firstAttribute="leading" secondItem="5d1-TA-CrP" secondAttribute="trailing" constant="9" id="ncM-9i-2HA"/>
+                            <constraint firstItem="cCf-IG-loW" firstAttribute="top" secondItem="NIW-Ug-DHz" secondAttribute="bottom" constant="12" id="pEh-QZ-qNi"/>
                             <constraint firstItem="BuP-nW-Pg9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="pOL-J5-79K"/>
                             <constraint firstItem="5d1-TA-CrP" firstAttribute="top" secondItem="BuP-nW-Pg9" secondAttribute="bottom" constant="12" id="pXJ-9a-AMT"/>
                         </constraints>

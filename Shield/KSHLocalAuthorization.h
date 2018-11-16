@@ -67,15 +67,15 @@ typedef NS_ENUM(NSInteger, KSHLocalAuthorizationErrorCode) {
     /**
      Touch ID is not available on the device.
      */
-    KSHLocalAuthorizationErrorCodeTouchIDNotAvailable = LAErrorTouchIDNotAvailable,
+    KSHLocalAuthorizationErrorCodeBiometryNotAvailable = LAErrorBiometryNotAvailable,
     /**
      The user has not registered any fingers with Touch ID.
      */
-    KSHLocalAuthorizationErrorCodeTouchIDNotEnrolled = LAErrorTouchIDNotEnrolled,
+    KSHLocalAuthorizationErrorCodeBiometryNotEnrolled = LAErrorBiometryNotEnrolled,
     /**
      The user failed to authenticate too many times using Touch ID.
      */
-    KSHLocalAuthorizationErrorCodeTouchIDLockout = LAErrorTouchIDLockout
+    KSHLocalAuthorizationErrorCodeBiometryLockout = LAErrorBiometryLockout
 };
 /**
  The error domain for local authorization errors.

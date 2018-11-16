@@ -189,12 +189,6 @@ typedef NS_ENUM(NSInteger, AuthorizationType) {
             }];
         }
             break;
-        case AuthorizationTypeTwitter: {
-            [KSHAccountsAuthorization.sharedAuthorization requestAccountsAuthorizationForType:KSHAccountsTypeTwitter options:nil completion:^(BOOL success, NSError * _Nullable error) {
-                NSLog(@"%@ %@",@(success),error);
-            }];
-        }
-            break;
         case AuthorizationTypeHome: {
             [KSHHomeAuthorization.sharedAuthorization requestHomeAuthorizationWithCompletion:^(BOOL success, NSError * _Nullable error) {
                 NSLog(@"%@ %@",@(success),error);

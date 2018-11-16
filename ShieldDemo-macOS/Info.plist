@@ -36,5 +36,11 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSCameraUsageDescription</key>
+	<string>LOCALIZE</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LOCALIZE</string>
 </dict>
 </plist>

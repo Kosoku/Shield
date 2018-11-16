@@ -26,15 +26,16 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 #import <Shield/KSHLocationAuthorization.h>
 #if (TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_OSX)
 #import <Shield/KSHNotificationAuthorization.h>
+#import <Shield/KSHPhotosAuthorization.h>
 #endif
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 #import <Shield/KSHEventAuthorization.h>
 #import <Shield/KSHContactsAuthorization.h>
-#import <Shield/KSHAccountsAuthorization.h>
 #import <Shield/KSHLocalAuthorization.h>
+#import <Shield/KSHCameraAuthorization.h>
+#import <Shield/KSHMicrophoneAuthorization.h>
 #endif
 #if (TARGET_OS_IOS || TARGET_OS_TV)
-#import <Shield/KSHPhotosAuthorization.h>
 #import <Shield/KSHVideoSubscriberAccountAuthorization.h>
 #endif
 #if (TARGET_OS_OSX)
@@ -43,8 +44,6 @@ FOUNDATION_EXPORT const unsigned char ShieldVersionString[];
 #import <Shield/KSHSecurityRights.h>
 #endif
 #if (TARGET_OS_IOS)
-#import <Shield/KSHCameraAuthorization.h>
-#import <Shield/KSHMicrophoneAuthorization.h>
 #import <Shield/KSHMediaLibraryAuthorization.h>
 #import <Shield/KSHHealthAuthorization.h>
 #import <Shield/KSHSiriAuthorization.h>

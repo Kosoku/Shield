@@ -116,12 +116,12 @@ NSString *const KSHLocalAuthorizationErrorDomain = @"com.kosoku.shield.local.err
         return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_SYSTEM_CANCEL", nil, [NSBundle KSH_frameworkBundle], @"The system cancelled the operation.", @"local authorization error code system cancel");
         case KSHLocalAuthorizationErrorCodePasscodeNotSet:
         return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_PASSCODE_NOT_SET", nil, [NSBundle KSH_frameworkBundle], @"The user has not set a passcode.", @"local authorization error code passcode not set");
-        case KSHLocalAuthorizationErrorCodeTouchIDNotAvailable:
-        return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_TOUCH_ID_NOT_AVAILABLE", nil, [NSBundle KSH_frameworkBundle], @"Touch ID is not available on the device.", @"local authorization error code touch id not available");
-        case KSHLocalAuthorizationErrorCodeTouchIDNotEnrolled:
-        return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_TOUCH_ID_NOT_ENROLLED", nil, [NSBundle KSH_frameworkBundle], @"The user has not enrolled in Touch ID.", @"local authorization error code touch id not enrolled");
-        case KSHLocalAuthorizationErrorCodeTouchIDLockout:
-        return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_TOUCH_ID_LOCKOUT", nil, [NSBundle KSH_frameworkBundle], @"The user has been locked out of Touch ID.", @"local authorization error code touch id lockout");
+        case KSHLocalAuthorizationErrorCodeBiometryNotAvailable:
+        return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_TOUCH_ID_NOT_AVAILABLE", nil, [NSBundle KSH_frameworkBundle], @"Touch ID or Face ID is not available on the device.", @"local authorization error code touch id not available");
+        case KSHLocalAuthorizationErrorCodeBiometryNotEnrolled:
+        return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_TOUCH_ID_NOT_ENROLLED", nil, [NSBundle KSH_frameworkBundle], @"The user has not enrolled in Touch ID or Face ID.", @"local authorization error code touch id not enrolled");
+        case KSHLocalAuthorizationErrorCodeBiometryLockout:
+        return NSLocalizedStringWithDefaultValue(@"LOCAL_AUTHORIZATION_ERROR_CODE_TOUCH_ID_LOCKOUT", nil, [NSBundle KSH_frameworkBundle], @"The user has been locked out of Touch ID or Face ID.", @"local authorization error code touch id lockout");
         default:
             return nil;
     }
