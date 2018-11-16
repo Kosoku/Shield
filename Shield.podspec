@@ -28,7 +28,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   s.source           = { :git => 'https://github.com/Kosoku/Shield.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
   
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '12.0'
   s.osx.deployment_target = '10.14'
   s.tvos.deployment_target = '10.0'
   
@@ -36,7 +36,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
 
   s.ios.source_files = 'Shield/*.{h,m}', 'Shield/iOS/*.{h,m}', 'Shield/Private/*.{h,m}'
   s.osx.source_files = 'Shield/*.{h,m}', 'Shield/macOS/*.{h,m}', 'Shield/Private/*.{h,m}'
-  s.tvos.source_files = 'Shield/KSHLocationAuthorization.{h,m}', 'Shield/iOS/KSHPhotosAuthorization.{h,m}', 'Shield/KSHNotificationAuthorization.{h,m}', 'Shield/iOS/KSHVideoSubscriberAccountAuthorization.{h,m}', 'Shield/Private/*.{h,m}'
+  s.tvos.source_files = 'Shield/KSHLocationAuthorization.{h,m}', 'Shield/KSHPhotosAuthorization.{h,m}', 'Shield/KSHNotificationAuthorization.{h,m}', 'Shield/iOS/KSHVideoSubscriberAccountAuthorization.{h,m}', 'Shield/Private/*.{h,m}'
   s.exclude_files = 'Shield/Shield-Info.h'
   s.private_header_files = 'Shield/Private/*.h'
   
@@ -47,7 +47,8 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Camera' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
+    ss.osx.deployment_target = '10.14'
     
     ss.source_files = 'Shield/**/KSHCameraAuthorization.{h,m}'
     
@@ -58,7 +59,8 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Microphone' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
+    ss.osx.deployment_target = '10.14'
     
     ss.source_files = 'Shield/**/KSHMicrophoneAuthorization.{h,m}'
     
@@ -69,7 +71,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'MediaLibrary' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     
     ss.source_files = 'Shield/**/KSHMediaLibraryAuthorization.{h,m}'
     
@@ -80,7 +82,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Health' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     
     ss.source_files = 'Shield/**/KSHHealthAuthorization.{h,m}'
     
@@ -91,7 +93,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Siri' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     
     ss.source_files = 'Shield/**/KSHSiriAuthorization.{h,m}'
     
@@ -102,7 +104,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Speech' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     
     ss.source_files = 'Shield/**/KSHSpeechAuthorization.{h,m}'
     
@@ -113,7 +115,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Bluetooth' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     
     ss.source_files = 'Shield/**/KSHBluetoothAuthorization.{h,m}'
     
@@ -124,7 +126,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Home' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     
     ss.source_files = 'Shield/**/KSHHomeAuthorization.{h,m}'
     
@@ -135,7 +137,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Motion' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     
     ss.source_files = 'Shield/**/KSHMotionAuthorization.{h,m}'
     
@@ -146,8 +148,9 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Photos' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     ss.tvos.deployment_target = '10.0'
+    ss.osx.deployment_target = '10.14'
     
     ss.source_files = 'Shield/**/KSHPhotosAuthorization.{h,m}'
     
@@ -158,7 +161,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Notification' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     ss.tvos.deployment_target = '10.0'
     ss.osx.deployment_target = '10.14'
     
@@ -171,7 +174,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'VideoSubscriberAccount' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     ss.tvos.deployment_target = '10.0'
     
     ss.source_files = 'Shield/**/KSHVideoSubscriberAccountAuthorization.{h,m}'
@@ -183,7 +186,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Event' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     ss.osx.deployment_target = '10.14'
     
     ss.source_files = 'Shield/**/KSHEventAuthorization.{h,m}'
@@ -195,7 +198,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Contacts' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     ss.osx.deployment_target = '10.14'
     
     ss.source_files = 'Shield/**/KSHContactsAuthorization.{h,m}'
@@ -206,20 +209,8 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
     ss.dependency 'Shield/Core'
   end
   
-  s.subspec 'Accounts' do |ss|
-    ss.ios.deployment_target = '10.0'
-    ss.osx.deployment_target = '10.14'
-    
-    ss.source_files = 'Shield/**/KSHAccountsAuthorization.{h,m}'
-    
-    ss.frameworks = 'Accounts'
-    
-    ss.dependency 'Stanley'
-    ss.dependency 'Shield/Core'
-  end
-  
   s.subspec 'Local' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     ss.osx.deployment_target = '10.14'
     
     ss.source_files = 'Shield/**/KSHLocalAuthorization.{h,m}', 'Shield/Private/*.{h,m}'
@@ -231,7 +222,7 @@ Shield is an iOS/macOS/tvOS framework that wraps various authorization APIs (e.g
   end
   
   s.subspec 'Location' do |ss|
-    ss.ios.deployment_target = '10.0'
+    ss.ios.deployment_target = '12.0'
     ss.osx.deployment_target = '10.14'
     ss.tvos.deployment_target = '10.0'
     
