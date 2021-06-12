@@ -1,0 +1,3 @@
+---
+BUNDLE_PATH: ".gems/bundle"
+BUNDLE_SET: "path .gems/bundle"
